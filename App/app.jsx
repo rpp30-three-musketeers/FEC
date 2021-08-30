@@ -2,6 +2,7 @@ import React from 'react';
 import reactDOM from 'react-dom';
 import './css/global.css';
 import Header from './Header.jsx';
+import Reviews from './Reviews.jsx';
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -42,6 +43,7 @@ class App extends React.Component {
       <div>
         <Header />
         <p>Hello World</p>
+        <Reviews />
         <button type='submit' onClick={this.testCall}>Poke the API</button>
       </div>
     );
