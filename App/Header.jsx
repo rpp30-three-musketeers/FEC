@@ -1,7 +1,7 @@
-import React from 'react';
+import react from 'react';
 import ReactDOM from 'react-dom';
 
-class Header extends React.Component {
+class Header extends react.Component {
   constructor(props) {
     super(props);
   }

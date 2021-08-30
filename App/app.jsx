@@ -1,9 +1,10 @@
-import React from 'react';
+import react from 'react';
 import reactDOM from 'react-dom';
 import './css/global.css';
 import Header from './Header.jsx';
+import Reviews from './Components/Reviews.jsx';
 
-class App extends React.Component {
+class App extends react.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -25,6 +26,8 @@ class App extends React.Component {
     return (
       <div>
         <Header />
+        {/* <Reviews /> */}
+
         <p>Hello World</p>
       </div>
     );
