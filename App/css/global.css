@@ -26,3 +26,12 @@ body {
   max-height: 90vh;
   overflow: scroll;
 }
+
+#outfit-window {
+  /* max-width: 90vh; */
+  width: 60vw;
+  height: 20vh;
+  border: 1px solid black;
+  padding: 50px;
+  margin: 20px;
+}
