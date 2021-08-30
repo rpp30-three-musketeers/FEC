@@ -2,13 +2,15 @@ import React from 'react';
 import reactDOM from 'react-dom';
 import './css/global.css';
 import Header from './Header.jsx';
-import Reviews from './Reviews.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+
+    };
 
     this.productIdExtractor = this.productIdExtractor.bind(this);
     this.testCall = this.testCall.bind(this);
