@@ -3,3 +3,4 @@ babel.js
 .eslintrc.js
 .eslintignore
 credentials.js
+Public/bundle.js

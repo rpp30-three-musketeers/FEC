@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Reviews extends React.Component {
+class Overview extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -9,9 +9,9 @@ class Reviews extends React.Component {
 
   render() {
     return <div id={'site-header'}>
-      <p>Review Component</p>
+      <p>Overview Component</p>
     </div>;
   }
 }
 
-export default Reviews;
+export default Overview;
