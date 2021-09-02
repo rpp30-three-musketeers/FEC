@@ -5,7 +5,6 @@ const port = 3000
 app.use(express.static('Public'));
 
 
-
 app.get('/', (req, res) => {
   res.send('Connected to server; ')
 })
