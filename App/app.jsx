@@ -1,6 +1,7 @@
 import React from 'react';
 import reactDOM from 'react-dom';
 import './css/global.css';
+import Header from './Header.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,8 +24,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <Header />
         <p>Hello World</p>
-        <p>{window.location.href}</p>
       </div>
     );
   }
