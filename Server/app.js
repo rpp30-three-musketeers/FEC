@@ -6,7 +6,6 @@ const port = 3000;
 
 app.use(express.static('Public'));
 
-//req.body should contain object with product_id and urlExtension properties. If no extension needed send null
 app.get('/products', (req, res) => {
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
 
