@@ -2,3 +2,4 @@ node_modules
 babel.js
 .eslintrc.js
 .eslintignore
+credentials.js

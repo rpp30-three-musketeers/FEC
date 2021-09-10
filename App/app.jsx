@@ -2,6 +2,7 @@ import React from 'react';
 import reactDOM from 'react-dom';
 import './css/global.css';
 import Header from './Header.jsx';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class App extends React.Component {
     this.state = {};
 
     this.productIdExtractor = this.productIdExtractor.bind(this);
-
+    this.testCall = this.testCall.bind(this);
   }
 
   productIdExtractor(url) {
@@ -19,6 +20,13 @@ class App extends React.Component {
 
   componentDidMount() {
     this.productIdExtractor(window.location.href);
+    this.testCall();
+  }
+
+  testCall() {
+    $.get('/products', {product_id: 47422, }, (data) => {
+      console.log('data from server: ', data);
+    })
   }
 
   render() {
