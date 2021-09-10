@@ -20,11 +20,19 @@ class App extends React.Component {
 
   componentDidMount() {
     this.productIdExtractor(window.location.href);
-    this.testCall();
   }
 
   testCall() {
-    $.get('/products', {product_id: 47422, }, (data) => {
+    let options = {
+      product_id: null, //select a specific item by id
+      endpoint: null, //null, styles, related
+      parameters: { //if retrieving all products controls the amount returned
+        page: 1, //default is 1
+        count: 5 //default is 5
+      }
+    }
+
+    $.get('/products', options, (data) => {
       console.log('data from server: ', data);
     })
   }
@@ -34,6 +42,7 @@ class App extends React.Component {
       <div>
         <Header />
         <p>Hello World</p>
+        <button type='submit' onClick={this.testCall}>Poke the API</button>
       </div>
     );
   }

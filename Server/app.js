@@ -8,7 +8,6 @@ app.use(express.static('Public'));
 
 //req.body should contain object with product_id and urlExtension properties. If no extension needed send null
 app.get('/products', (req, res) => {
-
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
 
   if (req.query.product_id){
@@ -16,7 +15,25 @@ app.get('/products', (req, res) => {
     url += extension;
   }
 
+  if (req.query.endpoint){
+    let extension = `/${req.query.endpoint}`;
+    url += extension;
+  }
+
+  if (!req.query.endpoint && !req.query.product_id){
+    url += '?';
+    if (req.query.parameters.page) {
+      let extension = `page=${req.query.parameters.page}`;
+      url += extension;
+    }
+    if (req.query.parameters.count) {
+      let extension = `&count=${req.query.parameters.count}`;
+      url += extension;
+    }
+  }
+
   console.log(url);
+  console.log(req.query);
 
   axios({
     method: 'get',
@@ -36,8 +53,6 @@ app.get('/products', (req, res) => {
     })
 
 });
-
-
 
 app.get('/', (req, res) => {
   res.send('Connected to server; ');
