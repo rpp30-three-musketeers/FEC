@@ -5,7 +5,7 @@
   "main": "./App/app.jsx",
   "scripts": {
     "test": "jest",
-    "front": "webpack -w",
+    "front": "webpack -w --mode development",
     "back": "nodemon ./Server/app.js ",
     "lint": "eslint ./"
   },
