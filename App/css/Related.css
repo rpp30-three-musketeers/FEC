@@ -4,7 +4,7 @@
   /* border: 1px solid blue; */
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
 
 #product-card {
@@ -54,4 +54,5 @@
 
 .related-title {
   margin-bottom: 0%;
+  margin-top: 0%;
 }
