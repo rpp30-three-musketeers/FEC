@@ -9,16 +9,16 @@ class Product extends React.Component {
     return (
       <div>
         <div id="product-card">
-          <p>I'm a product</p>
-          <div>Button</div>
-          <div>Image</div>
-          <div>Category</div>
-          <div>Expanded Name</div>
-          <div>Price</div>
-          <div>Star Rating</div>
-
+          <div id="product-card-img">
+          <img id="image" src='https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'/>
+          </div>
+          <div id="product-card-attribute">
+          <p>Jackets</p>
+          <p>Camo Onesie</p>
+          <p>$140</p>
+          <p>***__</p>
+          </div>
         </div>
-
       </div>
     )
   }

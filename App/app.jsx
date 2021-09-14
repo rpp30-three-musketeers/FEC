@@ -33,8 +33,8 @@ class App extends React.Component {
   testCall() {
     let options = {
       // eslint-disable-next-line camelcase
-      product_id: null, //select a specific item by id
-      endpoint: null, //null, styles, related
+      product_id: 47421, //select a specific item by id
+      endpoint: 'styles', //null, styles, related
       parameters: { //if retrieving all products controls the amount returned
         page: null, //default is 1
         count: null //default is 5
