@@ -1,0 +1,22 @@
+#reviews {
+ background-color: aqua;
+
+ margin-bottom: 2em;
+ display: block;
+}
+
+#content {
+  border: 2px solid red;
+  width: auto;
+  display: flex;
+
+}
+#leftColumn {
+  border: 2px solid red;
+  flex: 1 1 auto;
+}
+
+#rightColumn {
+  border: 2px solid red;
+  flex: 1 1 auto;
+}
