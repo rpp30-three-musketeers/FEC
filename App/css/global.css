@@ -26,23 +26,3 @@ body {
   max-height: 90vh;
   overflow: scroll;
 }
-
-#outfit-window {
-  /* max-width: 90vh; */
-  width: 65vw;
-  height: 30vh;
-  border: 1px solid black;
-  padding: 10px;
-  margin: 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex: none;
-}
-#product-card {
-  width: 200%;
-  height: 95%;
-  border: 1px solid black;
-  padding: 0%;
-  margin: 10px;
-}

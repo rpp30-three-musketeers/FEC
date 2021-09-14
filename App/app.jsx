@@ -1,6 +1,7 @@
 import React from 'react';
 import reactDOM from 'react-dom';
 import './css/global.css';
+import './css/Related.css';
 import Header from './Header.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Outfit from './RelatedProducts/Outfit.jsx';
