@@ -9,7 +9,7 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div>
-        <p>Related Products</p>
+        <p className="related-title">Related Products</p>
         <div id="outfit-window">
           <Product />
           <Product />
