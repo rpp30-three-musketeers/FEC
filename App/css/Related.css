@@ -1,9 +1,10 @@
 #outfit-window {
   width: 1000px;
-  height: 550px;
-  border: 1px solid blue;
+  height: 500px;
+  /* border: 1px solid blue; */
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  margin-bottom: 5%;
 }
 
 #product-card {
@@ -11,24 +12,46 @@
   height: 100%;
   border: 1px solid black;
   display: grid;
-  /* margin: 2%; */
-  grid-template-rows: 70% 30%;
+  grid-template-rows: 80% 20%;
 }
 
 #product-card-img {
   height: 100%;
   width: 100%;
-  /* float: left; */
   overflow: hidden;
 }
 
 #image {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
-#product-card-attribute {
+#product-card-attributes {
   height: 100%;
   width: 100%;
+  margin: 0%;
+}
+
+#product-card-category {
+  margin: 2%;
+}
+
+#product-card-name {
+  margin: 2%;
+  font-weight: bold;
+  font-size: 115%
+}
+
+#product-card-price {
+  margin: 2%;
+  font-size: 80%
+}
+
+#product-card-rating {
+  margin: 2%;
+}
+
+.related-title {
+  margin-bottom: 0%;
 }
