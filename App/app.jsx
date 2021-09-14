@@ -15,6 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: ''
+
     };
 
     this.productIdExtractor = this.productIdExtractor.bind(this);
