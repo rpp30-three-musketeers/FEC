@@ -2,12 +2,6 @@ import React from 'react';
 import Product from './ProductCard.jsx';
 import $ from 'jquery';
 
-//TODO:
-//  *Map only 4 products
-
-
-
-
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +16,6 @@ class RelatedProducts extends React.Component {
     this.getRelated();
   }
 
-  //retrieve list of related products
   getRelated() {
     // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.state.currentProduct, endpoint: 'related'}, (data) => {
@@ -31,11 +24,6 @@ class RelatedProducts extends React.Component {
       });
     });
   }
-
-
-  //for reach related product $.get /id and /styles\
-
-
 
   render() {
     return (

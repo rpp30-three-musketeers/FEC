@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class Product extends React.Component {
   constructor(props) {
@@ -6,14 +7,35 @@ class Product extends React.Component {
     this.state = {
 
     };
+    this.getStyle = this.getStyle.bind(this);
+    this.getInfo = this.getInfo.bind(this);
   }
 
-  //$.get /styles
-  //set state
+  componentDidMount() {
+    this.getStyle();
+    this.getInfo();
+  }
 
-  //$.get /id
-  //set state
+  getStyle() {
+    // eslint-disable-next-line camelcase
+    $.get('/products', {product_id: this.props.id, endpoint: 'styles'}, (data) => {
+      console.log('styleData: ', data);
+      // this.setState({
+      //   price: data.results[0].original_price,
+      //   img: data.results[0].photos[0].url
+      // });
+    });
+  }
 
+  getInfo() {
+    // eslint-disable-next-line camelcase
+    $.get('/products', {product_id: this.props.id}, (data) => {
+      this.setState({
+        name: data.name,
+        category: data.category
+      });
+    });
+  }
 
   render() {
     return (
