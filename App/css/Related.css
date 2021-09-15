@@ -1,16 +1,58 @@
 #outfit-window {
   width: 1000px;
-  height: 400px;
-  border: 1px solid blue;
-  margin: 5px;
+  height: 500px;
+  /* border: 1px solid blue; */
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
+  margin-bottom: 2%;
 }
 
 #product-card {
-  width: 98%;
-  height: 98%;
+  width: 96%;
+  height: 100%;
   border: 1px solid black;
-  padding: 0px;
-  margin: 0px;
+  display: grid;
+  grid-template-rows: 80% 20%;
+}
+
+#product-card-img {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#product-card-attributes {
+  height: 100%;
+  width: 100%;
+  margin: 0%;
+}
+
+#product-card-category {
+  margin: 2%;
+}
+
+#product-card-name {
+  margin: 2%;
+  font-weight: bold;
+  font-size: 115%
+}
+
+#product-card-price {
+  margin: 2%;
+  font-size: 80%
+}
+
+#product-card-rating {
+  margin: 2%;
+}
+
+.related-title {
+  margin-bottom: 0%;
+  margin-top: 0%;
 }

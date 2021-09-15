@@ -1,5 +1,5 @@
 import React from 'react';
-import Product from './ProductCard.jsx'
+import Product from './ProductCard.jsx';
 
 class Outfit extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class Outfit extends React.Component {
   render() {
     return (
       <div>
-        <p>Your Outfit</p>
+        <p className="related-title">Your Outfit</p>
         <div id="outfit-window">
           <Product />
           <Product />
@@ -18,7 +18,7 @@ class Outfit extends React.Component {
         </div>
 
       </div>
-    )
+    );
   }
 }
 
