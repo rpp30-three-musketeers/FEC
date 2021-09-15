@@ -40,7 +40,6 @@ app.get('/products', (req, res) => {
     }
   })
     .then((products) => {
-      console.log('Successful response from gitHub API call');
       return res.status(201).json(products.data);
     })
     .catch((err) => {

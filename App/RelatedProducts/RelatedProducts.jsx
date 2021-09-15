@@ -7,7 +7,7 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       related: [47422, 47423, 47428, 47427],
-      currentProduct: 47421
+      currentProduct: 47455
     };
     this.getRelated = this.getRelated.bind(this);
   }
