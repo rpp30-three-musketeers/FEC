@@ -5,11 +5,20 @@ import Description from './Description.jsx';
 import Features from './Features.jsx';
 import Title from './Title.jsx';
 import Styles from './Styles.jsx';
+import $ from 'jquery';
 import '../css/Overview.css';
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {};
+  }
+
+  componentDidMount() {
+    $.get('/products', {product_id: 47421}, (data) => {
+      this.setState({currentId: data.id, productName: data.name, productSlogan: data.slogan, productDescription: data.description, productDefaultPrice: data.default_price, productFeatures: data.features});
+    });
   }
 
   render() {
@@ -20,8 +29,8 @@ class Overview extends React.Component {
         <Title />
         <Styles />
       </div>
-      <Description />
-      <Features />
+      <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
+      <Features features={this.state.productFeatures} />
     </div>;
   }
 }
