@@ -15,24 +15,33 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 47421,
-      mountedOnce: false,
-      currentProductReviews: null
+      currentProductReviews: []
 
     };
 
     this.productIdExtractor = this.productIdExtractor.bind(this);
     this.testCall = this.testCall.bind(this);
+    this.updateProductReview = this.updateProductReview.bind(this);
   }
 
   productIdExtractor(url) {
     var productId = url.split('/')[3];
-    this.setState({currentProductId: productId});
+    this.setState({});
+  }
+
+  updateProductReview(data) {
+    console.log(data, 'data');
+    this.setState({currentProductReviews: data});
+
   }
 
   componentDidMount() {
     //this.productIdExtractor(window.location.href);
     console.log('inside componentDidMount');
-    if (true) {
+    console.log(this.currentProductReviews, 'currentproductreviews');
+
+    if (this.currentProductReviews === undefined) {
+      let info;
       console.log('inside if statement');
       let options = {
         // eslint-disable-next-line camelcase
@@ -47,9 +56,12 @@ class App extends React.Component {
 
       $.get('/reviews/', options, (data) => {
         console.log('data from server: ', data);
-        this.setState({currentProductReviews: data});
+        return data;
       // eslint-disable-next-line semi
-      })
+      }).then((info)=>{
+        console.log(info);
+        this.updateProductReview(info);
+      });
 
     }
 
@@ -75,14 +87,13 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.currentProductReviews);
     return (
       <div>
         <Header />
         <Overview/>
         <RelatedProducts/>
         <Outfit />
-        {/* {this.currentProductReviews !== null ? <Reviews results = {this.currentProductReviews}/> : <div></div>} */}
+        {this.currentProductReviews !== undefined ? console.log(this.currentProductReviews) : console.log('not defined')}
         <button type='submit' onClick={this.testCall}>Poke the API</button>
       </div>
     );
