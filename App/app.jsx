@@ -1,5 +1,5 @@
 import React from 'react';
-import reactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import './css/global.css';
 import './css/Related.css';
 import Header from './Header.jsx';
@@ -8,6 +8,7 @@ import Outfit from './RelatedProducts/Outfit.jsx';
 import Overview from './Overview/Overview.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import $ from 'jquery';
+import { ProductIdProvider } from './context.jsx';
 
 
 class App extends React.Component {
@@ -56,8 +57,8 @@ class App extends React.Component {
   testCall() {
     let options = {
       // eslint-disable-next-line camelcase
-      product_id: 47421, //select a specific item by id
-      endpoint: 'styles', //null, styles, related
+      product_id: 47423, //select a specific item by id
+      endpoint: null, //null, styles, related
       parameters: { //if retrieving all products controls the amount returned
         page: null, //default is 1
         count: null //default is 5
@@ -74,16 +75,18 @@ class App extends React.Component {
   render() {
     let renderReviews = this.state.productReviews.length === 0 ? false : true;
     return (
-      <div>
-        <Header />
-        <Overview/>
-        <RelatedProducts/>
-        <Outfit />
-        {renderReviews ? <Reviews data = {this.state.productReviews}/> : null}
-        <button type='submit' onClick={this.testCall}>Poke the API</button>
-      </div>
+      <ProductIdProvider value={window.location.href.split('/')[3]}>
+        <div>
+          <Header />
+          <Overview/>
+          <RelatedProducts/>
+          <Outfit />
+          {renderReviews ? <Reviews data = {this.state.productReviews}/> : null}
+          <button type='submit' onClick={this.testCall}>Poke the API</button>
+        </div>
+      </ProductIdProvider>
     );
   }
 }
 
-reactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));

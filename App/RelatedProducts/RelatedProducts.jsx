@@ -1,28 +1,47 @@
 import React from 'react';
 import Product from './ProductCard.jsx';
+import Comparison from './Comparison.jsx';
+import ProductIdContext from '../context.jsx';
 import $ from 'jquery';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      related: [47422, 47423, 47428, 47427],
+      related: undefined,
       currentProduct: 47455
     };
     this.getRelated = this.getRelated.bind(this);
+    this.loadProducts = this.loadProducts.bind(this);
+    this.compareProducts = this.compareProducts.bind(this);
   }
+
+  static contextType = ProductIdContext;
 
   componentDidMount() {
     this.getRelated();
+    this.loadProducts();
   }
 
   getRelated() {
     // eslint-disable-next-line camelcase
-    $.get('/products', {product_id: this.state.currentProduct, endpoint: 'related'}, (data) => {
+    $.get('/products', {product_id: this.context, endpoint: 'related'}, (data) => {
       this.setState({
         related: data
       });
     });
+  }
+
+  loadProducts() {
+    if (this.state.related !== undefined) {
+      return (this.state.related.slice(0, 4).map(item => {
+        return <Product id={item} key={item} onClick={this.compareProducts(item)}/>;
+      }));
+    }
+  }
+
+  compareProducts(event) {
+    return <Comparison current={this.context} other={event}/>;
   }
 
   render() {
@@ -30,9 +49,7 @@ class RelatedProducts extends React.Component {
       <div>
         <p className="related-title">Related Products</p>
         <div id="outfit-window">
-          {this.state.related.slice(0, 4).map(item => {
-            return <Product id={item} key={item}/>;
-          })}
+          {this.loadProducts()}
         </div>
 
       </div>

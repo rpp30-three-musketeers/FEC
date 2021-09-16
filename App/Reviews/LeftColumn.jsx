@@ -6,10 +6,10 @@ const LeftColumn = (props) => {
   return (
     <div>
       <div>
-        <div>{props.rating}</div>
+        <div id ={'rating'} title = {'rating'}>{props.rating}</div>
         <div>stars</div>
       </div>
-      <p>{props.percentRecommend + 'of reviews recommend this product'}</p>
+      <p id = {'pct'} title = {'pct'}>{props.percentRecommend + 'of reviews recommend this product'}</p>
       <div>
         <p>5 stars</p>
         <div>percent bar</div>

@@ -20,7 +20,6 @@ app.get('/products', (req, res) => {
     url += extension;
   }
 
-
   if (req.query.parameters) {
     url += '?';
     if (req.query.parameters.page) {
@@ -48,15 +47,20 @@ app.get('/products', (req, res) => {
       console.log(err);
       return res.status(500);
     });
-
 });
 
 app.get('/', (req, res) => {
   res.send('Server is running...');
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.get('/', (req, res) => {
+  // res.send('Connected to server; ');
+  res.sendFile('index.html', {root: './Public'});
+});
+
+app.get(/^\/\b\d{5}$/, (req, res) => {
+  // res.send('Connected to server; ');
+  res.sendFile('index.html', {root: './Public'});
 });
 
 app.get('/reviews/', (req, res)=>{
@@ -69,15 +73,15 @@ app.get('/reviews/', (req, res)=>{
     method: 'get',
     url: url,
     // data: {
-    //   product_id: 47421,
-    //   sort: 'relevant',
-    // },
-    headers: {
-      Authorization: credentials.authorization,
+      //   product_id: 47421,
+      //   sort: 'relevant',
+      // },
+      headers: {
+        Authorization: credentials.authorization,
 
-    },
+      },
 
-  })
+    })
     .then((reviews) => {
       console.log('Successful response from gitHub API call', reviews.data);
       return res.status(201).json(reviews.data);
@@ -86,4 +90,8 @@ app.get('/reviews/', (req, res)=>{
       console.log(err);
       return res.status(500);
     });
-});
+  });
+
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}/47421`);
+  });
