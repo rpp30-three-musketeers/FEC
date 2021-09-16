@@ -5,7 +5,10 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      price: undefined,
+      img: undefined,
+      name: undefined,
+      category: undefined
     };
     this.getStyle = this.getStyle.bind(this);
     this.getInfo = this.getInfo.bind(this);
