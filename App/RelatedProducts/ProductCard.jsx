@@ -5,10 +5,15 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      price: undefined,
+      salePrice: undefined,
+      img: undefined,
+      name: undefined,
+      category: undefined
     };
     this.getStyle = this.getStyle.bind(this);
     this.getInfo = this.getInfo.bind(this);
+    this.loadPrice = this.loadPrice.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +26,7 @@ class Product extends React.Component {
     $.get('/products', {product_id: this.props.id, endpoint: 'styles'}, (data) => {
       this.setState({
         price: data.results[0].original_price,
+        salePrice: data.results[0].sale_price,
         img: data.results[0].photos[0].url
       });
     });
@@ -36,6 +42,13 @@ class Product extends React.Component {
     });
   }
 
+  loadPrice() {
+    if (this.state.salePrice) {
+      return this.state.salePrice;
+    }
+    return this.state.price;
+  }
+
   render() {
     return (
       <div>
@@ -46,7 +59,7 @@ class Product extends React.Component {
           <div id="product-card-attributes">
             <p id="product-card-category">{this.state.category}</p>
             <p id="product-card-name" >{this.state.name}</p>
-            <p id="product-card-price">{this.state.price}</p>
+            <p id="product-card-price">${this.loadPrice()}</p>
             <p id="product-card-rating">***__</p>
           </div>
         </div>
