@@ -10,14 +10,12 @@ import '../css/Overview.css';
 import ProductIdContext from '../context.jsx';
 
 class Overview extends React.Component {
-
-  static contextType = ProductIdContext;
-
   constructor(props) {
     super(props);
-
     this.state = {};
   }
+
+  static contextType = ProductIdContext;
 
   componentDidMount() {
     $.get('/products', {product_id: this.context}, (data) => {
