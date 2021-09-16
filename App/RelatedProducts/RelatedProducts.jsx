@@ -6,10 +6,11 @@ class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      related: [47422, 47423, 47428, 47427],
+      related: undefined,
       currentProduct: 47455
     };
     this.getRelated = this.getRelated.bind(this);
+    this.loadProducts = this.loadProducts.bind(this);
   }
 
   componentDidMount() {
@@ -25,14 +26,20 @@ class RelatedProducts extends React.Component {
     });
   }
 
+  loadProducts() {
+    if (this.state.related !== undefined) {
+      return (this.state.related.slice(0, 4).map(item => {
+        return <Product id={item} key={item}/>;
+      }));
+    }
+  }
+
   render() {
     return (
       <div>
         <p className="related-title">Related Products</p>
         <div id="outfit-window">
-          {this.state.related.slice(0, 4).map(item => {
-            return <Product id={item} key={item}/>;
-          })}
+          {this.loadProducts()}
         </div>
 
       </div>
