@@ -31,6 +31,8 @@ class App extends React.Component {
   componentDidMount() {
     //this.productIdExtractor(window.location.href);
 
+    console.log('product id: :' + window.location.href.split('/')[3]);
+
     if (this.currentProductReviews === undefined) {
       console.log('inside if statement');
       let options = {
