@@ -34,6 +34,7 @@ class RelatedProducts extends React.Component {
     }
   }
 
+
   render() {
     return (
       <div>

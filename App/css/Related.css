@@ -17,6 +17,13 @@
   grid-template-rows: 80% 20%;
 }
 
+#add-to-outfit {
+  width: 98%;
+  height: 90%;
+  border: 1px solid black;
+  display: grid;
+}
+
 #product-card-img {
   height: 100%;
   width: 100%;
