@@ -9,12 +9,13 @@ class Outfit extends React.Component {
     };
     this.getOutfit = this.getOutfit.bind(this);
     this.setOutfit = this.setOutfit.bind(this);
+    this.loadOutfit = this.loadOutfit.bind(this);
   }
 
   componentDidMount() {
-    this.setOutfit(47421);
-    this.setOutfit(47460);
     this.setOutfit(47452);
+    this.setOutfit(47489);
+    this.setOutfit(47474);
     this.getOutfit();
   }
 
@@ -31,15 +32,27 @@ class Outfit extends React.Component {
     });
   }
 
+  loadOutfit() {
+    if (this.state.outfit.length > 0) {
+      return (
+        this.state.outfit.slice(0, 3).map(item => {
+          return <Product id={item} key={item}/>;
+        })
+      );
+    }
+  }
+
   render() {
     return (
       <div>
         <p className="related-title">Your Outfit</p>
         <div id="outfit-window">
           <div id="add-to-outfit">+</div>
-          {this.state.outfit.slice(0, 3).map(item => {
+
+          {this.loadOutfit()}
+          {/* {this.state.outfit.slice(0, 3).map(item => {
             return <Product id={item} key={item}/>;
-          })}
+          })} */}
         </div>
 
       </div>
