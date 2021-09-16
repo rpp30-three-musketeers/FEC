@@ -20,7 +20,6 @@ app.get('/products', (req, res) => {
     url += extension;
   }
 
-
   if (req.query.parameters) {
     url += '?';
     if (req.query.parameters.page) {

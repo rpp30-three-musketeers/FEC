@@ -8,6 +8,7 @@ import Outfit from './RelatedProducts/Outfit.jsx';
 import Overview from './Overview/Overview.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import $ from 'jquery';
+import { ProductIdProvider } from './context.jsx';
 
 
 class App extends React.Component {
@@ -74,14 +75,16 @@ class App extends React.Component {
   render() {
     let renderReviews = this.state.productReviews.length === 0 ? false : true;
     return (
-      <div>
-        <Header />
-        <Overview/>
-        <RelatedProducts/>
-        <Outfit />
-        {renderReviews ? <Reviews data = {this.state.productReviews}/> : null}
-        <button type='submit' onClick={this.testCall}>Poke the API</button>
-      </div>
+      <ProductIdProvider value={window.location.href.split('/')[3]}>
+        <div>
+          <Header />
+          <Overview/>
+          <RelatedProducts/>
+          <Outfit />
+          {renderReviews ? <Reviews data = {this.state.productReviews}/> : null}
+          <button type='submit' onClick={this.testCall}>Poke the API</button>
+        </div>
+      </ProductIdProvider>
     );
   }
 }
