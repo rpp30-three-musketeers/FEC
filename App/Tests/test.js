@@ -1,12 +1,14 @@
-import React from 'react';
-import Header from '../Header';
-import { shallow } from 'enzyme';
+/**
+ * @jest-environment jsdom
+ */
 
+import React from 'react';
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import Header from '../Header';
 
 describe('Header Functionality', function() {
   it('should render without throwing an error', function() {
-    const wrapper = shallow(<Header/>);
-    expect(wrapper.contains(<div id="site-header"></div>)).toBe(true);
-    //expect(1).toBe(1);
+    const app = render(<Header/>);
   });
 });
