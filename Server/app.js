@@ -20,7 +20,6 @@ app.get('/products', (req, res) => {
     url += extension;
   }
 
-
   if (req.query.parameters) {
     url += '?';
     if (req.query.parameters.page) {
@@ -53,6 +52,11 @@ app.get('/products', (req, res) => {
 
 app.get('/', (req, res) => {
   res.send('Server is running...');
+});
+
+app.get('/', (req, res) => {
+  // res.send('Connected to server; ');
+  res.sendFile('index.html', {root: './Public'});
 });
 
 app.get(/^\/\b\d{5}$/, (req, res) => {

@@ -159,18 +159,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var _css_global_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/global.css */ \"./App/css/global.css\");\n/* harmony import */ var _css_Related_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/Related.css */ \"./App/css/Related.css\");\n/* harmony import */ var _Header_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Header.jsx */ \"./App/Header.jsx\");\n/* harmony import */ var _RelatedProducts_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./RelatedProducts/RelatedProducts.jsx */ \"./App/RelatedProducts/RelatedProducts.jsx\");\n/* harmony import */ var _RelatedProducts_Outfit_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./RelatedProducts/Outfit.jsx */ \"./App/RelatedProducts/Outfit.jsx\");\n/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Overview/Overview.jsx */ \"./App/Overview/Overview.jsx\");\n/* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Reviews/Reviews.jsx */ \"./App/Reviews/Reviews.jsx\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_9__);\n/* harmony import */ var _context_jsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./context.jsx */ \"./App/context.jsx\");\n\n\n\n\n\n\n\n\n\n\n\n\nclass App extends react__WEBPACK_IMPORTED_MODULE_0__.Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      currentProductId: 47421,\n      productReviews: []\n    };\n    this.productIdExtractor = this.productIdExtractor.bind(this);\n    this.testCall = this.testCall.bind(this);\n  }\n\n  productIdExtractor(url) {\n    var productId = url.split('/')[3];\n    this.setState({});\n  }\n\n  componentDidMount() {\n    //this.productIdExtractor(window.location.href);\n    if (this.currentProductReviews === undefined) {\n      console.log('inside if statement');\n      let options = {\n        // eslint-disable-next-line camelcase\n        product_id: 47421,\n        //select a specific item by id\n        endpoint: 'styles',\n        //null, styles, related\n        parameters: {\n          //if retrieving all products controls the amount returned\n          page: null,\n          //default is 1\n          count: null //default is 5\n\n        } // eslint-disable-next-line semi\n\n      };\n      jquery__WEBPACK_IMPORTED_MODULE_9___default().get('/reviews/', options, data => {\n        // options not used for this, refactor later\n        return data; // eslint-disable-next-line semi\n      }).then(info => {\n        this.setState({\n          productReviews: info.results\n        });\n      });\n    }\n  }\n\n  testCall() {\n    let options = {\n      // eslint-disable-next-line camelcase\n      product_id: 47421,\n      //select a specific item by id\n      endpoint: 'styles',\n      //null, styles, related\n      parameters: {\n        //if retrieving all products controls the amount returned\n        page: null,\n        //default is 1\n        count: null //default is 5\n\n      } // eslint-disable-next-line semi\n\n    };\n    jquery__WEBPACK_IMPORTED_MODULE_9___default().get('/products', options, data => {\n      console.log('data from server: ', data); // eslint-disable-next-line semi\n    });\n  }\n\n  render() {\n    let renderReviews = this.state.productReviews.length === 0 ? false : true;\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_context_jsx__WEBPACK_IMPORTED_MODULE_10__.ProductIdProvider, {\n      value: window.location.href.split('/')[3]\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_jsx__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_7__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts_Outfit_jsx__WEBPACK_IMPORTED_MODULE_6__.default, null), renderReviews ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_8__.default, {\n      data: this.state.productReviews\n    }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"button\", {\n      type: \"submit\",\n      onClick: this.testCall\n    }, \"Poke the API\")));\n  }\n\n}\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null), document.getElementById('app'));\n\n//# sourceURL=webpack://fec/./App/app.jsx?");
-
-/***/ }),
-
-/***/ "./App/context.jsx":
-/*!*************************!*\
-  !*** ./App/context.jsx ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"ProductIdProvider\": () => (/* binding */ ProductIdProvider),\n/* harmony export */   \"ProductConsumer\": () => (/* binding */ ProductConsumer),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nconst ProductIdContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext();\nconst ProductIdProvider = ProductIdContext.Provider;\nconst ProductConsumer = ProductIdContext.Consumer;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductIdContext);\n\n//# sourceURL=webpack://fec/./App/context.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var _css_global_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/global.css */ \"./App/css/global.css\");\n/* harmony import */ var _css_Related_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/Related.css */ \"./App/css/Related.css\");\n/* harmony import */ var _Header_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Header.jsx */ \"./App/Header.jsx\");\n/* harmony import */ var _RelatedProducts_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./RelatedProducts/RelatedProducts.jsx */ \"./App/RelatedProducts/RelatedProducts.jsx\");\n/* harmony import */ var _RelatedProducts_Outfit_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./RelatedProducts/Outfit.jsx */ \"./App/RelatedProducts/Outfit.jsx\");\n/* harmony import */ var _Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Overview/Overview.jsx */ \"./App/Overview/Overview.jsx\");\n/* harmony import */ var _Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Reviews/Reviews.jsx */ \"./App/Reviews/Reviews.jsx\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_9__);\n\n\n\n\n\n\n\n\n\n\n\nclass App extends react__WEBPACK_IMPORTED_MODULE_0__.Component {\n  constructor(props) {\n    super(props);\n    this.state = {\n      currentProductId: 47421,\n      productReviews: []\n    };\n    this.productIdExtractor = this.productIdExtractor.bind(this);\n    this.testCall = this.testCall.bind(this);\n  }\n\n  productIdExtractor(url) {\n    var productId = url.split('/')[3];\n    this.setState({});\n  }\n\n  componentDidMount() {\n    //this.productIdExtractor(window.location.href);\n    if (this.currentProductReviews === undefined) {\n      console.log('inside if statement');\n      let options = {\n        // eslint-disable-next-line camelcase\n        product_id: 47421,\n        //select a specific item by id\n        endpoint: 'styles',\n        //null, styles, related\n        parameters: {\n          //if retrieving all products controls the amount returned\n          page: null,\n          //default is 1\n          count: null //default is 5\n\n        } // eslint-disable-next-line semi\n\n      };\n      jquery__WEBPACK_IMPORTED_MODULE_9___default().get('/reviews/', options, data => {\n        // options not used for this, refactor later\n        return data; // eslint-disable-next-line semi\n      }).then(info => {\n        this.setState({\n          productReviews: info.results\n        });\n      });\n    }\n  }\n\n  testCall() {\n    let options = {\n      // eslint-disable-next-line camelcase\n      product_id: 47421,\n      //select a specific item by id\n      endpoint: 'styles',\n      //null, styles, related\n      parameters: {\n        //if retrieving all products controls the amount returned\n        page: null,\n        //default is 1\n        count: null //default is 5\n\n      } // eslint-disable-next-line semi\n\n    };\n    jquery__WEBPACK_IMPORTED_MODULE_9___default().get('/products', options, data => {\n      console.log('data from server: ', data); // eslint-disable-next-line semi\n    });\n  }\n\n  render() {\n    let renderReviews = this.state.productReviews.length === 0 ? false : true;\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Header_jsx__WEBPACK_IMPORTED_MODULE_4__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Overview_Overview_jsx__WEBPACK_IMPORTED_MODULE_7__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts_RelatedProducts_jsx__WEBPACK_IMPORTED_MODULE_5__.default, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedProducts_Outfit_jsx__WEBPACK_IMPORTED_MODULE_6__.default, null), renderReviews ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Reviews_Reviews_jsx__WEBPACK_IMPORTED_MODULE_8__.default, {\n      data: this.state.productReviews\n    }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"button\", {\n      type: \"submit\",\n      onClick: this.testCall\n    }, \"Poke the API\"));\n  }\n\n}\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null), document.getElementById('app'));\n\n//# sourceURL=webpack://fec/./App/app.jsx?");
 
 /***/ }),
 
@@ -452,7 +441,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -466,14 +455,14 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -486,7 +475,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -498,12 +487,12 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -514,13 +503,13 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, style) {\
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./App/app.jsx");
-/******/ 	
+/******/
 /******/ })()
 ;
