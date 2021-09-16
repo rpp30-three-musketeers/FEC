@@ -55,6 +55,11 @@ app.get('/', (req, res) => {
   res.send('Server is running...');
 });
 
+app.get(/^\/\b\d{5}$/, (req, res) => {
+  // res.send('Connected to server; ');
+  res.sendFile('index.html', {root: './Public'});
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
