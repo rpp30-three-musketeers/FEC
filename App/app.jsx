@@ -1,5 +1,5 @@
 import react from 'react';
-import reactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import './css/global.css';
 import './css/Related.css';
 import Header from './Header.jsx';
@@ -11,7 +11,7 @@ import $ from 'jquery';
 import { ProductIdProvider } from './context.jsx';
 
 
-class App extends react.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -89,4 +89,4 @@ class App extends react.Component {
   }
 }
 
-reactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));

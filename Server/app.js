@@ -73,15 +73,15 @@ app.get('/reviews/', (req, res)=>{
     method: 'get',
     url: url,
     // data: {
-      //   product_id: 47421,
-      //   sort: 'relevant',
-      // },
-      headers: {
-        Authorization: credentials.authorization,
+    //   product_id: 47421,
+    //   sort: 'relevant',
+    // },
+    headers: {
+      Authorization: credentials.authorization,
 
-      },
+    },
 
-    })
+  })
     .then((reviews) => {
       console.log('Successful response from gitHub API call', reviews.data);
       return res.status(201).json(reviews.data);
@@ -90,8 +90,8 @@ app.get('/reviews/', (req, res)=>{
       console.log(err);
       return res.status(500);
     });
-  });
+});
 
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}/47421`);
-  });
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
