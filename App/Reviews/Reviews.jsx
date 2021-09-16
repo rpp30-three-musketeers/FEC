@@ -12,13 +12,15 @@ class Reviews extends React.Component {
 
   // }
 
+
   render() {
+    console.log(this.props, 'review props');
     return (
       <div id={'reviews'}>
         <p>Ratings and Reviews</p>
         <div id={'content'}>
           <div id={'leftColumn'}>
-            <LeftColumn rating = {3.5} percentRecommend = {91}/>
+            <LeftColumn rating = {this.props.data[0].rating} percentRecommend = {95}/>
           </div>
           <div id={'rightColumn'}>comments</div>
         </div>

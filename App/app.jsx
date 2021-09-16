@@ -14,7 +14,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentProductId: ''
+      currentProductId: 47421,
+      productReviews: []
 
     };
 
@@ -24,11 +25,32 @@ class App extends React.Component {
 
   productIdExtractor(url) {
     var productId = url.split('/')[3];
-    this.setState({currentProductId: productId});
+    this.setState({});
   }
 
   componentDidMount() {
-    this.productIdExtractor(window.location.href);
+    //this.productIdExtractor(window.location.href);
+
+    if (this.currentProductReviews === undefined) {
+      console.log('inside if statement');
+      let options = {
+        // eslint-disable-next-line camelcase
+        product_id: 47421, //select a specific item by id
+        endpoint: 'styles', //null, styles, related
+        parameters: { //if retrieving all products controls the amount returned
+          page: null, //default is 1
+          count: null //default is 5
+        }
+      // eslint-disable-next-line semi
+      }
+
+      $.get('/reviews/', options, (data) => { // options not used for this, refactor later
+        return data;
+      // eslint-disable-next-line semi
+      }).then((info)=>{
+        this.setState({productReviews: info.results});
+      });
+    }
   }
 
   testCall() {
@@ -50,13 +72,14 @@ class App extends React.Component {
   }
 
   render() {
+    let renderReviews = this.state.productReviews.length === 0 ? false : true;
     return (
       <div>
         <Header />
         <Overview/>
-        <RelatedProducts />
+        <RelatedProducts/>
         <Outfit />
-        <Reviews />
+        {renderReviews ? <Reviews data = {this.state.productReviews}/> : null}
         <button type='submit' onClick={this.testCall}>Poke the API</button>
       </div>
     );
