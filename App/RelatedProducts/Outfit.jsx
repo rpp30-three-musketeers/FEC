@@ -47,7 +47,9 @@ class Outfit extends React.Component {
       <div>
         <p className="related-title">Your Outfit</p>
         <div id="outfit-window">
-          <div id="add-to-outfit">+</div>
+          <div id="add-to-outfit">
+            <p>Add To Outfit</p>
+          </div>
 
           {this.loadOutfit()}
           {/* {this.state.outfit.slice(0, 3).map(item => {

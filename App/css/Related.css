@@ -21,7 +21,11 @@
   width: 98%;
   height: 90%;
   border: 1px solid black;
-  display: grid;
+}
+#add-to-outfit p {
+  text-align: center;
+  padding: 0px 0;
+  font-size: larger;
 }
 
 #product-card-img {
