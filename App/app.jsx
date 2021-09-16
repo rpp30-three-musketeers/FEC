@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import react from 'react';
+=======
+import React from 'react';
+>>>>>>> d6d1c4dd65e5ef7cc5b38c63d5eec5edc496789c
 import ReactDOM from 'react-dom';
 import './css/global.css';
 import './css/Related.css';
