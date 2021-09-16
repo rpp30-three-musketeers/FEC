@@ -13,7 +13,7 @@ class Comparison extends React.Component {
         <div id="versus-product">
         </div>
       </div>
-    )
+    );
   }
 }
 

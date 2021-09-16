@@ -1,5 +1,6 @@
 import React from 'react';
 import Product from './ProductCard.jsx';
+import Comparison from './Comparison.jsx';
 import $ from 'jquery';
 
 class RelatedProducts extends React.Component {
@@ -11,6 +12,7 @@ class RelatedProducts extends React.Component {
     };
     this.getRelated = this.getRelated.bind(this);
     this.loadProducts = this.loadProducts.bind(this);
+    this.compareProducts = this.compareProducts.bind(this);
   }
 
   componentDidMount() {
@@ -29,11 +31,14 @@ class RelatedProducts extends React.Component {
   loadProducts() {
     if (this.state.related !== undefined) {
       return (this.state.related.slice(0, 4).map(item => {
-        return <Product id={item} key={item}/>;
+        return <Product id={item} key={item} onClick={this.compareProducts(item)}/>;
       }));
     }
   }
 
+  compareProducts(event) {
+    return <Comparison current={this.state.currentProduct} other={event}/>;
+  }
 
   render() {
     return (
