@@ -20,7 +20,8 @@ app.get('/products', (req, res) => {
     url += extension;
   }
 
-  if (!req.query.endpoint && !req.query.product_id) {
+
+  if (req.query.parameters) {
     url += '?';
     if (req.query.parameters.page) {
       let extension = `page=${req.query.parameters.page}`;
@@ -32,9 +33,6 @@ app.get('/products', (req, res) => {
     }
   }
 
-  console.log(url);
-  console.log(req.query);
-
   axios({
     method: 'get',
     url: url,
@@ -44,7 +42,6 @@ app.get('/products', (req, res) => {
     }
   })
     .then((products) => {
-      console.log('Successful response from gitHub API call', products.data);
       return res.status(201).json(products.data);
     })
     .catch((err) => {
