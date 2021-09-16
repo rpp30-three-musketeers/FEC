@@ -18,11 +18,11 @@ class Features extends React.Component {
   render() {
     if (this.props.features) {
       return <div id={'features-container'}>
-        {this.props.features.map((feature) => {
+        {this.props.features.map((feature, index) => {
           if (!feature.value) {
-            return <p>✔ {feature.feature}</p>
+            return <p key={index}>✔ {feature.feature}</p>
           } else {
-            return <p>✔ {feature.feature}: {feature.value}</p>;
+            return <p key={index}>✔ {feature.feature}: {feature.value}</p>;
           }
         })}
       </div>;
