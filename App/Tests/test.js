@@ -9,6 +9,7 @@ import Header from '../Header';
 
 describe('Header Functionality', function() {
   it('should render without throwing an error', function() {
-    const app = render(<Header/>);
+    render(<Header/>);
+    expect(screen.getByText('Logo Here')).toBeInTheDocument();
   });
 });
