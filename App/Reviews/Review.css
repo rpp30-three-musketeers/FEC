@@ -1,0 +1,10 @@
+.helpful-report {
+  display: flex;
+}
+.review-header {
+  display: flex;
+  font-weight: bold;
+}
+.inlineDivs {
+  display: 1 1 auto;
+}

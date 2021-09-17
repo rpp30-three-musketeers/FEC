@@ -29,9 +29,17 @@ class App extends React.Component {
     let newProductId = url.split('/')[3];
     this.setState({currentProductId: newProductId});
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     let newUrl = window.location.href;
-    this.productIdExtractor(newUrl);
+    let newProductId = parseInt(newUrl.split('/')[3]);
+    if (prevState.currentProductId !== newProductId) {
+      console.log(typeof prevState.currentProductId, 'prev currentproductId');
+      console.log(typeof newProductId, 'newProductId');
+      console.log('updating state');
+      this.setState({currentProductId: newProductId});
+    }
+    // if(this.state.)
+    // this.productIdExtractor(newUrl);
   }
 
   componentDidMount() {
