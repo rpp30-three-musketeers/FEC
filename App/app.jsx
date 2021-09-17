@@ -49,7 +49,7 @@ class App extends React.Component {
       // eslint-disable-next-line semi
       }
 
-      $.get('/reviews/', options, (data) => { // options not used for this, refactor later
+      $.get('/reviews/', (data) => { // options not used for this, refactor later
         return data;
       // eslint-disable-next-line semi
       }).then((info)=>{
@@ -57,6 +57,10 @@ class App extends React.Component {
         this.setState({productReviews: info, averageRating: info.averageRating});
       });
     }
+  }
+
+  reviewApiCall() {
+
   }
 
   testCall() {
