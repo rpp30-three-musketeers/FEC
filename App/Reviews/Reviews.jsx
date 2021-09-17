@@ -20,7 +20,7 @@ class Reviews extends React.Component {
         <p>Ratings and Reviews</p>
         <div id={'content'}>
           <div id={'leftColumn'}>
-            <LeftColumn rating = {this.props.data[0].rating} percentRecommend = {95}/>
+            <LeftColumn rating = {this.props.avg} percentRecommend = {this.props.data.pctRecommend}/>
           </div>
           <div id={'rightColumn'}>comments</div>
         </div>

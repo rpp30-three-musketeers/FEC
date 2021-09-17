@@ -3,6 +3,7 @@ const axios = require('axios');
 const credentials = require('../credentials.js');
 const app = express();
 const port = 3000;
+const helpers = require('./helpers.js');
 
 app.use(express.static('Public'));
 
@@ -73,25 +74,29 @@ app.get('/reviews/', (req, res)=>{
     method: 'get',
     url: url,
     // data: {
-      //   product_id: 47421,
-      //   sort: 'relevant',
-      // },
-      headers: {
-        Authorization: credentials.authorization,
+    //   product_id: 47421,
+    //   sort: 'relevant',
+    // },
+    headers: {
+      Authorization: credentials.authorization,
 
-      },
+    },
 
-    })
+  })
     .then((reviews) => {
       console.log('Successful response from gitHub API call', reviews.data);
+      let averageRating = helpers.starRating(reviews.data.results);
+      let pctRecommend = helpers.pctRecommend(reviews.data.results);
+      reviews.data.averageRating = averageRating;
+      reviews.data.pctRecommend = pctRecommend;
       return res.status(201).json(reviews.data);
     })
     .catch((err) => {
       console.log(err);
       return res.status(500);
     });
-  });
+});
 
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}/47421`);
-  });
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}/47421`);
+});

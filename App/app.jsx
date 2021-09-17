@@ -16,7 +16,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 47421,
-      productReviews: []
+      productReviews: [],
+      averageRating: null
 
     };
 
@@ -25,15 +26,18 @@ class App extends React.Component {
   }
 
   productIdExtractor(url) {
-    var productId = url.split('/')[3];
-    this.setState({});
+    let newProductId = url.split('/')[3];
+    this.setState({currentProductId: newProductId});
+  }
+  componentDidUpdate() {
+    let newUrl = window.location.href;
+    this.productIdExtractor(newUrl);
   }
 
   componentDidMount() {
     //this.productIdExtractor(window.location.href);
 
     if (this.currentProductReviews === undefined) {
-      console.log('inside if statement');
       let options = {
         // eslint-disable-next-line camelcase
         product_id: 47421, //select a specific item by id
@@ -49,7 +53,8 @@ class App extends React.Component {
         return data;
       // eslint-disable-next-line semi
       }).then((info)=>{
-        this.setState({productReviews: info.results});
+        //console.log(info);
+        this.setState({productReviews: info, averageRating: info.averageRating});
       });
     }
   }
@@ -81,7 +86,7 @@ class App extends React.Component {
           <Overview/>
           <RelatedProducts/>
           <Outfit />
-          {renderReviews ? <Reviews data = {this.state.productReviews}/> : null}
+          {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/> : null}
           <button type='submit' onClick={this.testCall}>Poke the API</button>
         </div>
       </ProductIdProvider>
