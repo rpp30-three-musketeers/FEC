@@ -18,7 +18,7 @@ class Reviews extends React.Component {
 
 
   render() {
-    // console.log(this.props, 'review props');
+    console.log(this.props, 'review props');
     return (
       <div id={'reviews'}>
         <p>Ratings and Reviews</p>

@@ -73,21 +73,9 @@ app.get('/reviews/', (req, res)=>{
   axios({
     method: 'get',
     url: url,
-<<<<<<< HEAD
-    // data: {
-    //   product_id: 47421,
-    //   sort: 'relevant',
-    // },
-    headers: {
-      Authorization: credentials.authorization,
-
-    },
-
-=======
     headers: {
       Authorization: credentials.authorization,
     },
->>>>>>> 6f8d87d820c7728f5d434cb637e949505a6f7bae
   })
     .then((reviews) => {
       // console.log('Successful response from gitHub API call', reviews.data);
