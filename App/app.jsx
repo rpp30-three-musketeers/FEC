@@ -9,6 +9,7 @@ import Overview from './Overview/Overview.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import $ from 'jquery';
 import { ProductIdProvider } from './context.jsx';
+import Interactions from './Interactions.jsx';
 
 
 class App extends React.Component {
@@ -96,6 +97,10 @@ class App extends React.Component {
 
   render() {
     let renderReviews = this.state.productReviews.length === 0 ? false : true;
+    if (renderReviews) {
+      let WrappedReviews = Interactions(<Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/>);
+      console.log(WrappedReviews);
+    }
     return (
       <ProductIdProvider value={window.location.href.split('/')[3]}>
         <div>
@@ -103,7 +108,7 @@ class App extends React.Component {
           <Overview/>
           <RelatedProducts/>
           <Outfit />
-          {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/> : null}
+          {renderReviews ? <WrappedReviews/> : null}
           <button type='submit' onClick={this.testCall}>Poke the API</button>
         </div>
       </ProductIdProvider>
