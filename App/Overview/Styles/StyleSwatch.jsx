@@ -5,6 +5,11 @@ import ReactDOM from 'react-dom';
 class StyleSwatch extends React.Component {
   constructor(props) {
     super(props);
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler(event) {
+    this.props.styleSelector(this.props.currentStyleIndex)
   }
 
   render() {
@@ -23,7 +28,7 @@ class StyleSwatch extends React.Component {
     }
 
     return (
-      <div>
+      <div onClick={this.clickHandler}>
         {swatch}
       </div>
     )

@@ -15,7 +15,7 @@ class StylePicker extends React.Component {
   // }
 
   render() {
-    let swatches = this.props.styles.map((style, index) => {return <StyleSwatch style={style} key={index} currentStyleIndex={index} selectedStyleIndex={this.props.selectedStyleIndex} />})
+    let swatches = this.props.styles.map((style, index) => {return <StyleSwatch style={style} key={index} currentStyleIndex={index} selectedStyleIndex={this.props.selectedStyleIndex} styleSelector={this.props.styleSelector} />})
 
     return (
       <div className='style-picker-container'>
