@@ -14,25 +14,18 @@ class RelatedProducts extends React.Component {
     this.getRelated = this.getRelated.bind(this);
     this.loadProducts = this.loadProducts.bind(this);
     this.compareProducts = this.compareProducts.bind(this);
-    this.setID = this.setID.bind(this);
   }
 
   static contextType = ProductIdContext;
 
   componentDidMount() {
     this.getRelated();
-    // this.setID();
-  }
-
-  setID() {
-    this.setState({
-      currentProduct: this.context
-    });
+    this.loadProducts();
   }
 
   getRelated() {
     // eslint-disable-next-line camelcase
-    $.get('/products', {product_id: this.state.currentProduct, endpoint: 'related'}, (data) => {
+    $.get('/products', {product_id: this.context, endpoint: 'related'}, (data) => {
       this.setState({
         related: data
       });
@@ -48,7 +41,7 @@ class RelatedProducts extends React.Component {
   }
 
   compareProducts(event) {
-    return <Comparison current={this.state.currentProduct} other={event}/>;
+    return <Comparison current={this.context} other={event}/>;
   }
 
   render() {
