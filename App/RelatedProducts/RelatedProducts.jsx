@@ -21,7 +21,7 @@ class RelatedProducts extends React.Component {
 
   componentDidMount() {
     this.getRelated();
-    this.setID();
+    // this.setID();
   }
 
   setID() {
