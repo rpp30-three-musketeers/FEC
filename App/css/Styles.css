@@ -1,0 +1,23 @@
+.style-title {
+  display: inline-block;
+  padding-right: 0.5em;
+  text-transform: uppercase;
+}
+
+.style-picker-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 0.75em;
+  width: 80%
+}
+
+.style-swatch-container {
+  aspect-ratio: 1;
+}
+
+.style-swatch {
+  width: 64px;
+  height: 64px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
