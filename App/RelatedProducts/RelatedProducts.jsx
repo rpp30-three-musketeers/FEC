@@ -1,6 +1,7 @@
 import React from 'react';
 import Product from './ProductCard.jsx';
 import Comparison from './Comparison.jsx';
+import ProductIdContext from '../context.jsx';
 import $ from 'jquery';
 
 class RelatedProducts extends React.Component {
@@ -13,10 +14,20 @@ class RelatedProducts extends React.Component {
     this.getRelated = this.getRelated.bind(this);
     this.loadProducts = this.loadProducts.bind(this);
     this.compareProducts = this.compareProducts.bind(this);
+    this.setID = this.setID.bind(this);
   }
+
+  static contextType = ProductIdContext;
 
   componentDidMount() {
     this.getRelated();
+    // this.setID();
+  }
+
+  setID() {
+    this.setState({
+      currentProduct: this.context
+    });
   }
 
   getRelated() {
