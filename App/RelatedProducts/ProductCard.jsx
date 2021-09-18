@@ -57,10 +57,10 @@ class Product extends React.Component {
             <img id="image" src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
-            <p id="product-card-category">{this.state.category}</p>
-            <p id="product-card-name" >{this.state.name}</p>
-            <p id="product-card-price">${this.loadPrice()}</p>
-            <p id="product-card-rating">***__</p>
+            <p id="product-card-category" title={'category'}>{this.state.category}</p>
+            <p id="product-card-name" title={'name'}>{this.state.name}</p>
+            <p id="product-card-price" title={'price'}>${this.loadPrice()}</p>
+            <p id="product-card-rating" title={'rating'}>***__</p>
           </div>
         </div>
       </div>

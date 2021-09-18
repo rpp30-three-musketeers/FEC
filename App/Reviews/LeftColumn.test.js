@@ -13,7 +13,6 @@ describe('LeftColumn Functionality', function() {
     expect(screen.getAllByText('size marker bar').length).toBe(2);
   });
 
-
   it('should render an average rating based on a rating prop', function() {
     render(<LeftColumn rating = {4} percentRecommend = {90} />);
     // expect(screen.getByText(document.getElementById('rating').textContent)).toBe('4');
