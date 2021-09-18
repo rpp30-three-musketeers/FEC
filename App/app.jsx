@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import reactDOM from 'react-dom';
 import './css/global.css';
 import './css/Related.css';
@@ -11,7 +11,7 @@ import $ from 'jquery';
 import { ProductIdProvider } from './context.jsx';
 
 
-class App extends React.Component {
+class App extends react.Component {
   constructor(props) {
     super(props);
     this.state = {

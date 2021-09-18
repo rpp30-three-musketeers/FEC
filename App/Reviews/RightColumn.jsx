@@ -7,11 +7,11 @@ const RightColumn = (props) => {
   return (
     <div>
       <p>{props.reviewCount + ' reviews, sorted by ' + props.sortedBy}</p>
-      {props.reviews.map((review) => {
+      {/* {props.reviews.map((review) => {
         return (
           <Review data = {review}/>
         );
-      })}
+      })} */}
     </div>
   );
 };

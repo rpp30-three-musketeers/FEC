@@ -5,7 +5,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import LeftColumn from '../Reviews/LeftColumn';
+import LeftColumn from './LeftColumn';
 
 describe('LeftColumn Functionality', function() {
   it('should render without throwing an error', function() {
@@ -43,7 +43,6 @@ describe('LeftColumn Functionality', function() {
 
 
   });
-
 
 
 });
