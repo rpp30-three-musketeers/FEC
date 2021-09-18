@@ -17,7 +17,7 @@ class StyleSwatch extends React.Component {
     if (this.props.currentStyleIndex === this.props.selectedStyleIndex) {
       swatch =
       <div className='style-swatch-container'>
-        <div id='selected-style-check'>✓</div>
+        <div id='selected-style-check'><p>✓</p></div>
         <img className='style-swatch' src={this.props.style.photos[0].thumbnail_url} />
       </div>
     } else {
