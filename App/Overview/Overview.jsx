@@ -33,7 +33,7 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <div id={'overview-container'}>
+      <div id={'overview-container'} data-testid={'overview-container'}>
         {/* <p>Overview Component</p> */}
         <Gallery />
         <div id={'basics'}>

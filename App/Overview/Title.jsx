@@ -10,7 +10,7 @@ class Title extends React.Component {
   static contextType = ProductIdContext;
 
   render() {
-    return <div id={'title-container'}>
+    return <div id={'title-container'} data-testid={'title-container'}>
       <p>Title Component</p>
     </div>;
   }

@@ -5,6 +5,9 @@ class Comparison extends React.Component {
     super(props);
   }
 
+  //pass current via props
+  //pass related via props
+
   render() {
     return (
       <div id="compare-products">
