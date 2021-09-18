@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/global.css';
 import './css/Related.css';
+import './css/Comparison.css';
 import Header from './Header.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Outfit from './RelatedProducts/Outfit.jsx';
@@ -99,7 +100,7 @@ class App extends React.Component {
       <ProductIdProvider value={window.location.href.split('/')[3]}>
         <div>
           <Header />
-          <Overview/>
+          <Overview />
           <RelatedProducts/>
           <Outfit />
           {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/> : null}
