@@ -35,7 +35,7 @@ class Styles extends React.Component {
           {price}
           <h3 className='style-title'>Style ></h3>
           <h3 className='style-title' style={{fontWeight: 'normal'}}>{this.state.selectedStyle.name}</h3>
-          <StylePicker styles={this.state.styles} />
+          <StylePicker styles={this.state.styles} selectedStyleId={this.state.selectedStyle.id} />
         </div>
       )
     }

@@ -6,10 +6,16 @@ import $ from 'jquery';
 class StylePicker extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {}
+    // this.handleClick = this.handleClick.bind(this);
   }
 
+  // handleClick(event) {
+
+  // }
+
   render() {
-    let swatches = this.props.styles.map((style, index) => {return <StyleSwatch style={style} />})
+    let swatches = this.props.styles.map((style, index) => {return <StyleSwatch style={style} key={index} />})
 
     return (
       <div className='style-picker-container'>

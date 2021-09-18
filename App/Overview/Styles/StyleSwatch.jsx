@@ -10,6 +10,7 @@ class StyleSwatch extends React.Component {
   render() {
     return (
       <div className='style-swatch-container'>
+        <div id='selected-style-check'>✓</div>
         <img className='style-swatch' src={this.props.style.photos[0].thumbnail_url} />
       </div>
     )
