@@ -11,7 +11,6 @@ class Features extends React.Component {
   static contextType = ProductIdContext;
 
   componentDidUpdate() {
-    console.log('features: ' + this.props.features);
     this.render();
   }
 
