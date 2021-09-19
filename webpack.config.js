@@ -8,18 +8,18 @@ module.exports = {
     filename: "bundle.js",
     path: __dirname + "/Public",
   },
-  plugins: [
-    [
-      require.resolve('babel-plugin-named-asset-import'),
-      {
-        loaderMap: {
-          svg: {
-            ReactComponent: '@svgr/webpack?-svgo![path]',
-          },
-        },
-      },
-    ],
-  ],
+  // plugins: [
+  //   [
+  //     require.resolve('babel-plugin-named-asset-import'),
+  //     {
+  //       loaderMap: {
+  //         svg: {
+  //           ReactComponent: '@svgr/webpack?-svgo![path]',
+  //         },
+  //       },
+  //     },
+  //   ],
+  // ],
   module: {
     rules:[
       {
