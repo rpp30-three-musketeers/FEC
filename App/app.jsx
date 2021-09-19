@@ -104,7 +104,7 @@ class App extends React.Component {
           <RelatedProducts/>
           <Outfit />
           {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}
-            productName = {'ReplaceWithName from Context?'}/> : null}
+            productName = {'ReplaceWithName from Context?'} productId = {this.state.currentProductId}/> : null}
           <button type='submit' onClick={this.testCall}>Poke the API</button>
         </div>
       </ProductIdProvider>

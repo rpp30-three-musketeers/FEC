@@ -16,7 +16,7 @@ class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showPicModal: false
     };
   }
 
@@ -28,7 +28,6 @@ class Review extends React.Component {
     let year = date.getUTCFullYear();
 
     let newDate = monthName + ', ' + day + ', ' + year;
-    console.log(newDate);
 
     return (
       <div>

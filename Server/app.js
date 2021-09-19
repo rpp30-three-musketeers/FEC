@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const axios = require('axios');
 const credentials = require('../credentials.js');
@@ -68,7 +69,6 @@ app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + req.query.product_id;
   // console.log(req.query, 'req query');
-  console.log('___________________________');
 
   axios({
     method: 'get',
@@ -91,29 +91,41 @@ app.get('/reviews/', (req, res)=>{
     });
 });
 
-app.get('/get-average-rating', (req, res) => {
-  axios({
-    method: 'get',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?sort=newest&product_id=${req.query.productId}`,
-    headers: {
-      Authorization: credentials.authorization,
-    }
-  })
-  .then((summary) => {
-    var counter = 0;
-    var totalStars = 0;
-    for (var x in summary.data.ratings) {
-      counter += parseInt(summary.data.ratings[x]);
-      totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]))
-    }
-    var averageStars = totalStars / counter;
-    console.log(averageStars);
-    return res.status(200).json(averageStars)
-  })
-  .catch((err) => {
-    return res.status(500);
-  })
-})
+app.post('/reviews', (req, res)=>{
+  // eslint-disable-next-line quotes
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
+  console.log(req.query, 'req query');
+  console.log(req.options, 'req query');
+  console.log(req.data, 'req query');
+
+  // axios({
+  //   method: 'post',
+  //   url: url,
+  //   headers: {
+  //     Authorization: credentials.authorization,
+  //   },
+  //   params: {
+  //     product_id: req.query.product_id,
+  //     rating: req.query.rating,
+  //     summary: req.query.summary,
+  //     body: req.query.body,
+  //     recommend: req.query.recommend,
+  //     name: req.query.name,
+  //     email: req.query.email,
+  //     photos: req.query.photos,
+  //     characteristics: req.query.characteristics,
+  //   }
+  // })
+  //   .then((status) => {
+  //     console.log(status);
+  //     console.log('should have status code 201^');
+  //     return res.status(201);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //     return res.status(500);
+  //   });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}/47421`);
