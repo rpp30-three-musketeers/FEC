@@ -7,12 +7,15 @@ const port = 3000;
 const helpers = require('./helpers.js');
 
 app.use(express.static('Public'));
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.use(express.json());
 
 app.get('/products', (req, res) => {
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
+
 
   if (req.query.product_id) {
     let extension = `/${req.query.product_id}`;
@@ -124,6 +127,30 @@ app.post('/reviews', (req, res)=>{
     .catch((err) => {
       console.log(err);
       return res.sendStatus(500);
+    });
+});
+
+app.post('/interactions', (req, res) => {
+  // eslint-disable-next-line quotes
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
+
+  let interaction = req.body;
+
+  axios({
+    method: 'post',
+    url: url,
+    data: interaction,
+    headers: {
+      Authorization: credentials.authorization
+    }
+  })
+    .then((api) => {
+      console.log('Interaction Post Successful');
+      return res.status(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500);
     });
 });
 
