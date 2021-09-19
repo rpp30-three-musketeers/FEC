@@ -17,7 +17,7 @@ class Features extends React.Component {
 
   render() {
     if (this.props.features) {
-      return <div id={'features-container'}>
+      return <div id={'features-container'} data-testid={'features-container'}>
         {this.props.features.map((feature, index) => {
           if (!feature.value) {
             return <p key={index}>✔ {feature.feature}</p>

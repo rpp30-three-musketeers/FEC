@@ -9,12 +9,8 @@ class Gallery extends React.Component {
 
   static contextType = ProductIdContext;
 
-  componentDidMount() {
-    console.log('context from Gallery component: ' + this.context)
-  }
-
   render() {
-    return <div id={'gallery-container'}>
+    return <div id={'gallery-container'} data-testid={'gallery-container'}>
       <p>Gallery Component</p>
     </div>;
   }
