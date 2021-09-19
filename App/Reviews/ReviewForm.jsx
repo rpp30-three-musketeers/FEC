@@ -8,7 +8,34 @@ class ReviewForm extends React.Component {
       recommend: '',
 
     };
+    this.handleSubmitReview = this.handleSubmitReview.bind(this);
   }
+
+  handleSubmitReview(event) {
+    console.log(this.props.productId, '<<<productid');
+    let query = {
+      // eslint-disable-next-line camelcase
+      product_id: 47421,
+      rating: 4,
+      summary: 'Testing Summary Section',
+      body: 'testing',
+      recommend: false,
+      name: 'username',
+      email: 'username@gmail.com',
+      photos: [],
+      characteristics: {}
+    };
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(query)
+    };
+
+    fetch('/reviews', requestOptions)
+      .then(res => response.json())
+      .then(data => console.log(data));
+  }
+
   render() {
 
     return (
@@ -16,7 +43,7 @@ class ReviewForm extends React.Component {
         <button id = 'exit' onClick = {this.props.exit}>X</button>
         <h2>Write Your Review</h2>
         <p>About the {this.props.productName}</p>
-        <form id = "reviewForm" onSubmit = {this.props.submitReview}>
+        <form id = "reviewForm">
           <label>Overall Rating:
             <input type="radio" value = "Poor"/>
             <input type="radio" value = "Fair"/>
@@ -39,7 +66,7 @@ class ReviewForm extends React.Component {
           <input type="text" id="Nickname" name="Nickname"/><br/>
           <label htmlFor="Email">Email:</label><br/>
           <input type="text" id="Email" name="Email"/><br/>
-          <button type="submit">Submit</button><br/>
+          <button type="submit" onClick = {this.handleSubmitReview}>Submit</button><br/>
         </form>
       </div>
     );

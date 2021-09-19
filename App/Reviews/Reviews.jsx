@@ -16,7 +16,6 @@ class Reviews extends React.Component {
 
     this.handleAddReviewClick = this.handleAddReviewClick.bind(this);
     this.handleAddReviewExit = this.handleAddReviewExit.bind(this);
-    this.handleSubmitReview = this.handleSubmitReview.bind(this);
   }
 
   // componentDidMount(){
@@ -28,25 +27,6 @@ class Reviews extends React.Component {
   }
   handleAddReviewExit() {
     this.setState({showReviewModal: false});
-  }
-  handleSubmitReview(event) {
-    console.log(this.props.productId, 'productid');
-    let data = {
-      // eslint-disable-next-line camelcase
-      product_id: this.props.productId,
-      rating: 4,
-      summary: 'Testing Summary Section',
-      body: 'Test Body Section',
-      recommend: false,
-      name: 'username',
-      email: 'username@gmail.com',
-      photos: [],
-      characteristics: {}
-    };
-    $.post('/reviews', data, () => {
-      this.setState({showReviewModal: false});
-    // eslint-disable-next-line semi
-    })
   }
 
 
@@ -64,7 +44,7 @@ class Reviews extends React.Component {
               sortedBy = {this.state.sortedBy}/>
             <button id = 'addReview' onClick = {this.handleAddReviewClick}>+ Review</button>
             {this.state.showReviewModal ? <ReviewForm exit = {this.handleAddReviewExit}
-              submitReview = {this.handleSubmitReview} productName = {'productName'}/> : null}
+              productName = {'productName'}/> : null}
           </div>
         </div>
 

@@ -8,6 +8,8 @@ const helpers = require('./helpers.js');
 
 app.use(express.static('Public'));
 
+app.use(express.json());
+
 app.get('/products', (req, res) => {
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
@@ -94,37 +96,35 @@ app.get('/reviews/', (req, res)=>{
 app.post('/reviews', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
-  console.log(req.query, 'req query');
-  console.log(req.options, 'req query');
-  console.log(req.data, 'req query');
+  console.log(req.body);
 
-  // axios({
-  //   method: 'post',
-  //   url: url,
-  //   headers: {
-  //     Authorization: credentials.authorization,
-  //   },
-  //   params: {
-  //     product_id: req.query.product_id,
-  //     rating: req.query.rating,
-  //     summary: req.query.summary,
-  //     body: req.query.body,
-  //     recommend: req.query.recommend,
-  //     name: req.query.name,
-  //     email: req.query.email,
-  //     photos: req.query.photos,
-  //     characteristics: req.query.characteristics,
-  //   }
-  // })
-  //   .then((status) => {
-  //     console.log(status);
-  //     console.log('should have status code 201^');
-  //     return res.status(201);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //     return res.status(500);
-  //   });
+  axios({
+    method: 'post',
+    url: url,
+    headers: {
+      Authorization: credentials.authorization,
+    },
+    params: {
+      product_id: req.body.product_id,
+      rating: req.body.rating,
+      summary: req.body.summary,
+      body: req.body.body,
+      recommend: req.body.recommend,
+      name: req.body.name,
+      email: req.body.email,
+      photos: req.body.photos,
+      characteristics: req.body.characteristics,
+    }
+  })
+    .then((status) => {
+      console.log(status);
+      console.log('should have status code 201^');
+      return res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.sendStatus(500);
+    });
 });
 
 app.listen(port, () => {
