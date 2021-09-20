@@ -31,7 +31,7 @@ class Styles extends React.Component {
       return null;
     } else {
       return (
-        <div id={'styles-container'}>
+        <div id={'styles-container'} data-testid={'styles-container'}>
           {price}
           <h3 className='style-title'>Style ></h3>
           <h3 className='style-title' style={{fontWeight: 'normal'}}>{this.props.styles[this.props.selectedStyleIndex].name}</h3>
