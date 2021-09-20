@@ -34,15 +34,7 @@ class Track extends React.Component {
       if (e.target.className.indexOf('trackable-') !== -1) {
         var element = e.target.nodeName;
         var widget = e.target.className.substring((e.target.className.lastIndexOf('trackable-')) + 10).split(' ')[0];
-        var time = JSON.stringify(new Date());
-
-        // CONSOLE LOGS TO VALIDATE THE DATA AND DATATYPES THAT ARE BEING PASSED TO POST REQUEST
-        console.log('element: ' + element);
-        console.log('widget: ' + widget);
-        console.log('time: ' + time);
-        console.log('type of element: ' + typeof element);
-        console.log('type of widget: ' + typeof widget);
-        console.log('type of time: ' + typeof time);
+        var time = new Date();
 
         $.post('/interactions', {'element': e.target.nodeName, 'widget': widget, 'time': time}, (data) => {
           console.log(data);
@@ -117,9 +109,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 47421,
-      productReviews: [],
-      averageRating: null
-
+      currentProductName: 'Camo Onesie'
     };
 
     this.productIdExtractor = this.productIdExtractor.bind(this);
@@ -134,47 +124,10 @@ class App extends React.Component {
     let newUrl = window.location.href;
     let newProductId = parseInt(newUrl.split('/')[3]);
     if (prevState.currentProductId !== newProductId) {
-      //need to make new get request for updated comments on current product id
-      let options = {
-        // eslint-disable-next-line camelcase
-        product_id: newProductId, //select a specific item by id
-      // eslint-disable-next-line semi
-      }
+      console.log('app did update')
+      this.setState({currentProductId: newProductId});
 
-      $.get('/reviews/', options, (data) => { // options not used for this, refactor later
-        return data;
-      // eslint-disable-next-line semi
-      }).then((info)=>{
-        //console.log(info);
-        this.setState({currentProductId: newProductId, productReviews: info, averageRating: info.averageRating});
-      });
     }
-    // if(this.state.)
-    // this.productIdExtractor(newUrl);
-  }
-
-  componentDidMount() {
-    //this.productIdExtractor(window.location.href);
-
-    if (this.currentProductReviews === undefined) {
-      let options = {
-        // eslint-disable-next-line camelcase
-        product_id: this.state.currentProductId, //select a specific item by id
-      // eslint-disable-next-line semi
-      }
-
-      $.get('/reviews/', options, (data) => { // options not used for this, refactor later
-        return data;
-      // eslint-disable-next-line semi
-      }).then((info)=>{
-        //console.log(info);
-        this.setState({productReviews: info, averageRating: info.averageRating});
-      });
-    }
-  }
-
-  reviewApiCall() {
-
   }
 
   testCall() {
@@ -196,7 +149,7 @@ class App extends React.Component {
   }
 
   render() {
-    let renderReviews = this.state.productReviews.length === 0 ? false : true;
+
     return (
       <Track>
         <ProductIdProvider value={window.location.href.split('/')[3]}>
@@ -205,8 +158,7 @@ class App extends React.Component {
             <Overview />
             <RelatedProducts/>
             <Outfit />
-            {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}
-              productName = {'ReplaceWithName from Context?'} productId = {this.state.currentProductId}/> : null}
+            <Reviews productId = {this.state.currentProductId} productName = {this.state.currentProductName}/>
             <button type='submit' onClick={this.testCall}>Poke the API</button>
           </div>
         </ProductIdProvider>

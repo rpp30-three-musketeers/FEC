@@ -14,14 +14,14 @@ class StarRatingDisplay extends React.Component {
 
   starsArray(rating) {
     rating = parseFloat(rating);
-    console.log('rating inside stars function: ' + rating);
+    // console.log('rating inside stars function: ' + rating);
     if (rating === 0) {
       this.setState({'starsArray': [0, 0, 0, 0, 0]});
     } else {
       var stars = [0, 0, 0, 0, 0];
       var wholeStars = Math.floor(rating);
 
-      console.log('whole stars: ' + wholeStars);
+      // console.log('whole stars: ' + wholeStars);
       var pctRemainder = (rating - wholeStars) * 100;
 
       var closestQuarter = (Math.round(pctRemainder/25)) * 25;

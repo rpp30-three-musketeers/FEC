@@ -70,7 +70,7 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + req.query.product_id;
-  // console.log(req.query, 'req query');
+  console.log(req.query, 'req query');
 
   axios({
     method: 'get',
@@ -119,11 +119,58 @@ app.post('/reviews', (req, res)=>{
     .then((status) => {
       console.log(status);
       console.log('should have status code 201^');
-      return res.sendStatus(201);
+      return res.sendStatus(201).end();
     })
     .catch((err) => {
       console.log(err);
-      return res.sendStatus(500);
+      return res.sendStatus(500).end();
+    });
+});
+
+app.get('/get-average-rating', (req, res) => {
+  axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?sort=newest&product_id=${req.query.productId}`,
+    headers: {
+      Authorization: credentials.authorization,
+    }
+  })
+    .then((summary) => {
+      var counter = 0;
+      var totalStars = 0;
+      for (var x in summary.data.ratings) {
+        counter += parseInt(summary.data.ratings[x]);
+        totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]));
+      }
+      var averageStars = totalStars / counter;
+      console.log(averageStars);
+      return res.status(200).json(averageStars);
+    })
+    .catch((err) => {
+      return res.status(500);
+    });
+});
+
+app.post('/interactions', (req, res) => {
+  // eslint-disable-next-line quotes
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
+
+  let interaction = req.body;
+
+  axios({
+    method: 'post',
+    url: url,
+    data: interaction,
+    headers: {
+      Authorization: credentials.authorization
+    }
+  })
+    .then(() => {
+      return res.status(200).end();
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500).end();
     });
 });
 
