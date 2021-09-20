@@ -1,4 +1,4 @@
-let productsData = [
+let mockData = [
   {
     'id': 1,
     'name': 'Camo Onesie',
@@ -25,7 +25,7 @@ let productsData = [
   }
 ];
 
-let productsID = {
+let mockID = {
   'id': 11,
   'name': 'Air Minis 250',
   'slogan': 'Full court support',
@@ -44,7 +44,7 @@ let productsID = {
   ],
 };
 
-let productsStyles = {
+let mockStyles = {
   'product_id': '1',
   'results': [
     {
@@ -108,11 +108,11 @@ let productsStyles = {
   ]
 };
 
-let relatedProducts = [
+let mockRelated = [
   2,
   3,
   8,
   7
 ];
 
-module.exports = {relatedProducts, productsData, productsID, productsStyles};
+module.exports = {mockData, mockID, mockStyles, mockRelated};

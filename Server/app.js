@@ -80,7 +80,7 @@ app.get('/reviews/', (req, res)=>{
 
   })
     .then((reviews) => {
-      console.log('Successful response from gitHub API call', reviews.data);
+      // console.log('Successful response from gitHub API call', reviews.data);
       let averageRating = helpers.starRating(reviews.data.results);
       let pctRecommend = helpers.pctRecommend(reviews.data.results);
       reviews.data.averageRating = averageRating;

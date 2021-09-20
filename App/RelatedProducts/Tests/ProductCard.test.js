@@ -1,11 +1,15 @@
 /**
 * @jest-environment jsdom
 */
-
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Product from '../ProductCard.jsx';
+import data from './sampleData.js';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('Product Card Functionality', () => {
   it('should render without throwing an error', function() {
@@ -20,17 +24,17 @@ describe('Product Card Functionality', () => {
   });
 
   it('should contain a name', function() {
-    render(<Product id={47423}/>)
+    render(<Product id={47423}/>);
     expect(screen.getByTitle('name')).toHaveTextContent('Morning Joggers');
   });
 
   it('should contain a category', function() {
-    render(<Product id={47423}/>)
+    render(<Product id={47423}/>);
     expect(screen.getByTitle('category')).toHaveTextContent('Pants');
   });
 
   it('should contain a rating', function() {
-    render(<Product id={47423}/>)
+    render(<Product id={47423}/>);
     expect(screen.getByTitle('rating')).toHaveTextContent('***__');
   });
 
