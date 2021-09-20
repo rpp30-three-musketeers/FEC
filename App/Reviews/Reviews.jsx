@@ -15,7 +15,7 @@ class Reviews extends React.Component {
       sortedBy: 'Relevance',
       productReviews: 'needToInitialize',
       averageRating: null,
-      showAddReviewModal: false,
+      showReviewModal: false,
       productName: 'Camo Onesie'
 
     };
@@ -32,7 +32,7 @@ class Reviews extends React.Component {
 
     let options = {
       // eslint-disable-next-line camelcase
-      product_id: this.context;
+      product_id: this.context
     };
     this.reviewApiCall(options);
 
@@ -89,8 +89,7 @@ class Reviews extends React.Component {
               <RightColumn reviews = {this.state.productReviews.results} reviewCount = {this.state.productReviews.results.length}
                 sortedBy = {this.state.sortedBy}/>
               <button id = 'addReview' onClick = {this.handleAddReviewClick}>+ Review</button>
-              {this.state.showAddReviewModal ? <ReviewForm exit = {this.handleAddReviewExit}
-                productName = {'productName'}/> : null}
+              {this.state.showReviewModal ? <ReviewForm exit = {this.handleAddReviewExit} productName = {this.state.productName}/> : null}
             </div>
           </div>
         </div> : <div> {console.log('divs mounted')}</div>

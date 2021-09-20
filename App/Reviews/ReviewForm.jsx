@@ -12,6 +12,7 @@ class ReviewForm extends React.Component {
   }
 
   handleSubmitReview(event) {
+    event.preventDefault();
     console.log(this.props.productId, '<<<productid');
     let query = {
       // eslint-disable-next-line camelcase
@@ -32,8 +33,11 @@ class ReviewForm extends React.Component {
     };
 
     fetch('/reviews', requestOptions)
-      .then(res => response.json())
-      .then(data => console.log(data));
+      .then((res) => {
+        console.log('success');
+        this.props.exit();
+      })
+      .catch(err => console.log(err));
   }
 
   render() {

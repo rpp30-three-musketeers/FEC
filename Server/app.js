@@ -69,8 +69,14 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
-  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + req.query.product_id;
-  console.log(req.query, 'req query');
+  let pIdForAxios ='';
+  if (req.query.product_id.length > 5) {
+    pIdForAxios = req.query.product_id.slice(0, 5);
+  } else {
+    pIdForAxios = req.query.product_id;
+  }
+  console.log(pIdForAxios, 'productId');
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + pIdForAxios;
 
   axios({
     method: 'get',
@@ -96,7 +102,7 @@ app.get('/reviews/', (req, res)=>{
 app.post('/reviews', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
-  console.log(req.body);
+  console.log(req.body.product_id, ' product id');
 
   axios({
     method: 'post',
@@ -117,9 +123,9 @@ app.post('/reviews', (req, res)=>{
     }
   })
     .then((status) => {
-      console.log(status);
-      console.log('should have status code 201^');
-      return res.sendStatus(201).end();
+      //console.log(status);
+      console.log('success');
+      return res.send('/');
     })
     .catch((err) => {
       console.log(err);

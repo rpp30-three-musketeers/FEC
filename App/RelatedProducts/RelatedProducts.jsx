@@ -35,6 +35,7 @@ class RelatedProducts extends React.Component {
 
   loadProducts() {
     if (this.state.related !== undefined) {
+      console.log(this.state.related, 'related data')
       return (this.state.related.slice(0, 4).map(item => {
         return <Product id={item} key={item} mainProduct={this.state.overviewProductInfo}/>;
       }));

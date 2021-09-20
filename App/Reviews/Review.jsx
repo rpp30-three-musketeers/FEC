@@ -22,7 +22,7 @@ class Review extends React.Component {
 
   render() {
     let date = new Date(this.props.data.date);
-    let month = date.getUTCMonth() + 1; //months from 1-12
+    let month = date.getUTCMonth(); //months from 0-11
     let monthName = months[month];
     let day = date.getUTCDate();
     let year = date.getUTCFullYear();

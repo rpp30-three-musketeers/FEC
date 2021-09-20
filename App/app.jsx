@@ -123,9 +123,14 @@ class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     let newUrl = window.location.href;
     let newProductId = parseInt(newUrl.split('/')[3]);
-    if (prevState.currentProductId !== newProductId) {
-      console.log('app did update')
-      this.setState({currentProductId: newProductId});
+    let actualPId ='';
+    if(newProductId.length > 5) {
+      actualPId = newProductId.slice(0,5);
+    } else {
+      actualPId = newProductId
+    }
+    if (prevState.currentProductId !== actualPId) {
+      this.setState({currentProductId: actualPId});
 
     }
   }
@@ -152,13 +157,13 @@ class App extends React.Component {
 
     return (
       <Track>
-        <ProductIdProvider value={window.location.href.split('/')[3]}>
+        <ProductIdProvider value={this.state.currentProductId}>
           <div>
             <Header />
             <Overview />
             <RelatedProducts/>
             <Outfit />
-            <Reviews productId = {this.state.currentProductId} productName = {this.state.currentProductName}/>
+            <Reviews/>
             <button type='submit' onClick={this.testCall}>Poke the API</button>
           </div>
         </ProductIdProvider>
