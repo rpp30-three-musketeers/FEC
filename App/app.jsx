@@ -16,7 +16,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 47421,
-      productReviews: []
+      productReviews: [],
+      averageRating: null
 
     };
 
@@ -25,23 +26,17 @@ class App extends React.Component {
   }
 
   productIdExtractor(url) {
-    var productId = url.split('/')[3];
-    this.setState({});
+    let newProductId = url.split('/')[3];
+    this.setState({currentProductId: newProductId});
   }
-
-  componentDidMount() {
-    //this.productIdExtractor(window.location.href);
-
-    if (this.currentProductReviews === undefined) {
-      console.log('inside if statement');
+  componentDidUpdate(prevProps, prevState) {
+    let newUrl = window.location.href;
+    let newProductId = parseInt(newUrl.split('/')[3]);
+    if (prevState.currentProductId !== newProductId) {
+      //need to make new get request for updated comments on current product id
       let options = {
         // eslint-disable-next-line camelcase
-        product_id: 47421, //select a specific item by id
-        endpoint: 'styles', //null, styles, related
-        parameters: { //if retrieving all products controls the amount returned
-          page: null, //default is 1
-          count: null //default is 5
-        }
+        product_id: newProductId, //select a specific item by id
       // eslint-disable-next-line semi
       }
 
@@ -49,9 +44,36 @@ class App extends React.Component {
         return data;
       // eslint-disable-next-line semi
       }).then((info)=>{
-        this.setState({productReviews: info.results});
+        //console.log(info);
+        this.setState({currentProductId: newProductId, productReviews: info, averageRating: info.averageRating});
       });
     }
+    // if(this.state.)
+    // this.productIdExtractor(newUrl);
+  }
+
+  componentDidMount() {
+    //this.productIdExtractor(window.location.href);
+
+    if (this.currentProductReviews === undefined) {
+      let options = {
+        // eslint-disable-next-line camelcase
+        product_id: this.state.currentProductId, //select a specific item by id
+      // eslint-disable-next-line semi
+      }
+
+      $.get('/reviews/', options, (data) => { // options not used for this, refactor later
+        return data;
+      // eslint-disable-next-line semi
+      }).then((info)=>{
+        //console.log(info);
+        this.setState({productReviews: info, averageRating: info.averageRating});
+      });
+    }
+  }
+
+  reviewApiCall() {
+
   }
 
   testCall() {
@@ -81,7 +103,7 @@ class App extends React.Component {
           <Overview/>
           <RelatedProducts/>
           <Outfit />
-          {renderReviews ? <Reviews data = {this.state.productReviews}/> : null}
+          {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/> : null}
           <button type='submit' onClick={this.testCall}>Poke the API</button>
         </div>
       </ProductIdProvider>

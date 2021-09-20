@@ -3,6 +3,7 @@ const axios = require('axios');
 const credentials = require('../credentials.js');
 const app = express();
 const port = 3000;
+const helpers = require('./helpers.js');
 
 app.use(express.static('Public'));
 
@@ -65,33 +66,33 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
-  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=47421`;
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + req.query.product_id;
   console.log(req.query, 'req query');
   console.log('___________________________');
 
-  axios({ // you would normaly get params from req
+  axios({
     method: 'get',
     url: url,
-    // data: {
-      //   product_id: 47421,
-      //   sort: 'relevant',
-      // },
-      headers: {
-        Authorization: credentials.authorization,
+    headers: {
+      Authorization: credentials.authorization,
 
-      },
+    },
 
-    })
+  })
     .then((reviews) => {
       console.log('Successful response from gitHub API call', reviews.data);
+      let averageRating = helpers.starRating(reviews.data.results);
+      let pctRecommend = helpers.pctRecommend(reviews.data.results);
+      reviews.data.averageRating = averageRating;
+      reviews.data.pctRecommend = pctRecommend;
       return res.status(201).json(reviews.data);
     })
     .catch((err) => {
       console.log(err);
       return res.status(500);
     });
-  });
+});
 
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}/47421`);
-  });
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}/47421`);
+});
