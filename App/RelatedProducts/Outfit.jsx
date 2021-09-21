@@ -19,9 +19,6 @@ class Outfit extends React.Component {
   static contextType = ProductIdContext;
 
   componentDidMount() {
-    // this.setOutfit(47452);
-    // this.setOutfit(47489);
-    // this.setOutfit(47474);
     this.createOutfitStorage();
     this.getOutfit();
   }
