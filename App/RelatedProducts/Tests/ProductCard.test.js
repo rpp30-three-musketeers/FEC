@@ -7,6 +7,7 @@ import { render, screen } from '@testing-library/react';
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Product from '../ProductCard.jsx';
+import RelatedProducts from '../RelatedProducts.jsx';
 import data from './sampleData.js';
 
 Enzyme.configure({ adapter: new Adapter() });
@@ -14,7 +15,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Product Card Functionality', () => {
   it('should render without throwing an error', function() {
     render(<Product/>);
-    screen.debug();
+    // screen.debug();
     expect(screen.getAllByText('***__').length).toBe(1);
   });
 

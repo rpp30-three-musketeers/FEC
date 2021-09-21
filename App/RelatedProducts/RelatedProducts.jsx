@@ -48,7 +48,7 @@ class RelatedProducts extends React.Component {
     return (
       <div>
         <p className="related-title">Related Products</p>
-        <div id="outfit-window">
+        <div id="outfit-window" data-testid={'related-products-window'}>
           {this.loadProducts()}
         </div>
 
