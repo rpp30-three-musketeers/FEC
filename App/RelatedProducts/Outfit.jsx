@@ -67,10 +67,8 @@ class Outfit extends React.Component {
       currentOutfit = currentOutfit.filter((item) => {
         return item !== targetProduct;
       })
-      //update state with filtered outfit list
-      this.setState({
-        outfit: currentOutfit
-      })
+      localStorage.outfit = JSON.stringify(currentOutfit);
+      this.getOutfit();
     }
   }
 
