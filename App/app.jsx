@@ -10,7 +10,6 @@ import Reviews from './Reviews/Reviews.jsx';
 import $ from 'jquery';
 import { ProductIdProvider } from './context.jsx';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);

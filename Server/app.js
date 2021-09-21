@@ -67,7 +67,7 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + req.query.product_id;
-  console.log(req.query, 'req query');
+  // console.log(req.query, 'req query');
   console.log('___________________________');
 
   axios({
@@ -75,9 +75,7 @@ app.get('/reviews/', (req, res)=>{
     url: url,
     headers: {
       Authorization: credentials.authorization,
-
     },
-
   })
     .then((reviews) => {
       // console.log('Successful response from gitHub API call', reviews.data);

@@ -12,7 +12,7 @@
   "scripts": {
     "test": "jest --collectCoverage",
     "test-overview": "jest --coverage ./App/Overview",
-    "test-related": "jest --coverage ./App/RelatedProducts",
+    "test-related": "jest ./App/RelatedProducts",
     "front": "webpack -w --mode development",
     "back": "nodemon ./Server/app.js ",
     "lint": "eslint ./"
