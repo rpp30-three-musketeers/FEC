@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import Comparison from './Comparison.jsx';
 
 class Product extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Product extends React.Component {
     this.getInfo();
   }
 
+  //Retrieve product price and image
   getStyle() {
     // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.props.id, endpoint: 'styles'}, (data) => {
@@ -32,6 +34,7 @@ class Product extends React.Component {
     });
   }
 
+  //Retrieve product name and category
   getInfo() {
     // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.props.id}, (data) => {
@@ -42,6 +45,7 @@ class Product extends React.Component {
     });
   }
 
+  //Display sale price if included in product data, else display standard price
   loadPrice() {
     if (this.state.salePrice) {
       return this.state.salePrice;
