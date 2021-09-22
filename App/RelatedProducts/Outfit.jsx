@@ -80,10 +80,9 @@ class Outfit extends React.Component {
       <div>
         <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
         <div id="outfit-window">
-          <div id="add-to-outfit">
+          <div onClick={this.addToOutfit} id="add-to-outfit">
             <p>Add To Outfit</p>
-            <button onClick={this.addToOutfit}>Add To Outfit</button>
-            <button onClick={this.removeFromOutfit}>Remove From Outfit</button>
+            {/* <button onClick={this.addToOutfit}>Add To Outfit</button> */}
           </div>
           {this.loadOutfit()}
         </div>
