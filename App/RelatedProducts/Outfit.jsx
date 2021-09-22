@@ -82,7 +82,6 @@ class Outfit extends React.Component {
         <div id="outfit-window">
           <div onClick={this.addToOutfit} id="add-to-outfit">
             <p>Add To Outfit</p>
-            {/* <button onClick={this.addToOutfit}>Add To Outfit</button> */}
           </div>
           {this.loadOutfit()}
         </div>
