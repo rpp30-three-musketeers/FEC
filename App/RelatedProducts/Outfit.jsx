@@ -1,5 +1,5 @@
 import React from 'react';
-import Product from './ProductCard.jsx';
+import OutfitProduct from './OutfitProduct.jsx';
 import ProductIdContext from '../context.jsx';
 
 class Outfit extends React.Component {
@@ -56,6 +56,7 @@ class Outfit extends React.Component {
   }
 
   removeFromOutfit() {
+    console.log('get me outta here');
     let currentOutfit = this.state.outfit;
     let targetProduct = JSON.parse(this.context);
 
@@ -73,7 +74,7 @@ class Outfit extends React.Component {
     if (this.state.outfit.length > 0) {
       return (
         this.state.outfit.slice(0, 3).map(item => {
-          return <Product id={item} key={item}/>;
+          return <OutfitProduct id={item} key={item} remove={this.removeFromOutfit}/>;
         })
       );
     }
