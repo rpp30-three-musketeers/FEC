@@ -9,7 +9,6 @@ class Outfit extends React.Component {
       outfit: [],
     };
     this.getOutfit = this.getOutfit.bind(this);
-    this.setOutfit = this.setOutfit.bind(this);
     this.loadOutfit = this.loadOutfit.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
@@ -23,6 +22,7 @@ class Outfit extends React.Component {
     this.getOutfit();
   }
 
+  //Creates localStorage arr for outfit if none currently exists
   createOutfitStorage() {
     if(!localStorage.outfit) {
       localStorage.outfit = JSON.stringify([]);
@@ -30,24 +30,19 @@ class Outfit extends React.Component {
     return;
   }
 
-  setOutfit(target) {
-    let currentOutfit = this.state.outfit;
-    currentOutfit.push(target);
-    localStorage.outfit = JSON.stringify(currentOutfit);
-  }
-
+  //Retrieves outfit from localStorage
   getOutfit() {
     let storedOutfit = JSON.parse(localStorage.outfit);
-
     this.setState({
       outfit: storedOutfit
     });
   }
 
+  //Appends new productID from context to outfit. Calls getoutfit to update state and rerender.
   addToOutfit() {
     let currentOutfit = this.state.outfit;
     let newProduct = JSON.parse(this.context);
-    //add product to outfit if not already present
+
     if (!currentOutfit.includes(newProduct)){
       currentOutfit.push(newProduct);
       localStorage.outfit = JSON.stringify(currentOutfit);
@@ -55,15 +50,15 @@ class Outfit extends React.Component {
     }
   }
 
-  removeFromOutfit() {
-    console.log('get me outta here');
+  //Removes productID from outfit
+  removeFromOutfit(target) {
     let currentOutfit = this.state.outfit;
-    let targetProduct = JSON.parse(this.context);
+    // let targetProduct = JSON.parse(this.context);
 
-    if (currentOutfit.includes(targetProduct)){
+    if (currentOutfit.includes(target)){
       //remove target product from outfit list
       currentOutfit = currentOutfit.filter((item) => {
-        return item !== targetProduct;
+        return item !== target;
       })
       localStorage.outfit = JSON.stringify(currentOutfit);
       this.getOutfit();
