@@ -13,7 +13,6 @@ class RelatedProducts extends React.Component {
     };
     this.getRelated = this.getRelated.bind(this);
     this.loadProducts = this.loadProducts.bind(this);
-    this.compareProducts = this.compareProducts.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -35,14 +34,11 @@ class RelatedProducts extends React.Component {
   loadProducts() {
     if (this.state.related !== undefined) {
       return (this.state.related.slice(0, 4).map(item => {
-        return <Product id={item} key={item} onClick={this.compareProducts(item)}/>;
+        return <Product id={item} key={item} />;
       }));
     }
   }
 
-  compareProducts(event) {
-    return <Comparison current={this.context} other={event}/>;
-  }
 
   render() {
     return (
