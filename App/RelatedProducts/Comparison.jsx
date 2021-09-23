@@ -14,25 +14,25 @@ class Comparison extends React.Component {
     return(
       <div id="compare-products" onClick={this.props.close}>
         <div id="modal">
-          I'm a modal
+          Compare Products
+          <table>
+            <tr>
+              <th>{this.props.mainProduct.name}</th>
+              <th></th>
+              <th>{this.props.relatedProduct.name}</th>
+            </tr>
+            <tr>
+              <td>Alfreds Futterkiste</td>
+              <td>Maria Anders</td>
+              <td>Germany</td>
+            </tr>
+            <tr>
+              <td>Centro comercial Moctezuma</td>
+              <td>Francisco Chang</td>
+              <td>Mexico</td>
+            </tr>
+          </table>
         </div>
-          {/* <table>
-            <tr>
-              <th style="width:50%">Features</th>
-              <th>Basic</th>
-              <th>Pro</th>
-            </tr>
-            <tr>
-              <td>Sample text</td>
-              <td><i className="fa fa-remove"></i></td>
-              <td><i className="fa fa-check"></i></td>
-            </tr>
-            <tr>
-              <td>Sample text</td>
-              <td><i className="fa fa-check"></i></td>
-              <td><i className="fa fa-check"></i></td>
-            </tr>
-          </table> */}
       </div>
     )
   }

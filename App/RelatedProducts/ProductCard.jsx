@@ -7,11 +7,13 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productInfo: undefined,
       price: undefined,
       salePrice: undefined,
       img: undefined,
       name: undefined,
       category: undefined,
+      features: undefined,
       renderModal: false
     };
     this.getStyle = this.getStyle.bind(this);
@@ -44,8 +46,10 @@ class Product extends React.Component {
     // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.props.id}, (data) => {
       this.setState({
+        productInfo: data,
         name: data.name,
-        category: data.category
+        category: data.category,
+        features: data.features
       });
     });
   }
@@ -74,7 +78,7 @@ class Product extends React.Component {
     if (this.state.renderModal === true){
       return (
         <div>
-          <Comparison close={this.closeModal}/>
+          <Comparison mainProduct={this.props.mainProduct} relatedProduct={this.state.productInfo} close={this.closeModal}/>
         </div>
       )
     }

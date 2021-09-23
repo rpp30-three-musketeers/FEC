@@ -115,4 +115,19 @@ let mockRelated = [
   7
 ];
 
+data = {
+  id: 47423,
+  name: 'Morning Joggers',
+  slogan: 'Make yourself a morning person',
+  description: "Whether you're a morning person or not.  Whether y…ym bound or not.  Everyone looks good in joggers.",
+  campus: "hr-rpp"
+  category: "Pants"
+  created_at: "2021-08-26T20:30:48.129Z"
+  default_price: "40.00"
+  description: "Whether you're a morning person or not.  Whether you're gym bound or not.  Everyone looks good in joggers."
+  features: (2) [{feature:___, value:___}, {…}]
+  updated_at: "2021-08-26T20:30:48.129Z"
+}
+
+
 module.exports = {mockData, mockID, mockStyles, mockRelated};

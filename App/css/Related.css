@@ -7,12 +7,14 @@
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   margin-bottom: 2%;
+  box-sizing: border-box;
 }
 
 #product-card {
   width: 98%;
   height: 90%;
   border: 1px solid black;
+  box-sizing: border-box;
   display: grid;
   grid-template-rows: 80% 20%;
 }
