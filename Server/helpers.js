@@ -22,7 +22,7 @@ const pctRecommend = function(reviews) {
   if (reviews.length === 0) {
     return 0;
   }
-  console.log(reviews, '<<<<<<<reviews');
+  // console.log(reviews, '<<<<<<<reviews');
   for (var i = 0; i < reviews.length; i++) {
     if (reviews[i].recommend) {
       totalRecommendations++;

@@ -1,8 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import Comparison from './Comparison.jsx';
 
-class Product extends React.Component {
+class OutfitProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +14,7 @@ class Product extends React.Component {
     this.getStyle = this.getStyle.bind(this);
     this.getInfo = this.getInfo.bind(this);
     this.loadPrice = this.loadPrice.bind(this);
+    this.boom = this.boom.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +22,6 @@ class Product extends React.Component {
     this.getInfo();
   }
 
-  //Retrieve product price and image
   getStyle() {
     // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.props.id, endpoint: 'styles'}, (data) => {
@@ -34,7 +33,6 @@ class Product extends React.Component {
     });
   }
 
-  //Retrieve product name and category
   getInfo() {
     // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.props.id}, (data) => {
@@ -45,7 +43,6 @@ class Product extends React.Component {
     });
   }
 
-  //Display sale price if included in product data, else display standard price
   loadPrice() {
     if (this.state.salePrice) {
       return this.state.salePrice;
@@ -53,12 +50,16 @@ class Product extends React.Component {
     return this.state.price;
   }
 
+  boom() {
+    this.props.remove(this.props.id);
+  }
+
   render() {
     return (
       <div>
         <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
-            <img id="image" src={this.state.img}/>
+            <img id="image" onClick={this.boom} src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
@@ -72,4 +73,4 @@ class Product extends React.Component {
   }
 }
 
-export default Product;
+export default OutfitProduct;
