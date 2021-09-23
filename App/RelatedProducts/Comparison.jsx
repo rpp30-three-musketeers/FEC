@@ -12,8 +12,11 @@ class Comparison extends React.Component {
   displayCheck() {
     if (this.props.showModal) {
       return (
-        <div className="compare-products">
-          <table>
+        <div id="compare-products">
+          <div id="modal">
+            hi, hello, its me
+          </div>
+          {/* <table>
             <tr>
               <th style="width:50%">Features</th>
               <th>Basic</th>
@@ -29,38 +32,40 @@ class Comparison extends React.Component {
               <td><i className="fa fa-check"></i></td>
               <td><i className="fa fa-check"></i></td>
             </tr>
-          </table>
-        </div>
+          </table> */}
+      </div>
       )
     }
+    return
   }
 
 
   render() {
-    return (
+    return(
       <div id="compare-products">
         <div id="modal">
           hi, hello, its me
         </div>
-        {/* <table>
-          <tr>
-            <th style="width:50%">Features</th>
-            <th>Basic</th>
-            <th>Pro</th>
-          </tr>
-          <tr>
-            <td>Sample text</td>
-            <td><i className="fa fa-remove"></i></td>
-            <td><i className="fa fa-check"></i></td>
-          </tr>
-          <tr>
-            <td>Sample text</td>
-            <td><i className="fa fa-check"></i></td>
-            <td><i className="fa fa-check"></i></td>
-          </tr>
-        </table> */}
+          {/* <table>
+            <tr>
+              <th style="width:50%">Features</th>
+              <th>Basic</th>
+              <th>Pro</th>
+            </tr>
+            <tr>
+              <td>Sample text</td>
+              <td><i className="fa fa-remove"></i></td>
+              <td><i className="fa fa-check"></i></td>
+            </tr>
+            <tr>
+              <td>Sample text</td>
+              <td><i className="fa fa-check"></i></td>
+              <td><i className="fa fa-check"></i></td>
+            </tr>
+          </table> */}
       </div>
     )
+    // this.displayCheck();
   }
 }
 

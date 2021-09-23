@@ -18,6 +18,7 @@ class Product extends React.Component {
     this.getInfo = this.getInfo.bind(this);
     this.loadPrice = this.loadPrice.bind(this);
     this.compareProducts = this.compareProducts.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
   componentDidMount() {
@@ -63,10 +64,20 @@ class Product extends React.Component {
     })
   }
 
+  showModal() {
+    if (this.state.showModal === true){
+      return (
+        <div>
+          <Comparison/>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
-        <Comparison showModal={this.state.showModal} />
+        {this.showModal()}
         <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
             <img id="image" onClick={this.compareProducts} src={this.state.img}/>
