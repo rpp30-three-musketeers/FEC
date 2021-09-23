@@ -4,7 +4,7 @@
   "description": "",
   "main": "./App/app.jsx",
   "jest": {
-    "moduleNameMapper":{
+    "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
       "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
     }
@@ -12,6 +12,7 @@
   "scripts": {
     "test": "jest --collectCoverage",
     "test-overview": "jest --coverage ./App/Overview",
+    "test-related": "jest ./App/RelatedProducts",
     "front": "webpack -w --mode development",
     "back": "nodemon ./Server/app.js ",
     "lint": "eslint ./"
@@ -47,6 +48,7 @@
     "@babel/preset-react": "^7.14.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "enzyme": "^3.11.0",

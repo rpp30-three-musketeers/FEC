@@ -45,7 +45,7 @@ class Outfit extends React.Component {
   render() {
     return (
       <div>
-        <p className="related-title">Your Outfit</p>
+        <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
         <div id="outfit-window">
           <div id="add-to-outfit">
             <p>Add To Outfit</p>

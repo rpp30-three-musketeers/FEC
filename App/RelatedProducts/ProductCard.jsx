@@ -52,7 +52,7 @@ class Product extends React.Component {
   render() {
     return (
       <div>
-        <div id="product-card">
+        <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
             <img id="image" src={this.state.img}/>
           </div>
