@@ -12,13 +12,14 @@ class Product extends React.Component {
       img: undefined,
       name: undefined,
       category: undefined,
-      showModal: false
+      renderModal: false
     };
     this.getStyle = this.getStyle.bind(this);
     this.getInfo = this.getInfo.bind(this);
     this.loadPrice = this.loadPrice.bind(this);
-    this.compareProducts = this.compareProducts.bind(this);
-    this.showModal = this.showModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   componentDidMount() {
@@ -57,30 +58,37 @@ class Product extends React.Component {
     return this.state.price;
   }
 
-  compareProducts() {
-    console.log('How dare you judge me...');
+  openModal() {
     this.setState({
-      showModal: true
+      renderModal: true
     })
   }
 
-  showModal() {
-    if (this.state.showModal === true){
+  closeModal() {
+    this.setState({
+      renderModal: false
+    })
+  }
+
+  renderModal() {
+    if (this.state.renderModal === true){
       return (
         <div>
-          <Comparison/>
+          <Comparison close={this.closeModal}/>
         </div>
       )
     }
   }
 
+
+
   render() {
     return (
       <div>
-        {this.showModal()}
+        {this.renderModal()}
         <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
-            <img id="image" onClick={this.compareProducts} src={this.state.img}/>
+            <img id="image" onClick={this.openModal} src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
