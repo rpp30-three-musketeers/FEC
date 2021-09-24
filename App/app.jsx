@@ -100,7 +100,7 @@ class App extends React.Component {
       <ProductIdProvider value={window.location.href.split('/')[3]}>
         <div>
           <Header />
-          <Overview/>
+          <Overview />
           <RelatedProducts/>
           <Outfit />
           {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/> : null}

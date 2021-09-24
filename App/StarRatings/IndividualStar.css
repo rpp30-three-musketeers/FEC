@@ -1,0 +1,29 @@
+.three-quarter-star {
+  /* background-color: rgb(72, 72, 72); */
+  size: 1em;
+  background-image: linear-gradient(left, rgb(72, 72, 72), rgb(72, 72, 72) 75%, transparent 70%, transparent 100%);
+  background-image: -webkit-linear-gradient(left, rgb(72, 72, 72), rgb(72, 72, 72) 75%, transparent 70%, transparent 100%);
+  -webkit-mask-image: url(#three-quarter-star-mask);
+  mask-image: url(#three-quarter-star-mask);
+}
+
+#half-star {
+  size: 1em;
+  fill:rgb(72, 72, 72);
+  background-image: linear-gradient(left, rgb(72, 72, 72), rgb(72, 72, 72) 75%, transparent 70%, transparent 100%);
+  background-image: -webkit-linear-gradient(left, rgb(72, 72, 72), rgb(72, 72, 72) 75%, transparent 70%, transparent 100%);
+  -webkit-mask-image: url(#half-star);
+  mask-image: url(#half-star);
+}
+
+.quarter-star {
+  background-color: rgb(72, 72, 72);
+  background-image: linear-gradient(left, rgb(72, 72, 72), rgb(72, 72, 72) 25%, transparent 25%, transparent 100%);
+  background-image: -webkit-linear-gradient(left, rgb(72, 72, 72), rgb(72, 72, 72) 25%, transparent 25%, transparent 100%)
+}
+
+/* svg {
+  background-color: rgb(72, 72, 72);
+  fill: rgb(72, 72, 72)
+} */
+
