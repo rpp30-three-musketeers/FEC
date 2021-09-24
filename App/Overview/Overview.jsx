@@ -39,7 +39,7 @@ class Overview extends React.Component {
           {/* <p>Overview Component</p> */}
           <Gallery />
           <div id={'basics'}>
-            <Title averageRating={this.state.averageRating || 0} />
+            <Title />
             <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector}/>
           </div>
           <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
