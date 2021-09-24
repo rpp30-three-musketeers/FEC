@@ -27,7 +27,7 @@ class Comparison extends React.Component {
 
       //if feature does not have discreet value assigns boolean
       if(item.value === null) {
-        node.mainValue = true;
+        node.mainValue = '✔';
       } else {
         node.mainValue = item.value;
       }
@@ -44,7 +44,7 @@ class Comparison extends React.Component {
         if (combinedFeatures[i].feature === targetFeature) {
           featureIsShared = true;
           if(item.value === null) {
-            combinedFeatures[i].relatedValue = true;
+            combinedFeatures[i].relatedValue = '✔';
           } else {
             combinedFeatures[i].relatedValue = item.value;
           }
@@ -57,7 +57,7 @@ class Comparison extends React.Component {
         let node = {};
         node.feature = item.feature;
         if(item.value === null) {
-          node.relatedValue = true;
+          node.relatedValue = '✔';
         } else {
           node.relatedValue = item.value;
         }
@@ -77,9 +77,9 @@ class Comparison extends React.Component {
   renderFeatures() {
     let featuresList = this.state.featuresList;
     if (featuresList !== undefined) {
-      return (featuresList.map((item) => {
+      return (featuresList.map((item, key) => {
         return (
-          <tr>
+          <tr key={item.feature}>
             <td>{item.mainValue}</td>
             <td>{item.feature}</td>
             <td>{item.relatedValue}</td>
@@ -93,15 +93,16 @@ class Comparison extends React.Component {
     return(
       <div id="compare-products" onClick={this.props.close}>
         <div id="modal">
-          Compare Products
+          Compare
           <table className={"modal-table"}>
+            <tbody>
             <tr>
               <th>{this.props.mainProduct.name}</th>
               <th></th>
               <th>{this.props.relatedProduct.name}</th>
             </tr>
             {this.renderFeatures()}
-
+            </tbody>
           </table>
         </div>
       </div>
