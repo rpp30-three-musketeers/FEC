@@ -7,6 +7,7 @@ class Comparison extends React.Component {
       featuresList: undefined
     }
     this.compareFeatures = this.compareFeatures.bind(this);
+    this.renderFeatures = this.renderFeatures.bind(this);
   }
 
   componentDidMount() {
@@ -72,27 +73,35 @@ class Comparison extends React.Component {
     })
   }
 
+
+  renderFeatures() {
+    let featuresList = this.state.featuresList;
+    if (featuresList !== undefined) {
+      return (featuresList.map((item) => {
+        return (
+          <tr>
+            <td>{item.mainValue}</td>
+            <td>{item.feature}</td>
+            <td>{item.relatedValue}</td>
+          </tr>
+        )
+      }));
+    }
+  }
+
   render() {
     return(
       <div id="compare-products" onClick={this.props.close}>
         <div id="modal">
           Compare Products
-          <table>
+          <table className={"modal-table"}>
             <tr>
               <th>{this.props.mainProduct.name}</th>
               <th></th>
               <th>{this.props.relatedProduct.name}</th>
             </tr>
-            <tr>
-              <td>Alfreds Futterkiste</td>
-              <td>Maria Anders</td>
-              <td>Germany</td>
-            </tr>
-            <tr>
-              <td>Centro comercial Moctezuma</td>
-              <td>Francisco Chang</td>
-              <td>Mexico</td>
-            </tr>
+            {this.renderFeatures()}
+
           </table>
         </div>
       </div>
