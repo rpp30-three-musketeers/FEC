@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/global.css';
 import './css/Related.css';
+import './css/Comparison.css';
 import Header from './Header.jsx';
 import RelatedProducts from './RelatedProducts/RelatedProducts.jsx';
 import Outfit from './RelatedProducts/Outfit.jsx';

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Comparison from './Comparison.jsx';
 
@@ -6,15 +7,21 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      productInfo: undefined,
       price: undefined,
       salePrice: undefined,
       img: undefined,
       name: undefined,
-      category: undefined
+      category: undefined,
+      features: undefined,
+      renderModal: false
     };
     this.getStyle = this.getStyle.bind(this);
     this.getInfo = this.getInfo.bind(this);
     this.loadPrice = this.loadPrice.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   componentDidMount() {
@@ -39,8 +46,10 @@ class Product extends React.Component {
     // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.props.id}, (data) => {
       this.setState({
+        productInfo: data,
         name: data.name,
-        category: data.category
+        category: data.category,
+        features: data.features
       });
     });
   }
@@ -53,12 +62,37 @@ class Product extends React.Component {
     return this.state.price;
   }
 
+  openModal() {
+    this.setState({
+      renderModal: true
+    })
+  }
+
+  closeModal() {
+    this.setState({
+      renderModal: false
+    })
+  }
+
+  renderModal() {
+    if (this.state.renderModal === true){
+      return (
+        <div>
+          <Comparison mainProduct={this.props.mainProduct} relatedProduct={this.state.productInfo} close={this.closeModal}/>
+        </div>
+      )
+    }
+  }
+
+
+
   render() {
     return (
       <div>
+        {this.renderModal()}
         <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
-            <img id="image" src={this.state.img}/>
+            <img id="image" onClick={this.openModal} src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
