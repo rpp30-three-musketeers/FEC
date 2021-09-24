@@ -25,13 +25,7 @@ class Overview extends React.Component {
     $.get('/products', {product_id: this.context, endpoint: 'styles'}, (data) => {
       this.setState({styles: data.results, selectedStyleIndex: 0});
     });
-    $.get('/reviews/', {product_id: this.context}, (data) => { // options not used for this, refactor later
-      return data;
-    // eslint-disable-next-line semi
-    }).then((info)=>{
-      //console.log(info);
-      this.setState({averageRating: info.averageRating});
-    });
+
   }
 
   styleSelector(index) {
