@@ -22,9 +22,9 @@ class Styles extends React.Component {
   render() {
     let price;
     if (this.props.styles && this.props.styles[this.props.selectedStyleIndex].sale_price) {
-      price = <p><span style={{color: 'red', paddingRight: '0.5em'}}>${Number(this.props.styles[this.props.selectedStyleIndex].sale_price)}</span><span style={{textDecorationLine: "line-through"}}>${Number(this.props.styles[this.props.selectedStyleIndex].original_price)}</span></p>
+      price = <h3><span style={{color: 'red', paddingRight: '0.5em', fontWeight: 'normal'}}>${Number(this.props.styles[this.props.selectedStyleIndex].sale_price)}</span><span style={{textDecorationLine: "line-through"}}>${Number(this.props.styles[this.props.selectedStyleIndex].original_price)}</span></h3>
     } else if (this.props.styles && !this.props.styles[this.props.selectedStyleIndex].sale_price) {
-      price = <p>${Number(this.props.styles[this.props.selectedStyleIndex].original_price)}</p>
+      price = <h3 style={{fontWeight: 'normal'}}>${Number(this.props.styles[this.props.selectedStyleIndex].original_price)}</h3>
     }
 
     if (!this.props.styles) {

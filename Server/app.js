@@ -91,6 +91,30 @@ app.get('/reviews/', (req, res)=>{
     });
 });
 
+app.get('/get-average-rating', (req, res) => {
+  axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?sort=newest&product_id=${req.query.productId}`,
+    headers: {
+      Authorization: credentials.authorization,
+    }
+  })
+  .then((summary) => {
+    var counter = 0;
+    var totalStars = 0;
+    for (var x in summary.data.ratings) {
+      counter += parseInt(summary.data.ratings[x]);
+      totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]))
+    }
+    var averageStars = totalStars / counter;
+    console.log(averageStars);
+    return res.status(200).json(averageStars)
+  })
+  .catch((err) => {
+    return res.status(500);
+  })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}/47421`);
 });

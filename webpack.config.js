@@ -8,6 +8,18 @@ module.exports = {
     filename: "bundle.js",
     path: __dirname + "/Public",
   },
+  plugins: [
+    [
+      require.resolve('babel-plugin-named-asset-import'),
+      {
+        loaderMap: {
+          svg: {
+            ReactComponent: '@svgr/webpack?-svgo![path]',
+          },
+        },
+      },
+    ],
+  ],
   module: {
     rules:[
       {
@@ -23,6 +35,12 @@ module.exports = {
         test: /\.css$/,
         // the order of `use` is important!
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+      },
+      {
+        test: /\.svg$/, use: ["@svgr/webpack"]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/, use: ["file-loader"]
       }
     ],
   },
