@@ -3,6 +3,7 @@ import Product from './ProductCard.jsx';
 import Comparison from './Comparison.jsx';
 import ProductIdContext from '../context.jsx';
 import $ from 'jquery';
+import {BiChevronLeftSquare, BiChevronRightSquare} from 'react-icons/bi';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -55,6 +56,8 @@ class RelatedProducts extends React.Component {
     return (
       <div>
         <p className="related-title">Related Products</p>
+          <BiChevronLeftSquare/>
+          <BiChevronRightSquare/>
         <div id="outfit-window" data-testid={'related-products-window'}>
           {this.loadProducts()}
         </div>

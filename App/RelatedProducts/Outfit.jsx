@@ -1,6 +1,7 @@
 import React from 'react';
 import OutfitProduct from './OutfitProduct.jsx';
 import ProductIdContext from '../context.jsx';
+import {BiChevronLeftSquare, BiChevronRightSquare} from 'react-icons/bi';
 
 class Outfit extends React.Component {
   constructor(props) {
@@ -79,6 +80,8 @@ class Outfit extends React.Component {
     return (
       <div>
         <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
+        <BiChevronLeftSquare/>
+        <BiChevronRightSquare/>
         <div id="outfit-window">
           <div onClick={this.addToOutfit} id="add-to-outfit">
             <p>Add To Outfit</p>
