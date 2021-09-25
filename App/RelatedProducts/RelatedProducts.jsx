@@ -11,6 +11,7 @@ class RelatedProducts extends React.Component {
     this.state = {
       related: undefined,
       overviewProductInfo: undefined
+      carouselStart: 0
     };
     this.getRelated = this.getRelated.bind(this);
     this.loadProducts = this.loadProducts.bind(this);
@@ -36,7 +37,9 @@ class RelatedProducts extends React.Component {
 
   loadProducts() {
     if (this.state.related !== undefined) {
-      return (this.state.related.slice(0, 4).map(item => {
+      let start = 2
+      let end = start + 4;
+      return (this.state.related.slice(start, end).map(item => {
         return <Product id={item} key={item} mainProduct={this.state.overviewProductInfo}/>;
       }));
     }
