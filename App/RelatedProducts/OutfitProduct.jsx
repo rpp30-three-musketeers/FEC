@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 
 class OutfitProduct extends React.Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class OutfitProduct extends React.Component {
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
             <p id="product-card-name" title={'name'}>{this.state.name}</p>
             <p id="product-card-price" title={'price'}>${this.loadPrice()}</p>
-            <p id="product-card-rating" title={'rating'}>***__</p>
+            <p id="product-card-rating" title={'rating'}><StarRatingDisplay productId={this.props.id}/></p>
           </div>
         </div>
       </div>
