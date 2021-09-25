@@ -127,6 +127,7 @@ app.post('/interactions', (req, res) => {
   // };
 
   let interaction = req.body;
+  console.dir('req.body: ' + req.body);
 
   axios({
     method: 'post',
