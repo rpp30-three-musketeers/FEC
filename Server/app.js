@@ -118,15 +118,12 @@ app.get('/get-average-rating', (req, res) => {
 
 app.post('/interactions', (req, res) => {
   // eslint-disable-next-line quotes
-  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
 
-  console.log('INTERACTIONS ROUTER HIT');
-  console.log('interactions req.body: ', req.body);
-
-  // let interaction = {
-  //   element: req.body.element,
-  //   widget: req.body.widget,
-  //   time: undefined
+  // let testInteraction = {
+  //   element: 'IMG',
+  //   widget: 'Overview',
+  //   time: 'today'
   // };
 
   let interaction = req.body;
@@ -140,13 +137,11 @@ app.post('/interactions', (req, res) => {
     }
   })
     .then((api) => {
-      console.log('/interactions API Response', api.statusCode, api.statusMessage)
+      console.log('Interaction Post Successful');
       return res.status(200);
     })
     .catch((err) => {
       console.log(err);
-      console.log('XXXXXXXXXXXXXXX');
-      console.log(err.statusCode, statusMessage);
       return res.status(500);
     });
 });
