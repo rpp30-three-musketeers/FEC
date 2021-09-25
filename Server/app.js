@@ -120,6 +120,7 @@ app.post('/interactions', (req, res) => {
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
 
+  console.log('INTERACTIONS ROUTER HIT');
   console.log('interactions req.body: ', req.body);
 
   // let interaction = {
