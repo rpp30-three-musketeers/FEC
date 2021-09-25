@@ -37,5 +37,5 @@ const pctRecommend = function(reviews) {
 
 module.exports = {
   starRating,
-  pctRecommend
+  pctRecommend,
 };

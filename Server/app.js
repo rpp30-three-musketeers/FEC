@@ -11,6 +11,7 @@ app.get('/products', (req, res) => {
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
 
+
   if (req.query.product_id) {
     let extension = `/${req.query.product_id}`;
     url += extension;
@@ -114,6 +115,36 @@ app.get('/get-average-rating', (req, res) => {
     return res.status(500);
   })
 })
+
+app.post('/interactions', (req, res) => {
+  // eslint-disable-next-line quotes
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
+
+  // let testInteraction = {
+  //   element: 'IMG',
+  //   widget: 'Overview',
+  //   time: 'today'
+  // };
+
+  let interaction = req.body;
+
+  axios({
+    method: 'post',
+    url: url,
+    data: interaction,
+    headers: {
+      Authorization: credentials.authorization
+    }
+  })
+    .then((api) => {
+      console.log('Interaction Post Successful');
+      return res.status(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500);
+    });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}/47421`);

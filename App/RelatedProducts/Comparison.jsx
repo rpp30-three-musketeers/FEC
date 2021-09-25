@@ -66,8 +66,7 @@ class Comparison extends React.Component {
       }
     });
 
-    console.log('combinedFeatures', combinedFeatures);
-    //update State...
+    // console.log('combinedFeatures', combinedFeatures);
     this.setState({
       featuresList: combinedFeatures
     })

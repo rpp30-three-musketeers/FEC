@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 
 class OutfitProduct extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class OutfitProduct extends React.Component {
     this.getStyle = this.getStyle.bind(this);
     this.getInfo = this.getInfo.bind(this);
     this.loadPrice = this.loadPrice.bind(this);
-    this.boom = this.boom.bind(this);
+    this.removeFromOutfit = this.removeFromOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +51,7 @@ class OutfitProduct extends React.Component {
     return this.state.price;
   }
 
-  boom() {
+  removeFromOutfit() {
     this.props.remove(this.props.id);
   }
 
@@ -59,13 +60,13 @@ class OutfitProduct extends React.Component {
       <div>
         <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
-            <img id="image" onClick={this.boom} src={this.state.img}/>
+            <img id="image" onClick={this.removeFromOutfit} src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
             <p id="product-card-name" title={'name'}>{this.state.name}</p>
             <p id="product-card-price" title={'price'}>${this.loadPrice()}</p>
-            <p id="product-card-rating" title={'rating'}>***__</p>
+            <p id="product-card-rating" title={'rating'}><StarRatingDisplay productId={this.props.id}/></p>
           </div>
         </div>
       </div>
