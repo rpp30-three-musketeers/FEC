@@ -186,18 +186,6 @@ class App extends React.Component {
   render() {
     let renderReviews = this.state.productReviews.length === 0 ? false : true;
     return (
-<<<<<<< HEAD
-      <ProductIdProvider value={window.location.href.split('/')[3]}>
-        <div>
-          <Header />
-          <Overview />
-          <RelatedProducts/>
-          <Outfit />
-          {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/> : null}
-          <button type='submit' onClick={this.testCall}>Poke the API</button>
-        </div>
-      </ProductIdProvider>
-=======
       <Track>
         <ProductIdProvider value={window.location.href.split('/')[3]}>
           <div>
@@ -210,7 +198,6 @@ class App extends React.Component {
           </div>
         </ProductIdProvider>
       </Track>
->>>>>>> 1a51731c46b3697861e77dca50322b1b7fdda8c3
     );
   }
 }
