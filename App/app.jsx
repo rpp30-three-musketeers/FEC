@@ -30,9 +30,15 @@ const ClassButton = class extends React.Component {
 class Track extends React.Component {
   handleEvent = e => {
     if (this.props.eventName) {
-      if (e.target.nodeName === 'IMG' || e.target.nodeName === 'button') {
-        console.log('e path: ')
-        console.dir(e.target.nodeName);
+      if (e.target.className.indexOf('trackable-') !== -1) {
+        console.log('type: ' + e.target.nodeName);
+        var classString = e.target.className;
+        var n = classString.lastIndexOf('trackable-');
+        var module = classString.substring(n + 10);
+        module = module.split(' ')[0];
+        console.log('module: ' + module);
+        console.log('current date: ' + new Date());
+
       }
       // console.log("TRACK", this.props.eventName);
     }
