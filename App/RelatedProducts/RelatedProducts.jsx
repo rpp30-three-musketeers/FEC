@@ -9,17 +9,18 @@ class RelatedProducts extends React.Component {
     super(props);
     this.state = {
       related: undefined,
-      currentProduct: 47455
+      overviewProductInfo: undefined
     };
     this.getRelated = this.getRelated.bind(this);
     this.loadProducts = this.loadProducts.bind(this);
-    this.compareProducts = this.compareProducts.bind(this);
+    this.getInfo = this.getInfo.bind(this);
   }
 
   static contextType = ProductIdContext;
 
   componentDidMount() {
     this.getRelated();
+    this.getInfo();
     this.loadProducts();
   }
 
@@ -35,20 +36,26 @@ class RelatedProducts extends React.Component {
   loadProducts() {
     if (this.state.related !== undefined) {
       return (this.state.related.slice(0, 4).map(item => {
-        return <Product id={item} key={item} onClick={this.compareProducts(item)}/>;
+        return <Product id={item} key={item} mainProduct={this.state.overviewProductInfo}/>;
       }));
     }
   }
 
-  compareProducts(event) {
-    return <Comparison current={this.context} other={event}/>;
-  }
+    //Retrieve product name and category
+    getInfo() {
+      // eslint-disable-next-line camelcase
+      $.get('/products', {product_id: this.context}, (data) => {
+        this.setState({
+          overviewProductInfo: data,
+        });
+      });
+    }
 
   render() {
     return (
       <div>
         <p className="related-title">Related Products</p>
-        <div id="outfit-window">
+        <div id="outfit-window" data-testid={'related-products-window'}>
           {this.loadProducts()}
         </div>
 

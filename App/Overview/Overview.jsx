@@ -25,6 +25,7 @@ class Overview extends React.Component {
     $.get('/products', {product_id: this.context, endpoint: 'styles'}, (data) => {
       this.setState({styles: data.results, selectedStyleIndex: 0});
     });
+
   }
 
   styleSelector(index) {
@@ -32,18 +33,22 @@ class Overview extends React.Component {
   }
 
   render() {
-    return (
-      <div id={'overview-container'} data-testid={'overview-container'}>
-        {/* <p>Overview Component</p> */}
-        <Gallery />
-        <div id={'basics'}>
-          <Title />
-          <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector}/>
+    if (this.state.averageRating !== null) {
+      return (
+        <div id={'overview-container'} data-testid={'overview-container'}>
+          {/* <p>Overview Component</p> */}
+          <Gallery />
+          <div id={'basics'}>
+            <Title />
+            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector}/>
+          </div>
+          <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
+          <Features features={this.state.productFeatures} />
         </div>
-        <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
-        <Features features={this.state.productFeatures} />
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 

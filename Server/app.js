@@ -67,7 +67,7 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + req.query.product_id;
-  console.log(req.query, 'req query');
+  // console.log(req.query, 'req query');
   console.log('___________________________');
 
   axios({
@@ -75,12 +75,10 @@ app.get('/reviews/', (req, res)=>{
     url: url,
     headers: {
       Authorization: credentials.authorization,
-
     },
-
   })
     .then((reviews) => {
-      console.log('Successful response from gitHub API call', reviews.data);
+      // console.log('Successful response from gitHub API call', reviews.data);
       let averageRating = helpers.starRating(reviews.data.results);
       let pctRecommend = helpers.pctRecommend(reviews.data.results);
       reviews.data.averageRating = averageRating;
@@ -92,6 +90,30 @@ app.get('/reviews/', (req, res)=>{
       return res.status(500);
     });
 });
+
+app.get('/get-average-rating', (req, res) => {
+  axios({
+    method: 'get',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?sort=newest&product_id=${req.query.productId}`,
+    headers: {
+      Authorization: credentials.authorization,
+    }
+  })
+  .then((summary) => {
+    var counter = 0;
+    var totalStars = 0;
+    for (var x in summary.data.ratings) {
+      counter += parseInt(summary.data.ratings[x]);
+      totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]))
+    }
+    var averageStars = totalStars / counter;
+    console.log(averageStars);
+    return res.status(200).json(averageStars)
+  })
+  .catch((err) => {
+    return res.status(500);
+  })
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}/47421`);
