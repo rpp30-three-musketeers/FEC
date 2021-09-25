@@ -34,15 +34,7 @@ class Track extends React.Component {
       if (e.target.className.indexOf('trackable-') !== -1) {
         var element = e.target.nodeName;
         var widget = e.target.className.substring((e.target.className.lastIndexOf('trackable-')) + 10).split(' ')[0];
-        var time = JSON.stringify(new Date());
-
-        // CONSOLE LOGS TO VALIDATE THE DATA AND DATATYPES THAT ARE BEING PASSED TO POST REQUEST
-        console.log('element: ' + element);
-        console.log('widget: ' + widget);
-        console.log('time: ' + time);
-        console.log('type of element: ' + typeof element);
-        console.log('type of widget: ' + typeof widget);
-        console.log('type of time: ' + typeof time);
+        var time = new Date();
 
         $.post('/interactions', {'element': e.target.nodeName, 'widget': widget, 'time': time}, (data) => {
           console.log(data);
