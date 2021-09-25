@@ -18,12 +18,12 @@ class StyleSwatch extends React.Component {
       swatch =
       <div className='style-swatch-container'>
         <div id='selected-style-check'><p>✓</p></div>
-        <img className='style-swatch' src={this.props.style.photos[0].thumbnail_url} />
+        <img className='style-swatch trackable-style' src={this.props.style.photos[0].thumbnail_url} />
       </div>
     } else {
       swatch =
       <div className='style-swatch-container'>
-        <img className='style-swatch' src={this.props.style.photos[0].thumbnail_url} />
+        <img className='style-swatch trackable-style' src={this.props.style.photos[0].thumbnail_url} />
       </div>
     }
 
