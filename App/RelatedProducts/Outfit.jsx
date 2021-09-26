@@ -71,8 +71,10 @@ class Outfit extends React.Component {
 
   loadOutfit() {
     if (this.state.outfit.length > 0) {
+      let start = this.state.carouselStart;
+      let end = start + 3;
       return (
-        this.state.outfit.slice(0, 3).map(item => {
+        this.state.outfit.slice(start, end).map(item => {
           return <OutfitProduct id={item} key={item} remove={this.removeFromOutfit}/>;
         })
       );

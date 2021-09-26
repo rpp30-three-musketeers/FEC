@@ -37,17 +37,6 @@ class RelatedProducts extends React.Component {
     });
   }
 
-  //ORIGINAL FX()
-  // loadProducts() {
-  //   if (this.state.related !== undefined) {
-  //     let start = 2
-  //     let end = start + 4;
-  //     return (this.state.related.slice(start, end).map(item => {
-  //       return <Product id={item} key={item} mainProduct={this.state.overviewProductInfo}/>;
-  //     }));
-  //   }
-  // }
-
   loadProducts() {
     if (this.state.related !== undefined) {
       let start = this.state.carouselStart;
