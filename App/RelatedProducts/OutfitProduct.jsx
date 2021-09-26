@@ -60,7 +60,7 @@ class OutfitProduct extends React.Component {
       <div>
         <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
-            <img id="image" onClick={this.removeFromOutfit} src={this.state.img}/>
+            <img id="image" className='trackable-Outfit'onClick={this.removeFromOutfit} src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>

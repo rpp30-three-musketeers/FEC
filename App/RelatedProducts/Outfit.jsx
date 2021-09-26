@@ -83,7 +83,7 @@ class Outfit extends React.Component {
         <BiChevronLeftSquare/>
         <BiChevronRightSquare/>
         <div id="outfit-window">
-          <div onClick={this.addToOutfit} id="add-to-outfit">
+          <div onClick={this.addToOutfit} className='trackable-Outfit' id="add-to-outfit">
             <p>Add To Outfit</p>
           </div>
           {this.loadOutfit()}

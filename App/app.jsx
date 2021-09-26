@@ -32,16 +32,14 @@ class Track extends React.Component {
   handleEvent = e => {
     if (this.props.eventName) {
       if (e.target.className.indexOf('trackable-') !== -1) {
-        console.log('type: ' + e.target.nodeName);
-        var classString = e.target.className;
-        var n = classString.lastIndexOf('trackable-');
-        var module = classString.substring(n + 10);
-        module = module.split(' ')[0];
-        console.log('module: ' + module);
-        console.log('current date: ' + new Date());
+        var element = e.target.nodeName;
+        var widget = e.target.className.substring((e.target.className.lastIndexOf('trackable-')) + 10).split(' ')[0];
+        var time = new Date();
 
+        $.post('/interactions', {'element': e.target.nodeName, 'widget': widget, 'time': time}, (data) => {
+          console.log(data);
+        })
       }
-      // console.log("TRACK", this.props.eventName);
     }
   };
 

@@ -6,6 +6,8 @@ const port = 3000;
 const helpers = require('./helpers.js');
 
 app.use(express.static('Public'));
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.get('/products', (req, res) => {
   // eslint-disable-next-line quotes
@@ -120,12 +122,6 @@ app.post('/interactions', (req, res) => {
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
 
-  // let testInteraction = {
-  //   element: 'IMG',
-  //   widget: 'Overview',
-  //   time: 'today'
-  // };
-
   let interaction = req.body;
 
   axios({
@@ -136,13 +132,12 @@ app.post('/interactions', (req, res) => {
       Authorization: credentials.authorization
     }
   })
-    .then((api) => {
-      console.log('Interaction Post Successful');
-      return res.status(200);
+    .then(() => {
+      return res.status(200).end();
     })
     .catch((err) => {
       console.log(err);
-      return res.status(500);
+      return res.status(500).end();
     });
 });
 
