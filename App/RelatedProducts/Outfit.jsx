@@ -8,12 +8,15 @@ class Outfit extends React.Component {
     super(props);
     this.state = {
       outfit: [],
+      carouselStart: 0
     };
     this.getOutfit = this.getOutfit.bind(this);
     this.loadOutfit = this.loadOutfit.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.createOutfitStorage = this.createOutfitStorage.bind(this);
+    this.moveLeft = this.moveLeft.bind(this);
+    this.moveRight = this.moveRight.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -76,12 +79,32 @@ class Outfit extends React.Component {
     }
   }
 
+  moveLeft() {
+    var currentStart = this.state.carouselStart;
+    if (currentStart > 0) {
+      currentStart = currentStart - 1;
+      this.setState({
+        carouselStart: currentStart
+      })
+    }
+  }
+
+  moveRight() {
+    var currentStart = this.state.carouselStart;
+    if (currentStart < this.state.outfit.length - 3) {
+      currentStart = currentStart + 1;
+      this.setState({
+        carouselStart: currentStart
+      })
+    }
+  }
+
   render() {
     return (
       <div>
         <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
-        <BiChevronLeftSquare/>
-        <BiChevronRightSquare/>
+        <p className="trackable-relatedProducts" onClick={this.moveLeft}>SCROLL LEFT</p>
+        <p className="trackable-relatedProducts" onClick={this.moveRight}>SCROLL RIGHT</p>
         <div id="outfit-window">
           <div onClick={this.addToOutfit} className='trackable-Outfit' id="add-to-outfit">
             <p>Add To Outfit</p>
