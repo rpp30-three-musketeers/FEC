@@ -93,7 +93,7 @@ class Product extends React.Component {
         {this.renderModal()}
         <div id="product-card" data-testid={'product-card'}>
           <div id="product-card-img">
-            <img id="image" onClick={this.openModal} src={this.state.img}/>
+            <img id="image" className='trackable-relatedProducts' onClick={this.openModal} src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
