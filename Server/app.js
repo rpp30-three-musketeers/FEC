@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const axios = require('axios');
 const credentials = require('../credentials.js');
@@ -6,13 +7,12 @@ const port = 3000;
 const helpers = require('./helpers.js');
 
 app.use(express.static('Public'));
+
 app.use(express.json());
-app.use(express.urlencoded());
 
 app.get('/products', (req, res) => {
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
-
 
   if (req.query.product_id) {
     let extension = `/${req.query.product_id}`;
@@ -69,9 +69,14 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
-  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + req.query.product_id;
-  // console.log(req.query, 'req query');
-  console.log('___________________________');
+  let pIdForAxios ='';
+  if (req.query.product_id.length > 5) {
+    pIdForAxios = req.query.product_id.slice(0, 5);
+  } else {
+    pIdForAxios = req.query.product_id;
+  }
+  console.log(pIdForAxios, 'productId');
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + pIdForAxios;
 
   axios({
     method: 'get',
@@ -94,6 +99,40 @@ app.get('/reviews/', (req, res)=>{
     });
 });
 
+app.post('/reviews', (req, res)=>{
+  // eslint-disable-next-line quotes
+  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
+  console.log(req.body.product_id, ' product id');
+
+  axios({
+    method: 'post',
+    url: url,
+    headers: {
+      Authorization: credentials.authorization,
+    },
+    data: {
+      product_id: req.body.product_id,
+      rating: req.body.rating,
+      summary: req.body.summary,
+      body: req.body.body,
+      recommend: req.body.recommend,
+      name: req.body.name,
+      email: req.body.email,
+      photos: req.body.photos,
+      characteristics: req.body.characteristics,
+    }
+  })
+    .then((status) => {
+      //console.log(status);
+      console.log('success');
+      return res.send('/');
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.sendStatus(500).end();
+    });
+});
+
 app.get('/get-average-rating', (req, res) => {
   axios({
     method: 'get',
@@ -102,21 +141,21 @@ app.get('/get-average-rating', (req, res) => {
       Authorization: credentials.authorization,
     }
   })
-  .then((summary) => {
-    var counter = 0;
-    var totalStars = 0;
-    for (var x in summary.data.ratings) {
-      counter += parseInt(summary.data.ratings[x]);
-      totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]))
-    }
-    var averageStars = totalStars / counter;
-    console.log(averageStars);
-    return res.status(200).json(averageStars)
-  })
-  .catch((err) => {
-    return res.status(500);
-  })
-})
+    .then((summary) => {
+      var counter = 0;
+      var totalStars = 0;
+      for (var x in summary.data.ratings) {
+        counter += parseInt(summary.data.ratings[x]);
+        totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]));
+      }
+      var averageStars = totalStars / counter;
+      console.log(averageStars);
+      return res.status(200).json(averageStars);
+    })
+    .catch((err) => {
+      return res.status(500);
+    });
+});
 
 app.post('/interactions', (req, res) => {
   // eslint-disable-next-line quotes

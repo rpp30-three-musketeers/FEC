@@ -109,9 +109,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentProductId: 47421,
-      productReviews: [],
-      averageRating: null
-
+      currentProductName: 'Camo Onesie'
     };
 
     this.productIdExtractor = this.productIdExtractor.bind(this);
@@ -125,48 +123,16 @@ class App extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     let newUrl = window.location.href;
     let newProductId = parseInt(newUrl.split('/')[3]);
-    if (prevState.currentProductId !== newProductId) {
-      //need to make new get request for updated comments on current product id
-      let options = {
-        // eslint-disable-next-line camelcase
-        product_id: newProductId, //select a specific item by id
-      // eslint-disable-next-line semi
-      }
-
-      $.get('/reviews/', options, (data) => { // options not used for this, refactor later
-        return data;
-      // eslint-disable-next-line semi
-      }).then((info)=>{
-        //console.log(info);
-        this.setState({currentProductId: newProductId, productReviews: info, averageRating: info.averageRating});
-      });
+    let actualPId ='';
+    if(newProductId.length > 5) {
+      actualPId = newProductId.slice(0,5);
+    } else {
+      actualPId = newProductId
     }
-    // if(this.state.)
-    // this.productIdExtractor(newUrl);
-  }
+    if (prevState.currentProductId !== actualPId) {
+      this.setState({currentProductId: actualPId});
 
-  componentDidMount() {
-    //this.productIdExtractor(window.location.href);
-
-    if (this.currentProductReviews === undefined) {
-      let options = {
-        // eslint-disable-next-line camelcase
-        product_id: this.state.currentProductId, //select a specific item by id
-      // eslint-disable-next-line semi
-      }
-
-      $.get('/reviews/', options, (data) => { // options not used for this, refactor later
-        return data;
-      // eslint-disable-next-line semi
-      }).then((info)=>{
-        //console.log(info);
-        this.setState({productReviews: info, averageRating: info.averageRating});
-      });
     }
-  }
-
-  reviewApiCall() {
-
   }
 
   testCall() {
@@ -188,20 +154,21 @@ class App extends React.Component {
   }
 
   render() {
-    let renderReviews = this.state.productReviews.length === 0 ? false : true;
+
     return (
       <Track>
-        <ProductIdProvider value={window.location.href.split('/')[3]}>
+        <ProductIdProvider value={this.state.currentProductId}>
           <div>
             <Header />
-            <Overview/>
+            <Overview />
             <RelatedProducts/>
             <Outfit />
-            {renderReviews ? <Reviews data = {this.state.productReviews} avg = {this.state.averageRating}/> : null}
+            <Reviews/>
             <button type='submit' onClick={this.testCall}>Poke the API</button>
           </div>
         </ProductIdProvider>
       </Track>
+
     );
   }
 }
