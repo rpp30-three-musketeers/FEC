@@ -37,7 +37,7 @@ class Track extends React.Component {
         var time = new Date();
 
         $.post('/interactions', {'element': e.target.nodeName, 'widget': widget, 'time': time}, (data) => {
-          console.log(data);
+          // console.log(data);
         })
       }
     }
@@ -67,7 +67,7 @@ class Track extends React.Component {
       // DOM Component, such as:
       // <button />
       if (typeof child.type === "string") {
-        console.log(child.props.children);
+        // console.log(child.props.children);
         return React.cloneElement(child, { ref });
 
         // Custom Component w/props.children, such as:

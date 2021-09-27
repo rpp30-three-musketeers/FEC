@@ -7,8 +7,8 @@ const port = 3000;
 const helpers = require('./helpers.js');
 
 app.use(express.static('Public'));
-
 app.use(express.json());
+app.use(express.urlencoded());
 
 app.get('/products', (req, res) => {
   // eslint-disable-next-line quotes
@@ -162,6 +162,7 @@ app.post('/interactions', (req, res) => {
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
 
   let interaction = req.body;
+  console.log(req.body);
 
   axios({
     method: 'post',
@@ -176,7 +177,7 @@ app.post('/interactions', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
-      return res.status(500).end();
+      return res.status(500).send('Server Error: Could Not Send Interaction Data');
     });
 });
 
