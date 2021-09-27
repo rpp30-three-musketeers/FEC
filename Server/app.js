@@ -176,8 +176,8 @@ app.post('/interactions', (req, res) => {
       return res.status(200).end();
     })
     .catch((err) => {
-      // console.log(err);
-      return res.status(500).end();
+      console.log(err);
+      return res.status(500).send('Server Error: Could Not Send Interaction Data');
     });
 });
 
