@@ -1,18 +1,22 @@
 import React from 'react';
 import OutfitProduct from './OutfitProduct.jsx';
 import ProductIdContext from '../context.jsx';
+import {BiChevronLeftSquare, BiChevronRightSquare} from 'react-icons/bi';
 
 class Outfit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       outfit: [],
+      carouselStart: 0
     };
     this.getOutfit = this.getOutfit.bind(this);
     this.loadOutfit = this.loadOutfit.bind(this);
     this.addToOutfit = this.addToOutfit.bind(this);
     this.removeFromOutfit = this.removeFromOutfit.bind(this);
     this.createOutfitStorage = this.createOutfitStorage.bind(this);
+    this.moveLeft = this.moveLeft.bind(this);
+    this.moveRight = this.moveRight.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -67,11 +71,33 @@ class Outfit extends React.Component {
 
   loadOutfit() {
     if (this.state.outfit.length > 0) {
+      let start = this.state.carouselStart;
+      let end = start + 3;
       return (
-        this.state.outfit.slice(0, 3).map(item => {
+        this.state.outfit.slice(start, end).map(item => {
           return <OutfitProduct id={item} key={item} remove={this.removeFromOutfit}/>;
         })
       );
+    }
+  }
+
+  moveLeft() {
+    var currentStart = this.state.carouselStart;
+    if (currentStart > 0) {
+      currentStart = currentStart - 1;
+      this.setState({
+        carouselStart: currentStart
+      })
+    }
+  }
+
+  moveRight() {
+    var currentStart = this.state.carouselStart;
+    if (currentStart < this.state.outfit.length - 3) {
+      currentStart = currentStart + 1;
+      this.setState({
+        carouselStart: currentStart
+      })
     }
   }
 
@@ -79,8 +105,10 @@ class Outfit extends React.Component {
     return (
       <div>
         <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
+        <p className="trackable-relatedProducts" onClick={this.moveLeft}>SCROLL LEFT</p>
+        <p className="trackable-relatedProducts" onClick={this.moveRight}>SCROLL RIGHT</p>
         <div id="outfit-window">
-          <div onClick={this.addToOutfit} id="add-to-outfit">
+          <div onClick={this.addToOutfit} className='trackable-Outfit' id="add-to-outfit">
             <p>Add To Outfit</p>
           </div>
           {this.loadOutfit()}

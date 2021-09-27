@@ -90,7 +90,7 @@ class Comparison extends React.Component {
 
   render() {
     return(
-      <div id="compare-products" onClick={this.props.close}>
+      <div id="compare-products" onClick={this.props.close} className='trackable-ComparisonModal'>
         <div id="modal">
           Compare
           <table className={"modal-table"}>

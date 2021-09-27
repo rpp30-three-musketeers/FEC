@@ -3,17 +3,21 @@ import Product from './ProductCard.jsx';
 import Comparison from './Comparison.jsx';
 import ProductIdContext from '../context.jsx';
 import $ from 'jquery';
+import {BiChevronLeftSquare, BiChevronRightSquare} from 'react-icons/bi';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       related: undefined,
-      overviewProductInfo: undefined
+      overviewProductInfo: undefined,
+      carouselStart: 0
     };
     this.getRelated = this.getRelated.bind(this);
     this.loadProducts = this.loadProducts.bind(this);
     this.getInfo = this.getInfo.bind(this);
+    this.moveLeft = this.moveLeft.bind(this);
+    this.moveRight = this.moveRight.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -35,9 +39,31 @@ class RelatedProducts extends React.Component {
 
   loadProducts() {
     if (this.state.related !== undefined) {
-      return (this.state.related.slice(0, 4).map(item => {
+      let start = this.state.carouselStart;
+      let end = start + 4;
+      return (this.state.related.slice(start, end).map(item => {
         return <Product id={item} key={item} mainProduct={this.state.overviewProductInfo}/>;
       }));
+    }
+  }
+
+  moveLeft() {
+    var currentStart = this.state.carouselStart;
+    if (currentStart > 0) {
+      currentStart = currentStart - 1;
+      this.setState({
+        carouselStart: currentStart
+      })
+    }
+  }
+
+  moveRight() {
+    var currentStart = this.state.carouselStart;
+    if (currentStart < this.state.related.length - 4) {
+      currentStart = currentStart + 1;
+      this.setState({
+        carouselStart: currentStart
+      })
     }
   }
 
@@ -55,6 +81,8 @@ class RelatedProducts extends React.Component {
     return (
       <div>
         <p className="related-title">Related Products</p>
+        <p className="trackable-relatedProducts" onClick={this.moveLeft}>SCROLL LEFT</p>
+        <p className="trackable-relatedProducts" onClick={this.moveRight}>SCROLL RIGHT</p>
         <div id="outfit-window" data-testid={'related-products-window'}>
           {this.loadProducts()}
         </div>
