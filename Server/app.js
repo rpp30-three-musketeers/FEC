@@ -132,13 +132,12 @@ app.post('/interactions', (req, res) => {
       Authorization: credentials.authorization
     }
   })
-    .then((api) => {
-      console.log('Interaction Post Successful');
-      return res.status(200);
+    .then(() => {
+      return res.status(200).end();
     })
     .catch((err) => {
       console.log(err);
-      return res.status(500);
+      return res.status(500).end();
     });
 });
 
