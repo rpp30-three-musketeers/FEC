@@ -162,6 +162,7 @@ app.post('/interactions', (req, res) => {
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
 
   let interaction = req.body;
+  console.log(req);
 
   axios({
     method: 'post',
@@ -175,7 +176,7 @@ app.post('/interactions', (req, res) => {
       return res.status(200).end();
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       return res.status(500).end();
     });
 });
