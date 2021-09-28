@@ -34,13 +34,16 @@ describe('LeftColumn Functionality', function() {
   });
 
   it('should render star quantity based on number of stars given for that product', () => {
-
+    render(<LeftColumn rating = {4} percentRecommend = {90} />);
+    expect(screen.getAllByText('star').length).toBe(4);
 
   });
 
 
   it('should rerender star quantity upon a different product select', () => {
-
+    render(<LeftColumn rating = {4} percentRecommend = {90} />);
+    rerender(<LeftColumn rating = {3} percentRecommend = {50} />);
+    expect(screen.getAllByText('star').length).toBe(3);
 
   });
 
