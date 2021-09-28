@@ -1,0 +1,14 @@
+.product-category {
+  /* display: inline-block; */
+  padding-right: 0.5em;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin-bottom: 0px
+}
+
+.product-title {
+  font-size: 3.5rem;
+  margin-top: 0.1em;
+}
+
+

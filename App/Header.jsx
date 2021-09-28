@@ -7,10 +7,10 @@ class Header extends React.Component {
   }
 
   render() {
-    return <div id={'site-header'}>
+    return (<div id={'site-header'}>
       <p>Logo Here</p>
       <p>Search Here</p>
-    </div>;
+    </div>);
   }
 }
 

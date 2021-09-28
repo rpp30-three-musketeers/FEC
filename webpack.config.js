@@ -23,8 +23,17 @@ module.exports = {
         test: /\.css$/,
         // the order of `use` is important!
         use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+      },
+      {
+        test: /\.svg$/, use: ["@svgr/webpack"]
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/, use: ["file-loader"]
       }
     ],
   },
+  // externals: {
+  //   'react': 'React'
+  // },
 
 }

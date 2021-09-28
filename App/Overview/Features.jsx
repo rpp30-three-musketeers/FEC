@@ -11,13 +11,12 @@ class Features extends React.Component {
   static contextType = ProductIdContext;
 
   componentDidUpdate() {
-    console.log('features: ' + this.props.features);
     this.render();
   }
 
   render() {
     if (this.props.features) {
-      return <div id={'features-container'}>
+      return <div id={'features-container'} data-testid={'features-container'}>
         {this.props.features.map((feature, index) => {
           if (!feature.value) {
             return <p key={index}>✔ {feature.feature}</p>
