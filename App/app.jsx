@@ -120,20 +120,6 @@ class App extends React.Component {
     let newProductId = url.split('/')[3];
     this.setState({currentProductId: newProductId});
   }
-  componentDidUpdate(prevProps, prevState) {
-    let newUrl = window.location.href;
-    let newProductId = parseInt(newUrl.split('/')[3]);
-    let actualPId ='';
-    if(newProductId.length > 5) {
-      actualPId = newProductId.slice(0,5);
-    } else {
-      actualPId = newProductId
-    }
-    if (prevState.currentProductId !== actualPId) {
-      this.setState({currentProductId: actualPId});
-
-    }
-  }
 
   testCall() {
     let options = {
@@ -157,7 +143,17 @@ class App extends React.Component {
 
     return (
       <Track>
-        <ProductIdProvider value={this.state.currentProductId}>
+        <ProductIdProvider value={()=>{
+          let newUrl = window.location.href;
+          let newProductId = parseInt(newUrl.split('/')[3]);
+          let actualPId ='';
+          if(newProductId.length > 5) {
+            actualPId = newProductId.slice(0,5);
+          } else {
+            actualPId = newProductId
+          }
+          return parseInt(actualPId);
+        }}>
           <div>
             <Header />
             <Overview />

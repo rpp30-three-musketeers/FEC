@@ -40,12 +40,11 @@ class Reviews extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.productId !== this.state.productId) {
-      console.log('inside prev props if statement');
       let options = {
         // eslint-disable-next-line camelcase
-        product_id: this.state.productId
+        product_id: this.context
       };
-      $.get('/products', {product_id: this.context}, (data) => {
+      $.get('/products', options, (data) => {
         this.reviewApiCall(options, data.name);
       });
     }
@@ -64,11 +63,10 @@ class Reviews extends React.Component {
       return data;
     // eslint-disable-next-line semi
     }).then((info)=> {
-      console.log(info, 'reviews data');
       if(pName) {
-        this.setState({productReviews: info, averageRating: info.averageRating, productName: pName});
+        this.setState({productId: parseInt(info.product), productReviews: info, averageRating: info.averageRating, productName: pName});
       } else {
-        this.setState({productReviews: info, averageRating: info.averageRating});
+        this.setState({productId: parseInt(info.product), productReviews: info, averageRating: info.averageRating});
       }
     });
   }
@@ -76,7 +74,7 @@ class Reviews extends React.Component {
 
   render() {
     let renderReviews = this.state.productReviews === 'needToInitialize' ? false : true;
-    console.log(this.state, '<<<<<<<state')
+    console.log(this.state, '<<<<<<<state at time of render')
     return (
       renderReviews ?
         <div id={'reviews'}>
@@ -89,7 +87,7 @@ class Reviews extends React.Component {
               <RightColumn reviews = {this.state.productReviews.results} reviewCount = {this.state.productReviews.results.length}
                 sortedBy = {this.state.sortedBy}/>
               <button id = 'addReview' onClick = {this.handleAddReviewClick}>+ Review</button>
-              {this.state.showReviewModal ? <ReviewForm exit = {this.handleAddReviewExit} productName = {this.state.productName}/> : null}
+              {this.state.showReviewModal ? <ReviewForm exit = {this.handleAddReviewExit} productName = {this.state.productName} productId = {this.state.productId}/> : null}
             </div>
           </div>
         </div> : <div> {console.log('divs mounted')}</div>
