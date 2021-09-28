@@ -13,3 +13,23 @@
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
 }
+
+#gallery-slider-default-view {
+  max-height: 100%;
+  position: absolute;
+  /* width: inherit; */
+  z-index: 999;
+  margin: 2em;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: 1em;
+}
+
+.gallery-thumbnail-container {
+  height: 50px;
+  width: 50px;
+  outline: 1px solid black;
+  background-size: cover; /* or contain */
+  background-position: center center;
+  background-repeat: no-repeat;
+}

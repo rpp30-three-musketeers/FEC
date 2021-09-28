@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductIdContext from '../context.jsx';
+import GalleryThumbnail from './GallerySlider/GalleryThumbnail.jsx'
 import '../css/Gallery.css';
 
 class Gallery extends React.Component {
@@ -19,10 +20,19 @@ class Gallery extends React.Component {
     if (this.state.selectedPhotoIndex === undefined) {
       return null;
     } else {
+      let thumbnails = this.props.currentStyle.photos.map((photoURLs, index) => {
+        return <GalleryThumbnail key={index} thumbnailURL={photoURLs.thumbnail_url}></GalleryThumbnail>
+      })
+
       return (
-        <div id={'gallery-container'} data-testid={'gallery-container'}>
-          <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
-        </div>
+        <React.Fragment>
+          <div id={'gallery-container'} data-testid={'gallery-container'}>
+            <div id={'gallery-slider-default-view'}>
+              {thumbnails}
+            </div>
+            <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
+          </div>
+        </React.Fragment>
       )
     }
   }
