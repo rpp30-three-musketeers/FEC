@@ -13,12 +13,6 @@ class Styles extends React.Component {
 
   static contextType = ProductIdContext;
 
-  // componentDidMount() {
-  //   $.get('/products', {product_id: this.context, endpoint: 'styles'}, (data) => {
-  //     this.setState({styles: data.results, selectedStyleIndex: 0});
-  //   });
-  // }
-
   render() {
     let price;
     if (this.props.styles && this.props.styles[this.props.selectedStyleIndex].sale_price) {
