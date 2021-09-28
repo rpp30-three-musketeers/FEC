@@ -13,8 +13,10 @@
 
 #gallery-container {
   /* width: 65%; */
-  height: 60vh;
-  background-color: #FAFAFA;
+  height: 70vh;
+  background-color: #ebeaea;
+  display: flex;
+  min-height: 0;
   /* border: 1px solid black; */
   /* display: inline-block; */
 }

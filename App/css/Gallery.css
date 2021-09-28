@@ -15,21 +15,28 @@
 }
 
 #gallery-slider-default-view {
-  max-height: 100%;
+  height: inherit;
   position: absolute;
   /* width: inherit; */
   z-index: 999;
-  margin: 2em;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-row-gap: 1em;
+  margin-left: 1.5em;
+  display: flex;
+  flex-direction: column;
+  overflow:hidden;
+  justify-content: center;
 }
 
 .gallery-thumbnail-container {
-  height: 50px;
-  width: 50px;
+  height: 9.3%;
+  aspect-ratio: 1;
   outline: 1px solid black;
   background-size: cover; /* or contain */
   background-position: center center;
   background-repeat: no-repeat;
+  display: flex;
+  margin: 0.5em;
+}
+
+.gallery-thumbnail-container:hover {
+  cursor: pointer;
 }

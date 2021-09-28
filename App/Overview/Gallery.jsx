@@ -20,19 +20,17 @@ class Gallery extends React.Component {
     if (this.state.selectedPhotoIndex === undefined) {
       return null;
     } else {
-      let thumbnails = this.props.currentStyle.photos.map((photoURLs, index) => {
+      let thumbnails = (this.props.currentStyle.photos).slice(0,7).map((photoURLs, index) => {
         return <GalleryThumbnail key={index} thumbnailURL={photoURLs.thumbnail_url}></GalleryThumbnail>
       })
 
       return (
-        <React.Fragment>
-          <div id={'gallery-container'} data-testid={'gallery-container'}>
-            <div id={'gallery-slider-default-view'}>
-              {thumbnails}
-            </div>
-            <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
+        <div id={'gallery-container'} data-testid={'gallery-container'}>
+          <div id={'gallery-slider-default-view'}>
+            {thumbnails}
           </div>
-        </React.Fragment>
+          <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
+        </div>
       )
     }
   }
