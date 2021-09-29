@@ -8,10 +8,20 @@ class GallerySlider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.moveDown = this.moveDown.bind(this);
+    this.moveUp = this.moveUp.bind(this);
   }
 
   componentDidMount() {
     this.setState({topPhotoIndex: 0})
+  }
+
+  moveDown() {
+    this.setState({topPhotoIndex: this.state.topPhotoIndex + 7})
+  }
+
+  moveUp() {
+    this.setState({topPhotoIndex: this.state.topPhotoIndex - 7})
   }
 
   render() {
@@ -40,7 +50,7 @@ class GallerySlider extends React.Component {
         return (
           <div id={'gallery-slider-default-view'}>
             {thumbnails}
-            <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleDown} />
+            <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleDown} onClick={this.moveDown} />
           </div>
         )
       // IF topPhotoIndex is not zero
@@ -53,7 +63,7 @@ class GallerySlider extends React.Component {
           // return up arrow and then remaining photos
           return (
             <div id={'gallery-slider-default-view'}>
-              <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleUp} />
+              <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleUp} onClick={this.moveUp} />
               {thumbnails}
             </div>
           )
@@ -65,9 +75,9 @@ class GallerySlider extends React.Component {
           // return up arrow, next 7 photos, down arrow
           return (
             <div id={'gallery-slider-default-view'}>
-              <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleUp} />
+              <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleUp} onClick={this.moveUp} />
               {thumbnails}
-              <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleDown} />
+              <FontAwesomeIcon className={'gallery-arrow'} icon={faAngleDown} onClick={this.moveDown} />
             </div>
           )
         }
