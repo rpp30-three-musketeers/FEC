@@ -24,6 +24,7 @@
   flex-direction: column;
   overflow:hidden;
   justify-content: center;
+  align-items: center;
 }
 
 .gallery-thumbnail-container {
@@ -39,4 +40,11 @@
 
 .gallery-thumbnail-container:hover {
   cursor: pointer;
+}
+
+.gallery-arrow {
+  text-shadow: 2px 2px 8px #000000;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
 }
