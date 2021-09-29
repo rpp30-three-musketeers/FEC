@@ -33,11 +33,11 @@ class Overview extends React.Component {
   }
 
   render() {
-    if (this.state.averageRating !== null) {
+    if (this.state.averageRating !== null && this.state.styles) {
       return (
         <div id={'overview-container'} data-testid={'overview-container'}>
           {/* <p>Overview Component</p> */}
-          <Gallery />
+          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]}/>
           <div id={'basics'}>
             <Title />
             <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector}/>

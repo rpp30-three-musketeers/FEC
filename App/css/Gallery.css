@@ -1,0 +1,15 @@
+.mainPhoto {
+  max-height: 100%;
+  max-width: 100%;
+  min-width: 25%;
+  min-height: 25%;
+  aspect-ratio: auto;
+  margin: auto;
+  display: block;
+}
+
+.mainPhoto:hover {
+  cursor: -moz-zoom-in;
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}

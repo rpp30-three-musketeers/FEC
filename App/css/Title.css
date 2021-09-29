@@ -5,10 +5,10 @@
   font-weight: normal;
   margin-bottom: 0px
 }
-
 .product-title {
   font-size: 3.5rem;
   margin-top: 0.1em;
 }
-
-
+.readAllReviewsLink:hover {
+  cursor: pointer;
+}

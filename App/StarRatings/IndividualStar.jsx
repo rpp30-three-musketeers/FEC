@@ -13,16 +13,12 @@ class IndividualStar extends React.Component {
 
   render() {
     if (this.props.pctFull === 100) {
-      // return (<span><FaStar className={'full-star fa-mask'} /></span>)
       return (<span><FullStar /></span>)
     } else if (this.props.pctFull === 75) {
-      // return (<span><FaStar className={'three-quarter-star fa-mask'} /></span>)
       return (<span><ThreeQuarterStar id={'half-star'} /></span>)
     } else if (this.props.pctFull === 50) {
-      // return (<span><FaStar className={'half-star fa-mask'} /></span>)
       return (<span><HalfStar /></span>)
     } else if (this.props.pctFull === 25) {
-      // return (<span><FaStar className={'quarter-star fa-mask'} /></span>)
       return (<span><QuarterStar /></span>)
     } else {
       return (<span><EmptyStar /></span>)

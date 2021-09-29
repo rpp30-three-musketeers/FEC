@@ -1,18 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductIdContext from '../context.jsx';
+import '../css/Gallery.css';
 
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   static contextType = ProductIdContext;
 
+  componentDidMount() {
+    this.setState({selectedPhotoIndex: 0})
+  }
+
   render() {
-    return <div id={'gallery-container'} data-testid={'gallery-container'}>
-      <p>Gallery Component</p>
-    </div>;
+    if (this.state.selectedPhotoIndex === undefined) {
+      return null;
+    } else {
+      return (
+        <div id={'gallery-container'} data-testid={'gallery-container'}>
+          <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
+        </div>
+      )
+    }
   }
 }
 
