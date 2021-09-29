@@ -3,12 +3,17 @@ import React from 'react';
 class GalleryThumbnail extends React.Component {
   constructor(props) {
     super(props);
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler(event){
+    this.props.selectPhoto(this.props.photoIndex);
   }
 
   render() {
     let url = this.props.thumbnailURL;
     return (
-      <div className={'gallery-thumbnail-container'} style={{backgroundImage: `url(${url}`}}></div>
+      <div className={'gallery-thumbnail-container'} onClick={this.clickHandler} style={{backgroundImage: `url(${url})`}}></div>
     )
   }
 }

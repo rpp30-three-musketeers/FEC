@@ -8,9 +8,14 @@ class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.selectPhoto = this.selectPhoto.bind(this);
   }
 
   static contextType = ProductIdContext;
+
+  selectPhoto(index) {
+    this.setState({selectedPhotoIndex: index})
+  }
 
   componentDidMount() {
     this.setState({selectedPhotoIndex: 0})
@@ -22,7 +27,7 @@ class Gallery extends React.Component {
     } else {
       return (
         <div id={'gallery-container'} data-testid={'gallery-container'}>
-          <GallerySlider currentStyle={this.props.currentStyle} />
+          <GallerySlider currentStyle={this.props.currentStyle} selectPhoto={this.selectPhoto} />
           <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
         </div>
       )
