@@ -14,6 +14,8 @@ class Overview extends React.Component {
     super(props);
     this.state = {};
     this.styleSelector = this.styleSelector.bind(this);
+    this.photoSelector = this.photoSelector.bind(this);
+    this.resetPhotoIndex = this.resetPhotoIndex.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -23,7 +25,7 @@ class Overview extends React.Component {
       this.setState({currentId: data.id, productName: data.name, productSlogan: data.slogan, productDescription: data.description, productDefaultPrice: data.default_price, productFeatures: data.features});
     });
     $.get('/products', {product_id: this.context, endpoint: 'styles'}, (data) => {
-      this.setState({styles: data.results, selectedStyleIndex: 0});
+      this.setState({styles: data.results, selectedStyleIndex: 0, selectedPhotoIndex: 0});
     });
 
   }
@@ -32,15 +34,23 @@ class Overview extends React.Component {
     this.setState({selectedStyleIndex: index});
   }
 
+  photoSelector(index) {
+    this.setState({selectedPhotoIndex: index})
+  }
+
+  resetPhotoIndex() {
+    this.setState({selectedPhotoIndex: 0})
+  }
+
   render() {
     if (this.state.averageRating !== null && this.state.styles) {
       return (
         <div id={'overview-container'} data-testid={'overview-container'}>
           {/* <p>Overview Component</p> */}
-          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]}/>
+          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex}/>
           <div id={'basics'}>
             <Title />
-            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector}/>
+            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} resetPhotoIndex={this.resetPhotoIndex}/>
           </div>
           <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
           <Features features={this.state.productFeatures} />

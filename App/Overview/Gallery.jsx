@@ -8,27 +8,18 @@ class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.selectPhoto = this.selectPhoto.bind(this);
   }
 
   static contextType = ProductIdContext;
 
-  selectPhoto(index) {
-    this.setState({selectedPhotoIndex: index})
-  }
-
-  componentDidMount() {
-    this.setState({selectedPhotoIndex: 0})
-  }
-
   render() {
-    if (this.state.selectedPhotoIndex === undefined) {
+    if (this.props.selectedPhotoIndex === undefined) {
       return null;
     } else {
       return (
         <div id={'gallery-container'} data-testid={'gallery-container'}>
-          <GallerySlider currentStyle={this.props.currentStyle} selectPhoto={this.selectPhoto} />
-          <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
+          <GallerySlider currentStyle={this.props.currentStyle} photoSelector={this.props.photoSelector} />
+          <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.props.selectedPhotoIndex].url}></img>
         </div>
       )
     }

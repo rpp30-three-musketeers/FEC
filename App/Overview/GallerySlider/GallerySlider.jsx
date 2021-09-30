@@ -31,7 +31,7 @@ class GallerySlider extends React.Component {
     // IF 7 or less photos
     if (this.props.currentStyle.photos.length <= 7) {
       let thumbnails = (this.props.currentStyle.photos).map((photoURLs, index) => {
-        return <GalleryThumbnail key={index} photoIndex={index} thumbnailURL={photoURLs.thumbnail_url} selectPhoto={this.props.selectPhoto}></GalleryThumbnail>
+        return <GalleryThumbnail key={index} photoIndex={index} thumbnailURL={photoURLs.thumbnail_url} photoSelector={this.props.photoSelector}></GalleryThumbnail>
       })
       // return all photos
       return (
