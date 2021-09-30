@@ -8,8 +8,16 @@ class GallerySlider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    // this.moveDown = this.moveDown.bind(this);
-    // this.moveUp = this.moveUp.bind(this);
+    this.moveDown = this.moveDown.bind(this);
+    this.moveUp = this.moveUp.bind(this);
+  }
+
+  moveDown() {
+    this.props.moveThumbnailsDown();
+  }
+
+  moveUp() {
+    this.props.moveThumbnailsUp();
   }
 
   render() {

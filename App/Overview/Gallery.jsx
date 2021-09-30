@@ -18,7 +18,7 @@ class Gallery extends React.Component {
     } else {
       return (
         <div id={'gallery-container'} data-testid={'gallery-container'}>
-          <GallerySlider currentStyle={this.props.currentStyle} photoSelector={this.props.photoSelector} topPhotoIndex={this.props.topPhotoIndex} />
+          <GallerySlider currentStyle={this.props.currentStyle} photoSelector={this.props.photoSelector} topPhotoIndex={this.props.topPhotoIndex} moveThumbnailsDown={this.props.moveThumbnailsDown} moveThumbnailsUp={this.props.moveThumbnailsUp} />
           <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.props.selectedPhotoIndex].url}></img>
         </div>
       )

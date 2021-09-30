@@ -15,6 +15,8 @@ class Overview extends React.Component {
     this.state = {};
     this.styleSelector = this.styleSelector.bind(this);
     this.photoSelector = this.photoSelector.bind(this);
+    this.moveThumbnailsDown = this.moveThumbnailsDown.bind(this);
+    this.moveThumbnailsUp = this.moveThumbnailsUp.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -26,7 +28,6 @@ class Overview extends React.Component {
     $.get('/products', {product_id: this.context, endpoint: 'styles'}, (data) => {
       this.setState({styles: data.results, selectedStyleIndex: 0, selectedPhotoIndex: 0, topPhotoIndex: 0});
     });
-
   }
 
   styleSelector(index) {
@@ -37,12 +38,20 @@ class Overview extends React.Component {
     this.setState({selectedPhotoIndex: index})
   }
 
+  moveThumbnailsDown() {
+    this.setState({topPhotoIndex: this.state.topPhotoIndex + 7})
+  }
+
+  moveThumbnailsUp() {
+    this.setState({topPhotoIndex: this.state.topPhotoIndex - 7})
+  }
+
   render() {
     if (this.state.averageRating !== null && this.state.styles) {
       return (
         <div id={'overview-container'} data-testid={'overview-container'}>
           {/* <p>Overview Component</p> */}
-          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex} topPhotoIndex={this.state.topPhotoIndex}/>
+          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex} topPhotoIndex={this.state.topPhotoIndex} moveThumbnailsDown={this.moveThumbnailsDown} moveThumbnailsUp={this.moveThumbnailsUp}/>
           <div id={'basics'}>
             <Title />
             <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} />
