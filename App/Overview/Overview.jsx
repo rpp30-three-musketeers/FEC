@@ -15,7 +15,6 @@ class Overview extends React.Component {
     this.state = {};
     this.styleSelector = this.styleSelector.bind(this);
     this.photoSelector = this.photoSelector.bind(this);
-    this.resetPhotoIndex = this.resetPhotoIndex.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -31,15 +30,11 @@ class Overview extends React.Component {
   }
 
   styleSelector(index) {
-    this.setState({selectedStyleIndex: index});
+    this.setState({selectedStyleIndex: index, selectedPhotoIndex: 0});
   }
 
   photoSelector(index) {
     this.setState({selectedPhotoIndex: index})
-  }
-
-  resetPhotoIndex() {
-    this.setState({selectedPhotoIndex: 0})
   }
 
   render() {
@@ -50,7 +45,7 @@ class Overview extends React.Component {
           <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex}/>
           <div id={'basics'}>
             <Title />
-            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} resetPhotoIndex={this.resetPhotoIndex}/>
+            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} />
           </div>
           <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
           <Features features={this.state.productFeatures} />
