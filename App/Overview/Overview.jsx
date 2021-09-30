@@ -24,13 +24,13 @@ class Overview extends React.Component {
       this.setState({currentId: data.id, productName: data.name, productSlogan: data.slogan, productDescription: data.description, productDefaultPrice: data.default_price, productFeatures: data.features});
     });
     $.get('/products', {product_id: this.context, endpoint: 'styles'}, (data) => {
-      this.setState({styles: data.results, selectedStyleIndex: 0, selectedPhotoIndex: 0});
+      this.setState({styles: data.results, selectedStyleIndex: 0, selectedPhotoIndex: 0, topPhotoIndex: 0});
     });
 
   }
 
   styleSelector(index) {
-    this.setState({selectedStyleIndex: index, selectedPhotoIndex: 0});
+    this.setState({selectedStyleIndex: index, selectedPhotoIndex: 0, topPhotoIndex: 0});
   }
 
   photoSelector(index) {
@@ -42,7 +42,7 @@ class Overview extends React.Component {
       return (
         <div id={'overview-container'} data-testid={'overview-container'}>
           {/* <p>Overview Component</p> */}
-          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex}/>
+          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex} topPhotoIndex={this.state.topPhotoIndex}/>
           <div id={'basics'}>
             <Title />
             <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} />
