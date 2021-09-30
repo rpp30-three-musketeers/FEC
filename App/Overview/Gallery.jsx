@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductIdContext from '../context.jsx';
+import GallerySlider from './GallerySlider/GallerySlider.jsx';
 import '../css/Gallery.css';
 
 class Gallery extends React.Component {
@@ -11,17 +12,14 @@ class Gallery extends React.Component {
 
   static contextType = ProductIdContext;
 
-  componentDidMount() {
-    this.setState({selectedPhotoIndex: 0})
-  }
-
   render() {
-    if (this.state.selectedPhotoIndex === undefined) {
+    if (this.props.selectedPhotoIndex === undefined) {
       return null;
     } else {
       return (
         <div id={'gallery-container'} data-testid={'gallery-container'}>
-          <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.state.selectedPhotoIndex].url}></img>
+          <GallerySlider currentStyle={this.props.currentStyle} photoSelector={this.props.photoSelector} topPhotoIndex={this.props.topPhotoIndex} moveThumbnailsDown={this.props.moveThumbnailsDown} moveThumbnailsUp={this.props.moveThumbnailsUp} />
+          <img className={'mainPhoto'} src={(this.props.currentStyle.photos)[this.props.selectedPhotoIndex].url}></img>
         </div>
       )
     }

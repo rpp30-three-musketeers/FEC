@@ -14,6 +14,9 @@ class Overview extends React.Component {
     super(props);
     this.state = {};
     this.styleSelector = this.styleSelector.bind(this);
+    this.photoSelector = this.photoSelector.bind(this);
+    this.moveThumbnailsDown = this.moveThumbnailsDown.bind(this);
+    this.moveThumbnailsUp = this.moveThumbnailsUp.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -23,13 +26,24 @@ class Overview extends React.Component {
       this.setState({currentId: data.id, productName: data.name, productSlogan: data.slogan, productDescription: data.description, productDefaultPrice: data.default_price, productFeatures: data.features});
     });
     $.get('/products', {product_id: this.context, endpoint: 'styles'}, (data) => {
-      this.setState({styles: data.results, selectedStyleIndex: 0});
+      this.setState({styles: data.results, selectedStyleIndex: 0, selectedPhotoIndex: 0, topPhotoIndex: 0});
     });
-
   }
 
   styleSelector(index) {
-    this.setState({selectedStyleIndex: index});
+    this.setState({selectedStyleIndex: index, selectedPhotoIndex: 0, topPhotoIndex: 0});
+  }
+
+  photoSelector(index) {
+    this.setState({selectedPhotoIndex: index})
+  }
+
+  moveThumbnailsDown() {
+    this.setState({topPhotoIndex: this.state.topPhotoIndex + 7})
+  }
+
+  moveThumbnailsUp() {
+    this.setState({topPhotoIndex: this.state.topPhotoIndex - 7})
   }
 
   render() {
@@ -37,10 +51,10 @@ class Overview extends React.Component {
       return (
         <div id={'overview-container'} data-testid={'overview-container'}>
           {/* <p>Overview Component</p> */}
-          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]}/>
+          <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex} topPhotoIndex={this.state.topPhotoIndex} moveThumbnailsDown={this.moveThumbnailsDown} moveThumbnailsUp={this.moveThumbnailsUp}/>
           <div id={'basics'}>
             <Title />
-            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector}/>
+            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} />
           </div>
           <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
           <Features features={this.state.productFeatures} />
