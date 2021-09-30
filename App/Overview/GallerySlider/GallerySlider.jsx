@@ -44,7 +44,7 @@ class GallerySlider extends React.Component {
       // IF topPhotoIndex is zero
       if (this.state.topPhotoIndex === 0) {
         let thumbnails = (this.props.currentStyle.photos).slice(0,7).map((photoURLs, index) => {
-          return <GalleryThumbnail key={index} thumbnailURL={photoURLs.thumbnail_url}></GalleryThumbnail>
+          return <GalleryThumbnail key={index} photoIndex={index} thumbnailURL={photoURLs.thumbnail_url} photoSelector={this.props.photoSelector}></GalleryThumbnail>
         })
         // return first 7 photos and down arrow
         return (
@@ -58,7 +58,7 @@ class GallerySlider extends React.Component {
         // IF 7 or less remaining photos
         if ((this.props.currentStyle.photos).slice(this.state.topPhotoIndex).length <= 7) {
           let thumbnails = (this.props.currentStyle.photos).slice(this.state.topPhotoIndex).map((photoURLs, index) => {
-            return <GalleryThumbnail key={index} thumbnailURL={photoURLs.thumbnail_url}></GalleryThumbnail>
+            return <GalleryThumbnail key={index} photoIndex={index + this.state.topPhotoIndex} thumbnailURL={photoURLs.thumbnail_url} photoSelector={this.props.photoSelector}></GalleryThumbnail>
           })
           // return up arrow and then remaining photos
           return (
@@ -70,7 +70,7 @@ class GallerySlider extends React.Component {
         // IF 8 or more remaining photos
         } else {
           let thumbnails = (this.props.currentStyle.photos).slice(this.state.topPhotoIndex, 7).map((photoURLs, index) => {
-            return <GalleryThumbnail key={index} thumbnailURL={photoURLs.thumbnail_url}></GalleryThumbnail>
+            return <GalleryThumbnail key={index} photoIndex={index + this.state.topPhotoIndex} thumbnailURL={photoURLs.thumbnail_url} photoSelector={this.props.photoSelector}></GalleryThumbnail>
           })
           // return up arrow, next 7 photos, down arrow
           return (
