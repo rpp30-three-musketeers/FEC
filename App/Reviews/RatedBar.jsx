@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './RatedBar.css';
 
 const RatedBar = function(props) {
-  console.log(props, 'ratedbar props');
   return (
     <div id = 'ratedBar'>
       <div id= 'star'>{props.star + ' stars'}</div>

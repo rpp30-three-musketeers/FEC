@@ -19,7 +19,6 @@ const MarkerBar = function(props) {
   let floatVal = parseFloat(props.value);
   let pct = (floatVal / 5) * 100;
   let styleInput;
-  console.log(pct, 'percent for markerBar');
   if (pct >= 0 && pct < 33.33) {
     showS1 = true;
     styleInput = (pct / 33.33) * 100;
