@@ -1,0 +1,22 @@
+#ratedBar {
+  width: 100%;
+  display: flex;
+
+}
+#star {
+  border: 2px solid red;
+  flex: 1 1 auto;
+  font-size: 1em;
+}
+
+#fullBar {
+  height: 1em;
+  background-color: rgba(109, 109, 109, 0.4);
+  flex: 2 1 auto;
+}
+
+#count {
+  border: 2px solid red;
+  flex: 1 1 auto;
+  font-size: 1em;
+}

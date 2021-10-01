@@ -69,7 +69,7 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
-  let pIdForAxios ='';
+  let pIdForAxios = '';
   if (req.query.product_id.length > 5) {
     pIdForAxios = req.query.product_id.slice(0, 5);
   } else {
@@ -77,6 +77,7 @@ app.get('/reviews/', (req, res)=>{
   }
   console.log(pIdForAxios, 'productId');
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + pIdForAxios;
+  let urlMeta = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=` + pIdForAxios;
 
   axios({
     method: 'get',
@@ -87,11 +88,33 @@ app.get('/reviews/', (req, res)=>{
   })
     .then((reviews) => {
       // console.log('Successful response from gitHub API call', reviews.data);
-      let averageRating = helpers.starRating(reviews.data.results);
-      let pctRecommend = helpers.pctRecommend(reviews.data.results);
-      reviews.data.averageRating = averageRating;
-      reviews.data.pctRecommend = pctRecommend;
       return res.status(201).json(reviews.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      return res.status(500);
+    });
+});
+app.get('/reviews/meta', (req, res) =>{
+  let urlMeta = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=` + req.query.product_id;
+  axios({
+    method: 'get',
+    url: urlMeta,
+    headers: {
+      Authorization: credentials.authorization,
+    }
+  })
+    .then((meta) => {
+      let averageRating = helpers.starRating(meta.data.ratings);
+      console.log(averageRating, 'averageRating');
+      let pctRecommend = helpers.pctRecommend(meta.data.recommended);
+      console.log(pctRecommend, 'percentRecommend');
+      let totalReviews = helpers.totalReviews(meta.data.ratings);
+      console.log(totalReviews, 'totalReviews');
+      meta.data.averageRating = averageRating;
+      meta.data.pctRecommend = pctRecommend;
+      meta.data.totalReviews = totalReviews;
+      return res.status(200).json(meta.data);
     })
     .catch((err) => {
       console.log(err);
@@ -149,7 +172,7 @@ app.get('/get-average-rating', (req, res) => {
         totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]));
       }
       var averageStars = totalStars / counter;
-      console.log(averageStars);
+      //console.log(averageStars);
       return res.status(200).json(averageStars);
     })
     .catch((err) => {
