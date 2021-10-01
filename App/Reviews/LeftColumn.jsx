@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 import './LeftColumn.css';
 import RatedBar from './RatedBar.jsx';
+import MarkerBar from './MarkerBar.jsx';
 
 const LeftColumn = (props) => {
 
@@ -25,10 +26,12 @@ const LeftColumn = (props) => {
         })}
       </div>
       <div>
-        <p>Size</p>
-        <div>size marker bar</div>
-        <p>Comfort</p>
-        <div>size marker bar</div>
+        {Object.keys(props.chars).map((key, index) => {
+
+          return (
+            <MarkerBar char = {key} key = {props.chars[key].id} value = {props.chars[key].id}/>
+          );
+        })}
       </div>
     </div>
   );

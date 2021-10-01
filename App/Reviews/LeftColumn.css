@@ -1,18 +1,15 @@
 #bigRating {
-  border: 2px solid red;
-  width: auto;
+  width: 100%;
   display: flex;
 
 }
 #averageRating {
-  border: 2px solid red;
   flex: 1 1 auto;
   font-size: 5em;
   font-weight: bold;
 }
 
 #averageStars {
-  border: 2px solid red;
   flex: 2 1 auto;
   padding-top: 1em;
 }

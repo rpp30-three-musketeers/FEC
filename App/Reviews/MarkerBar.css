@@ -1,0 +1,43 @@
+#markerBarContainer {
+  width: 100%;
+  display: flex;
+  font-size: 1em;
+
+}
+#firstContainer {
+  padding-inline-start: 1em;
+  display: inline;
+  flex: 1 1 auto;
+  padding-inline-end: 1px;
+}
+#secondContainer {
+  display: inline;
+  flex: 1 1 auto;
+  padding-inline-start: 1px;
+  padding-inline-end: 1px;
+  text-align: center;
+}
+#thirdContainer {
+  display: inline;
+  flex: 1 1 auto;
+  padding-inline-start: 1px;
+  text-align: right;
+  padding-inline-end: 1em;
+}
+#firstBar {
+  height: 1em;
+  width: 100%;
+  background-color: rgba(109, 109, 109, 0.4);
+}
+
+#secondBar {
+  height: 1em;
+  width: 100%;
+  background-color: rgba(109, 109, 109, 0.4);
+}
+
+#thirdBar {
+  height: 1em;
+  width: 100%;
+  background-color: rgba(109, 109, 109, 0.4);
+}

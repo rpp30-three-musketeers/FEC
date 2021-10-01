@@ -106,11 +106,8 @@ app.get('/reviews/meta', (req, res) =>{
   })
     .then((meta) => {
       let averageRating = helpers.starRating(meta.data.ratings);
-      console.log(averageRating, 'averageRating');
       let pctRecommend = helpers.pctRecommend(meta.data.recommended);
-      console.log(pctRecommend, 'percentRecommend');
       let totalReviews = helpers.totalReviews(meta.data.ratings);
-      console.log(totalReviews, 'totalReviews');
       meta.data.averageRating = averageRating;
       meta.data.pctRecommend = pctRecommend;
       meta.data.totalReviews = totalReviews;

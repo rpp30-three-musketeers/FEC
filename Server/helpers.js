@@ -12,21 +12,32 @@ const starRating = function(reviews) {
   // }
 
   // return (totalStars / reviews.length);
+  let oneStar = reviews[1] ? (reviews[1] * 1) : 0;
+  let twoStar = reviews[2] ? (reviews[2] * 1) : 0;
+  let threeStar = reviews[3] ? (reviews[3] * 1) : 0;
+  let fourStar = reviews[4] ? (reviews[4] * 1) : 0;
+  let fiveStar = reviews[5] ? (reviews[5] * 1) : 0;
 
-  let totalStars = reviews[1] * 1 + reviews[2] * 2 + reviews[3] * 3 + reviews[4] * 4 + reviews[5] * 5;
-  let totalReviews = reviews[1] * 1 + reviews[2] * 1 + reviews[3] * 1 + reviews[4] * 1 + reviews[5] * 1;
-  return (totalStars / totalReviews).toFixed(2);
+  let totalStars = oneStar + twoStar * 2 + threeStar * 3 + fourStar * 4 + fiveStar * 5;
+  let totalReviews = oneStar + twoStar + threeStar + fourStar + fiveStar;
+  return (totalStars / totalReviews).toFixed(1);
 
 };
 
 const pctRecommend = function(reviews) {
-  let totalTrue = reviews[true];
-  let totalRecommendations = reviews[false] * 1 + reviews[true] * 1;
-  return (totalTrue / totalRecommendations).toFixed(2);
+  let totalTrue = reviews[true] ? reviews[true] * 1 : 0;
+  let totalFalse = reviews[false] ? reviews[false] * 1 : 0;
+  let totalRecommendations = totalTrue + totalFalse;
+  return (totalTrue / totalRecommendations).toFixed(1);
 };
 
 const totalReviews = function(reviews) {
-  let totalReviews = reviews[1] * 1 + reviews[2] * 1 + reviews[3] * 1 + reviews[4] * 1 + reviews[5] * 1;
+  let oneStar = reviews[1] ? (reviews[1] * 1) : 0;
+  let twoStar = reviews[2] ? (reviews[2] * 1) : 0;
+  let threeStar = reviews[3] ? (reviews[3] * 1) : 0;
+  let fourStar = reviews[4] ? (reviews[4] * 1) : 0;
+  let fiveStar = reviews[5] ? (reviews[5] * 1) : 0;
+  let totalReviews = oneStar + twoStar + threeStar + fourStar + fiveStar;
   return (totalReviews);
 };
 
