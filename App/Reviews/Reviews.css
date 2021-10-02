@@ -1,22 +1,21 @@
 #reviews {
  margin-top: 2em;
-
  margin-bottom: 2em;
+ padding-top: 2em;
  display: block;
 }
 
 #content {
-  border: 2px solid red;
   width: auto;
   display: flex;
 
 }
 #leftColumn {
-  border: 2px solid red;
+  padding-block-end: 1em;
   flex: 1 1 auto;
 }
 
 #rightColumn {
-  border: 2px solid red;
+  padding-inline-start: 3em;
   flex: 1 1 auto;
 }

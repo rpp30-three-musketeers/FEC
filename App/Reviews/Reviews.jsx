@@ -16,13 +16,15 @@ class Reviews extends React.Component {
       productReviews: 'needToInitialize',
       averageRating: null,
       showReviewModal: false,
-      productName: 'Camo Onesie'
+      productName: 'Camo Onesie',
+      meta: {}
 
     };
 
     this.handleAddReviewClick = this.handleAddReviewClick.bind(this);
     this.handleAddReviewExit = this.handleAddReviewExit.bind(this);
     this.reviewApiCall = this.reviewApiCall.bind(this);
+    this.numberToPercent = this.numberToPercent.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -63,28 +65,51 @@ class Reviews extends React.Component {
       return data;
     // eslint-disable-next-line semi
     }).then((info)=> {
-      if(pName) {
-        this.setState({productId: parseInt(info.product), productReviews: info, averageRating: info.averageRating, productName: pName});
-      } else {
-        this.setState({productId: parseInt(info.product), productReviews: info, averageRating: info.averageRating});
-      }
+      console.log('got reviews');
+      $.get('/reviews/meta', parameters, (metaData) => {
+        return metaData
+      }).then((mData) =>{
+        console.log('got meta data');
+        if(pName) {
+          this.setState({productId: parseInt(info.product), productReviews: info, productName: pName, meta: mData});
+        } else {
+          this.setState({productId: parseInt(info.product), productReviews: info, meta: mData});
+        }
+      }).catch((err) =>{
+        console.log(err);
+        return null;
+      })
+    }).catch((err) =>{
+      console.log(err);
+      return null;
     });
+  }
+
+  numberToPercent(num) {
+    if (num === 0) {
+      return '0%';
+    } else {
+      return (num * 100).toString() + '%';
+    }
   }
 
 
   render() {
     let renderReviews = this.state.productReviews === 'needToInitialize' ? false : true;
     console.log(this.state, '<<<<<<<state at time of render')
+    let pct = this.numberToPercent(this.state.meta.pctRecommend);
     return (
       renderReviews ?
         <div id={'reviews'}>
           <p>Ratings and Reviews</p>
           <div id={'content'}>
             <div id={'leftColumn'}>
-              <LeftColumn rating = {this.state.averageRating} percentRecommend = {this.state.productReviews.pctRecommend}/>
+              <LeftColumn avgRating = {this.state.meta.averageRating} percentRecommend = {pct} pId = {this.state.productId}
+                reviewCount = {this.state.meta.totalReviews} chars = {this.state.meta.characteristics}
+                ratings = {this.state.meta.ratings} numToPct = {this.numberToPercent}/>
             </div>
             <div id={'rightColumn'}>
-              <RightColumn reviews = {this.state.productReviews.results} reviewCount = {this.state.productReviews.results.length}
+              <RightColumn reviews = {this.state.productReviews.results} reviewCount = {this.state.meta.totalReviews}
                 sortedBy = {this.state.sortedBy}/>
               <button id = 'addReview' onClick = {this.handleAddReviewClick}>+ Review</button>
               {this.state.showReviewModal ? <ReviewForm exit = {this.handleAddReviewExit} productName = {this.state.productName} productId = {this.state.productId}/> : null}

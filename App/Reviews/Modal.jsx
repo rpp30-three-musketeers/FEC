@@ -27,7 +27,7 @@ class Modal extends React.Component {
   render() {
     return (
       <div onClick = {this.handleClick}>
-        <img id = {'Review-Photo'} src = {this.props.photo.url}></img>
+        <img alt = {'Review-Photo'} src = {this.props.photo.url}></img>
       </div>
     );
   }
