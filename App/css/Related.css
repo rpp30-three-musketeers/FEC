@@ -74,5 +74,10 @@
 
 #product-card-icon {
   position: absolute;
-  color: yellow;
+  color: blue;
+}
+
+#add-outfit-icon {
+  position: absolute;
+  color: blue;
 }
