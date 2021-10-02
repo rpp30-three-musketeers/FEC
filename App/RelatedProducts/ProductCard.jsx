@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Comparison from './Comparison.jsx';
 import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
+import {FaStar} from 'react-icons/fa';
 
 class Product extends React.Component {
   constructor(props) {
@@ -92,8 +93,9 @@ class Product extends React.Component {
       <div>
         {this.renderModal()}
         <div id="product-card" data-testid={'product-card'}>
+        <span id="product-card-icon" className='trackable-relatedProducts' onClick={this.openModal}><FaStar/></span>
           <div id="product-card-img">
-            <img id="image" className='trackable-relatedProducts' onClick={this.openModal} src={this.state.img}/>
+            <img id="image" src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import {FaStar} from 'react-icons/fa';
+import {FaTimesCircle} from 'react-icons/fa';
 import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 
 class OutfitProduct extends React.Component {
@@ -59,8 +59,8 @@ class OutfitProduct extends React.Component {
   render() {
     return (
       <div>
-        <div id="product-card" className='trackable-Outfit' data-testid={'product-card'}>
-          <span id="outfit-star" onClick={this.removeFromOutfit}><FaStar/></span>
+        <div id="product-card" data-testid={'product-card'}>
+          <span id="product-card-icon" className='trackable-Outfit' onClick={this.removeFromOutfit}><FaTimesCircle/></span>
           <div id="product-card-img">
             <img id="image" src={this.state.img}/>
           </div>
