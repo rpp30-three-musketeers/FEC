@@ -45,7 +45,7 @@ class Outfit extends React.Component {
   //Appends new productID from context to outfit. Calls getoutfit to update state and rerender.
   addToOutfit() {
     let currentOutfit = this.state.outfit;
-    let newProduct = JSON.parse(this.context);
+    let newProduct = JSON.parse(this.context());
 
     if (!currentOutfit.includes(newProduct)){
       currentOutfit.push(newProduct);
