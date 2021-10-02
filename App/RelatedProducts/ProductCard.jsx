@@ -24,12 +24,23 @@ class Product extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.renderModal = this.renderModal.bind(this);
+    this.navigateToProductPage = this.navigateToProductPage.bind(this);
   }
 
   componentDidMount() {
     this.getStyle();
     this.getInfo();
   }
+
+  navigateToProductPage() {
+    let url = window.location.href;
+    let newUrl = url.slice(0, -5) + this.props.id;
+    console.log(url);
+    console.log(newUrl);
+
+    location.assign(newUrl);
+  }
+
 
   //Retrieve product price and image
   getStyle() {
@@ -95,7 +106,7 @@ class Product extends React.Component {
         <div id="product-card" data-testid={'product-card'}>
         <span id="product-card-icon" className='trackable-relatedProducts' onClick={this.openModal}><FaStar/></span>
           <div id="product-card-img">
-            <img id="image" src={this.state.img}/>
+            <img id="image" onClick={this.navigateToProductPage}src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
