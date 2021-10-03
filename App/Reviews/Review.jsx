@@ -4,6 +4,7 @@ import './Review.css';
 import Modal from './Modal.jsx';
 import months from './months.js';
 import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
+import $ from 'jquery';
 /*
 needs:
 currentUser
@@ -17,8 +18,22 @@ class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPicModal: false
+      showPicModal: false,
     };
+    this.clickedYes = this.clickedYes.bind(this);
+  }
+
+  clickedYes() {
+
+    let options = {
+      review_id: this.props.data.review_id
+    };
+    console.log(options, 'clickedYes');
+    $.post('/reviews/:review_id/helpful', options, (data)=>{
+      console.log(data);
+    }).then(()=>{
+      console.log('success')}
+    );
   }
 
   render() {
@@ -38,7 +53,7 @@ class Review extends React.Component {
           </div>
           <div id = {'username'}>{this.props.data.reviewer_name + ', ' + newDate}</div>
         </div>
-        <p className={'boldedFont'}>{this.props.data.summary}</p>
+        <p className={'boldedFont'} id = {'summary'}>{this.props.data.summary}</p>
         <p>{this.props.data.body}</p>
         <div id = "photos">
           {this.props.data.photos.map((pic, index) => {

@@ -19,9 +19,10 @@ const LeftColumn = (props) => {
       <div>
         {Object.keys(props.ratings).map((key, index) => {
         // console.log(review, 'print review');
-          let percentTotal = props.numToPct(props.ratings[key] / props.reviewCount);
+          let starIndex = (key - 6)*-1;
+          let percentTotal = props.numToPct(props.ratings[starIndex] / props.reviewCount);
           return (
-            <RatedBar star = {key} pctTotal = {percentTotal} count = {props.ratings[key]} key = {key}/>
+            <RatedBar star = {starIndex} pctTotal = {percentTotal} count = {props.ratings[starIndex]} key = {starIndex}/>
           );
         })}
       </div>
