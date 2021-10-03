@@ -70,14 +70,18 @@ app.get(/^\/\b\d{5}$/, (req, res) => {
 app.get('/reviews/', (req, res)=>{
   // eslint-disable-next-line quotes
   let pIdForAxios = '';
+  let url;
   if (req.query.product_id.length > 5) {
     pIdForAxios = req.query.product_id.slice(0, 5);
   } else {
     pIdForAxios = req.query.product_id;
   }
-  console.log(pIdForAxios, 'productId');
-  let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=` + pIdForAxios;
-  let urlMeta = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=` + pIdForAxios;
+  if (req.query.sort) {
+    let sortBy = '&&sort=' + req.query.sort;
+    url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=' + pIdForAxios + '&&count=100' + sortBy;
+  } else {
+    url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=' + pIdForAxios + '&&count=100';
+  }
 
   axios({
     method: 'get',
@@ -95,8 +99,9 @@ app.get('/reviews/', (req, res)=>{
       return res.status(500);
     });
 });
+
 app.get('/reviews/meta', (req, res) =>{
-  let urlMeta = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=` + req.query.product_id;
+  let urlMeta = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=' + req.query.product_id;
   axios({
     method: 'get',
     url: urlMeta,
