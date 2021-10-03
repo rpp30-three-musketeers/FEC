@@ -19,8 +19,10 @@ class Review extends React.Component {
     super(props);
     this.state = {
       showPicModal: false,
+      helpfulness: undefined
     };
     this.clickedYes = this.clickedYes.bind(this);
+
   }
 
   clickedYes() {
@@ -28,12 +30,11 @@ class Review extends React.Component {
     let options = {
       review_id: this.props.data.review_id
     };
+    console.log(this.props.data.review_id, 'props review id');
     console.log(options, 'clickedYes');
-    $.post('/reviews/:review_id/helpful', options, (data)=>{
-      console.log(data);
-    }).then(()=>{
-      console.log('success')}
-    );
+    $.post('/reviews/helpful', options, ()=>{
+      this.setState({helpfulness: this.props.data.helpfulness + 1});
+    });
   }
 
   render() {
@@ -45,6 +46,8 @@ class Review extends React.Component {
 
     let newDate = monthName + ', ' + day + ', ' + year;
     console.log('review props', this.props);
+    console.log('state:', this.state);
+    let helpful = this.state.helpfulness ? this.state.helpfulness : this.props.data.helpfulness;
     return (
       <div>
         <div className = {'review-header'}>
@@ -68,7 +71,7 @@ class Review extends React.Component {
         {this.props.data.response ? <div id = 'response'>{'Response from Seller:' + this.props.data.response}</div> : null}
         <div className = {'helpful-report'}>
           <div id = {'stats'}>{'Helpful? '}<button id ="yes" onClick = {this.clickedYes}>Yes</button></div>
-          <div id = {'report'}>{'(' + this.props.data.helpfulness + ') | '}<button id ="report" onClick = {this.clickedReport}>Report</button></div>
+          <div id = {'report'}>{'(' + helpful + ') | '}<button id ="report" onClick = {this.clickedReport}>Report</button></div>
         </div>
         <div id = {'line'}></div>
       </div>

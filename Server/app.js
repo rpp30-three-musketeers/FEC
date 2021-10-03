@@ -158,16 +158,16 @@ app.post('/reviews', (req, res)=>{
     });
 });
 
-app.post('/reviews/:review_id/helpful', (req, res)=>{
+app.post('/reviews/helpful', (req, res)=>{
   axios({
     method: 'put',
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:' + req.query.review_id + '/helpful',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/' + req.body.review_id + '/helpful',
     headers: {
       Authorization: credentials.authorization,
-    }
-  }).then((data)=> {
-    console.log(data);
-    return res.send(data);
+    },
+
+  }).then(()=> {
+    return res.sendStatus(204);
   }).catch((err)=>{
     console.log(err);
     return res.sendStatus(500);
