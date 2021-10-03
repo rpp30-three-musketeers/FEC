@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Gallery from './Gallery.jsx';
+import Gallery from './Gallery/Gallery.jsx';
 import Description from './Description.jsx';
 import Features from './Features.jsx';
 import Title from './Title.jsx';
-import Styles from './Styles.jsx';
+import Styles from './Styles/Styles.jsx';
 import $ from 'jquery';
 import '../css/Overview.css';
 import ProductIdContext from '../context.jsx';

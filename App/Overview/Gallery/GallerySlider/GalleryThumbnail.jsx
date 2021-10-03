@@ -7,7 +7,6 @@ class GalleryThumbnail extends React.Component {
   }
 
   clickHandler(event){
-    console.log('clicked');
     this.props.photoSelector(this.props.photoIndex);
   }
 
