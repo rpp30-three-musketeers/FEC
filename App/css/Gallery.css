@@ -149,3 +149,7 @@
 .selected-gallery-dot {
   font-size: 1.25em;
 }
+
+.expanded-gallery-dot:hover {
+  cursor: pointer;
+}

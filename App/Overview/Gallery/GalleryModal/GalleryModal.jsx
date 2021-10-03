@@ -13,6 +13,7 @@ class GalleryModal extends React.Component {
     this.navigateRight = this.navigateRight.bind(this);
     this.renderLeftArrow = this.renderLeftArrow.bind(this);
     this.renderRightArrow = this.renderRightArrow.bind(this);
+    this.navigateToSelected = this.navigateToSelected.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +44,11 @@ class GalleryModal extends React.Component {
     }
   }
 
+  navigateToSelected(e) {
+    // console.dir(e.target.parentNode.attributes.thisindex.value); // string of index
+    this.setState({selectedPhotoIndex: parseInt(e.target.parentNode.attributes.thisindex.value)})
+  }
+
   render() {
     if (this.state.currentStylePhotos) {
       return (
@@ -56,9 +62,9 @@ class GalleryModal extends React.Component {
               <div id={'expanded-gallery-dots'}>
                 {this.state.currentStylePhotos.map((photo, index) => {
                   if (index === this.state.selectedPhotoIndex) {
-                    return <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot selected-gallery-dot'} />
+                    return <FontAwesomeIcon key={index} thisindex={index} icon={faCircle} className={'expanded-gallery-dot selected-gallery-dot'} onClick={this.navigateToSelected} />
                   } else {
-                    return <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
+                    return <FontAwesomeIcon key={index} thisindex={index} icon={faCircle} className={'expanded-gallery-dot'} onClick={this.navigateToSelected} />
                   }
                 })}
               </div>
