@@ -1,7 +1,7 @@
 import React from 'react';
 import OutfitProduct from './OutfitProduct.jsx';
 import ProductIdContext from '../context.jsx';
-import {BiChevronLeftSquare, BiChevronRightSquare} from 'react-icons/bi';
+import {BiChevronLeftSquare, BiChevronRightSquare, BiLeftArrow, BiRightArrow} from 'react-icons/bi';import {FaPlus} from 'react-icons/fa';
 
 class Outfit extends React.Component {
   constructor(props) {
@@ -17,6 +17,8 @@ class Outfit extends React.Component {
     this.createOutfitStorage = this.createOutfitStorage.bind(this);
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
+    this.renderLeftButton = this.renderLeftButton.bind(this);
+    this.renderRightButton = this.renderRightButton.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -45,7 +47,7 @@ class Outfit extends React.Component {
   //Appends new productID from context to outfit. Calls getoutfit to update state and rerender.
   addToOutfit() {
     let currentOutfit = this.state.outfit;
-    let newProduct = JSON.parse(this.context);
+    let newProduct = JSON.parse(this.context());
 
     if (!currentOutfit.includes(newProduct)){
       currentOutfit.push(newProduct);
@@ -101,15 +103,36 @@ class Outfit extends React.Component {
     }
   }
 
+  renderLeftButton() {
+    if(this.state.carouselStart > 0) {
+      return (
+        <div>
+          <BiLeftArrow className="trackable-relatedProducts" id="scroll-icon-left-outfit" onClick={this.moveLeft} size={40}/>
+        </div>
+      )
+    }
+}
+
+renderRightButton() {
+    if(this.state.carouselStart < this.state.outfit.length - 3) {
+      return (
+        <div>
+          <BiRightArrow className="trackable-relatedProducts" id="scroll-icon-right" onClick={this.moveRight} size={40}/>
+        </div>
+      )
+    }
+}
+
   render() {
     return (
-      <div>
+      <div className="related-products">
+        {this.renderRightButton()}
+        {this.renderLeftButton()}
         <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
-        <p className="trackable-relatedProducts" onClick={this.moveLeft}>SCROLL LEFT</p>
-        <p className="trackable-relatedProducts" onClick={this.moveRight}>SCROLL RIGHT</p>
         <div id="outfit-window">
-          <div onClick={this.addToOutfit} className='trackable-Outfit' id="add-to-outfit">
-            <p>Add To Outfit</p>
+          <div id="add-outfit-card">
+            <p>Add To Outfit</p><br/>
+            <p id="add-outfit-icon" onClick={this.addToOutfit} className='trackable-Outfit'><FaPlus size={50}/></p>
           </div>
           {this.loadOutfit()}
         </div>

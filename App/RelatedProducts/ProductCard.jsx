@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import Comparison from './Comparison.jsx';
 import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
+import {FaStar} from 'react-icons/fa';
+import {FaRegStar} from 'react-icons/fa';
 
 class Product extends React.Component {
   constructor(props) {
@@ -23,11 +25,21 @@ class Product extends React.Component {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.renderModal = this.renderModal.bind(this);
+    this.navigateToProductPage = this.navigateToProductPage.bind(this);
   }
 
   componentDidMount() {
     this.getStyle();
     this.getInfo();
+  }
+
+  navigateToProductPage() {
+    let url = window.location.href;
+    let newUrl = url.slice(0, -5) + this.props.id;
+    console.log(url);
+    console.log(newUrl);
+
+    location.assign(newUrl);
   }
 
   //Retrieve product price and image
@@ -85,15 +97,14 @@ class Product extends React.Component {
     }
   }
 
-
-
   render() {
     return (
       <div>
         {this.renderModal()}
         <div id="product-card" data-testid={'product-card'}>
+          <span id="product-card-icon" className='trackable-relatedProducts' onClick={this.openModal}><FaStar size={32}/></span>
           <div id="product-card-img">
-            <img id="image" className='trackable-relatedProducts' onClick={this.openModal} src={this.state.img}/>
+            <img id="image" onClick={this.navigateToProductPage}src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>

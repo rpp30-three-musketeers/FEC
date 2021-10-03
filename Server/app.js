@@ -203,7 +203,6 @@ app.post('/interactions', (req, res) => {
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
 
   let interaction = req.body;
-  console.log(req.body);
 
   axios({
     method: 'post',
@@ -223,5 +222,5 @@ app.post('/interactions', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}/47421`);
+  console.log(`Example app listening at http://localhost:${port}/47470`);
 });

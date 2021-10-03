@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import {FaTimes} from 'react-icons/fa';
 import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 
 class OutfitProduct extends React.Component {
@@ -59,8 +60,9 @@ class OutfitProduct extends React.Component {
     return (
       <div>
         <div id="product-card" data-testid={'product-card'}>
+          <span id="outfit-card-icon" className='trackable-Outfit' onClick={this.removeFromOutfit}><FaTimes size={32}/></span>
           <div id="product-card-img">
-            <img id="image" className='trackable-Outfit'onClick={this.removeFromOutfit} src={this.state.img}/>
+            <img id="image" src={this.state.img}/>
           </div>
           <div id="product-card-attributes">
             <p id="product-card-category" title={'category'}>{this.state.category}</p>
