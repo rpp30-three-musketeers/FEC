@@ -47,9 +47,12 @@ class GalleryModal extends React.Component {
       return (
         <div id={'gallery-modal'}>
           <div className={'exit-button'}><FontAwesomeIcon icon={faTimesCircle} onClick={this.props.onClick} /></div>
-          <div className={'expanded-photo-container'}>
+          <div className={'expanded-gallery-container'}>
             {this.renderLeftArrow()}
-            <img className={'expanded-photo'} src={this.state.currentStylePhotos[this.state.selectedPhotoIndex].url}></img>
+            <div id={'expanded-photo-container'}>
+              <img className={'expanded-photo'} src={this.state.currentStylePhotos[this.state.selectedPhotoIndex].url}></img>
+              <p id={'expanded-gallery-dots'}>Hello</p>
+            </div>
             {this.renderRightArrow()}
           </div>
         </div>
