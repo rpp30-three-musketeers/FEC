@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 class GalleryModal extends React.Component {
   constructor(props) {
@@ -51,7 +52,14 @@ class GalleryModal extends React.Component {
             {this.renderLeftArrow()}
             <div id={'expanded-photo-container'}>
               <img className={'expanded-photo'} src={this.state.currentStylePhotos[this.state.selectedPhotoIndex].url}></img>
-              <p id={'expanded-gallery-dots'}>Hello</p>
+              {/* <p id={'expanded-gallery-dots'}>Hello</p> */}
+              <div id={'expanded-gallery-dots'}>
+                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
+                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
+                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
+                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot selected-gallery-dot'} />
+                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
+              </div>
             </div>
             {this.renderRightArrow()}
           </div>
