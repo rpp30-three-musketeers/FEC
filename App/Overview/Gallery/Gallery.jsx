@@ -23,7 +23,7 @@ class Gallery extends React.Component {
 
   displayModal() {
     if (this.state.modalView) {
-      return <GalleryModal onClick={this.toggleModal} />
+      return <GalleryModal onClick={this.toggleModal} currentStylePhotos={this.props.currentStyle.photos} selectedPhotoIndex={this.props.selectedPhotoIndex} />
     }
   }
 
