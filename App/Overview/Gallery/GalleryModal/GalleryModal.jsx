@@ -54,11 +54,13 @@ class GalleryModal extends React.Component {
               <img className={'expanded-photo'} src={this.state.currentStylePhotos[this.state.selectedPhotoIndex].url}></img>
               {/* <p id={'expanded-gallery-dots'}>Hello</p> */}
               <div id={'expanded-gallery-dots'}>
-                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
-                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
-                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
-                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot selected-gallery-dot'} />
-                <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
+                {this.state.currentStylePhotos.map((photo, index) => {
+                  if (index === this.state.selectedPhotoIndex) {
+                    return <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot selected-gallery-dot'} />
+                  } else {
+                    return <FontAwesomeIcon icon={faCircle} className={'expanded-gallery-dot'} />
+                  }
+                })}
               </div>
             </div>
             {this.renderRightArrow()}
