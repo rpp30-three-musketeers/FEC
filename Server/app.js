@@ -173,6 +173,21 @@ app.post('/reviews/helpful', (req, res)=>{
     return res.sendStatus(500);
   });
 });
+app.post('/reviews/report', (req, res)=>{
+  axios({
+    method: 'put',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/' + req.body.review_id + '/report',
+    headers: {
+      Authorization: credentials.authorization,
+    },
+
+  }).then(()=> {
+    return res.sendStatus(204);
+  }).catch((err)=>{
+    console.log(err);
+    return res.sendStatus(500);
+  });
+});
 
 app.get('/get-average-rating', (req, res) => {
   axios({

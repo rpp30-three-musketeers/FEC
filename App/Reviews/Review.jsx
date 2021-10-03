@@ -19,22 +19,37 @@ class Review extends React.Component {
     super(props);
     this.state = {
       showPicModal: false,
-      helpfulness: undefined
+      helpfulness: undefined,
+      clickedYesStatus: false
     };
     this.clickedYes = this.clickedYes.bind(this);
+    this.clickedReport = this.clickedReport.bind(this);
 
   }
 
   clickedYes() {
+    if (this.state.clickedYesStatus === false) {
+      let options = {
+        review_id: this.props.data.review_id
+      };
+      console.log(this.props.data.review_id, 'props review id');
+      console.log(options, 'clickedYes');
+      $.post('/reviews/helpful', options, ()=>{
+        this.setState({helpfulness: this.props.data.helpfulness + 1, clickedYesStatus: true});
+      });
+    }
+
+  }
+  clickedReport() {
 
     let options = {
       review_id: this.props.data.review_id
     };
-    console.log(this.props.data.review_id, 'props review id');
-    console.log(options, 'clickedYes');
-    $.post('/reviews/helpful', options, ()=>{
-      this.setState({helpfulness: this.props.data.helpfulness + 1});
+    $.post('/reviews/report', options, ()=>{
+      console.log('reported review');
     });
+
+
   }
 
   render() {
@@ -45,8 +60,6 @@ class Review extends React.Component {
     let year = date.getUTCFullYear();
 
     let newDate = monthName + ', ' + day + ', ' + year;
-    console.log('review props', this.props);
-    console.log('state:', this.state);
     let helpful = this.state.helpfulness ? this.state.helpfulness : this.props.data.helpfulness;
     return (
       <div>
@@ -62,7 +75,7 @@ class Review extends React.Component {
           {this.props.data.photos.map((pic, index) => {
             return (
               <div id = "photo">
-                <Modal photo = {pic} key = {index.toString()}/>
+                <Modal photo = {pic} key = {index}/>
               </div>
             );
           })}

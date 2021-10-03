@@ -64,15 +64,12 @@ class Reviews extends React.Component {
       return data;
     // eslint-disable-next-line semi
     }).then((info)=> {
-      console.log('got reviews');
       if(bypassMeta) {
         this.setState({productReviews:info});
       } else {
-        console.log('inside else statement')
         $.get('/reviews/meta', parameters, (metaData) => {
           return metaData
         }).then((mData) =>{
-          console.log('got meta data');
           if(pName) {
             this.setState({productId: parseInt(info.product), productReviews: info, productName: pName, meta: mData});
           } else {
@@ -101,8 +98,8 @@ class Reviews extends React.Component {
 
   render() {
     let renderReviews = this.state.productReviews === 'needToInitialize' ? false : true;
-    console.log(this.state, '<<<<<<<state at time of render')
     let pct = this.numberToPercent(this.state.meta.pctRecommend);
+
     return (
       renderReviews ?
         <div id={'reviews'}>
@@ -115,10 +112,10 @@ class Reviews extends React.Component {
             </div>
             <div id={'rightColumn'}>
               <RightColumn reviews = {this.state.productReviews.results} reviewCount = {this.state.meta.totalReviews}
-                sortedBy = {this.handleSortByChange}/>
+                sortedBy = {this.handleSortByChange} productName = {this.state.productName}/>
             </div>
           </div>
-        </div> : <div> {console.log('divs mounted')}</div>
+        </div> : null
     );
   }
 }
