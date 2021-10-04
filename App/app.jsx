@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import './css/global.css';
 import './css/Related.css';
 import './css/Comparison.css';
@@ -11,6 +12,14 @@ import Reviews from './Reviews/Reviews.jsx';
 import $ from 'jquery';
 import { ProductIdProvider } from './context.jsx';
 
+const muiTheme = createTheme({
+  palette: {
+    primary: {
+      light: '#484848',
+      main: '#484848'
+    }
+  }
+})
 
 const withTracking = eventName => Component => props => (
   <Track eventName={eventName}>
@@ -152,4 +161,4 @@ class App extends React.Component {
 
 App = withTracking("elemClick")(App)
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<ThemeProvider theme={muiTheme}><App/></ThemeProvider>, document.getElementById('app'));
