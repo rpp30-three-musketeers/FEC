@@ -11,11 +11,11 @@
 
 }
 #leftColumn {
-  padding-block-end: 1em;
-  flex: 1 1 auto;
+  padding-block-end: 5em;
+  flex: 1 1 50%;
 }
 
 #rightColumn {
   padding-inline-start: 3em;
-  flex: 1 1 auto;
+  flex: 1 1 50%;
 }

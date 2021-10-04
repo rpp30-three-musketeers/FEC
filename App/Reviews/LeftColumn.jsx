@@ -29,7 +29,7 @@ const LeftColumn = (props) => {
         {Object.keys(props.chars).map((key, index) => {
 
           return (
-            <MarkerBar char = {key} key = {props.chars[key].id} value = {props.chars[key].id}/>
+            <MarkerBar char = {key} key = {props.chars[key].id} value = {props.chars[key].value}/>
           );
         })}
       </div>

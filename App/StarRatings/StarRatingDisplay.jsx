@@ -38,11 +38,16 @@ class StarRatingDisplay extends React.Component {
 
   async componentDidMount() {
 
-    var averageRating = await $.get('/get-average-rating/', {productId: this.props.productId}, (data) => { // options not used for this, refactor later
-      return(data);
-    });
+    if(this.props.rating) {
+      var averageRating = this.props.rating;
+      this.starsArray(averageRating);
+    } else {
+      var averageRating = await $.get('/get-average-rating/', {productId: this.props.productId}, (data) => { // options not used for this, refactor later
+        return(data);
+      });
 
-    await this.starsArray(averageRating);
+      await this.starsArray(averageRating);
+    }
   }
 
   render() {
