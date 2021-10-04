@@ -27,8 +27,8 @@ class GalleryModal extends React.Component {
     if (this.state.zoomOn) {
       let lensEl = document.getElementById('lens');
       lensEl.addEventListener("mousemove", (e) => {
-        lensEl.style.backgroundPositionX = -e.offsetX + "px";
-        lensEl.style.backgroundPositionY = -e.offsetY + "px";
+        lensEl.style.backgroundPositionX = (e.offsetX / lensEl.getBoundingClientRect().width * 100) + "%";
+        lensEl.style.backgroundPositionY = (e.offsetY / lensEl.getBoundingClientRect().height * 100) + "%";
       });
     }
   }
