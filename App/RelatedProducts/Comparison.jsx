@@ -1,4 +1,5 @@
 import React from 'react';
+import {FaTimesCircle} from 'react-icons/fa';
 
 class Comparison extends React.Component {
   constructor(props) {
@@ -92,6 +93,7 @@ class Comparison extends React.Component {
     return(
       <div id="compare-products" onClick={this.props.close} className='trackable-ComparisonModal'>
         <div id="modal">
+        <span id="product-card-icon" className='trackable-ComparisonModal' onClick={this.props.close}><FaTimesCircle/></span>
           Compare
           <table className={"modal-table"}>
             <tbody>
