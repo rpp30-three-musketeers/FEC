@@ -5,6 +5,56 @@
   display: flex;
   font-weight: bold;
 }
-.inlineDivs {
+#stars {
+  flex: 1 1 30%;
+}
+#username{
+  flex: 1 1 70%;
+  text-align: right;
+}
+#stats {
   display: 1 1 auto;
+}
+#report{
+  display: 1 1 auto;
+}
+
+#response, #recommend {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+#yes {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+#report {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+}
+
+#line {
+  height:1.5px;
+  width: 100%;
+  background-color:gray;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#photos {
+  display: flex;
+}
+#photo {
+  display: 1 1 auto;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
 }

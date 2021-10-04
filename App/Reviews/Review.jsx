@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './Review.css';
 import Modal from './Modal.jsx';
 import months from './months.js';
+import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 /*
 needs:
 currentUser
@@ -28,28 +29,33 @@ class Review extends React.Component {
     let year = date.getUTCFullYear();
 
     let newDate = monthName + ', ' + day + ', ' + year;
-
+    console.log('review props', this.props);
     return (
       <div>
         <div className = {'review-header'}>
-          <div className = {'inlineDivs'}>stars</div>
-          <div className = {'inlineDivs'}>{this.props.data.reviewer_name + ', ' + newDate}</div>
+          <div id = {'stars'}>
+            <StarRatingDisplay rating = {this.props.data.rating}/>
+          </div>
+          <div id = {'username'}>{this.props.data.reviewer_name + ', ' + newDate}</div>
         </div>
         <p className={'boldedFont'}>{this.props.data.summary}</p>
         <p>{this.props.data.body}</p>
-        {/* {this.propdata.photos.map((pic) => {
-        // console.log(review, 'print review');
-        return (
-          <Modal photo = {pic}/>
-        );
-      })} */ }
+        <div id = "photos">
+          {this.props.data.photos.map((pic) => {
+            return (
+              <div id = "photo">
+                <Modal photo = {pic}/>
+              </div>
+            );
+          })}
+        </div>
         {this.props.data.recommend ? <div id = 'recommend'>I recommend this product</div> : null}
         {this.props.data.response ? <div id = 'response'>{'Response from Seller:' + this.props.data.response}</div> : null}
         <div className = {'helpful-report'}>
-          <div className = {'inlineDivs'}>{'Helpful? '}</div> <div className = {'inlineDivs'}>{'Yes '}</div>
-          <div className = {'inlineDivs'}>{'(' + this.props.data.helpfulness + ') | '}</div> <div className = {'inlineDivs'}> Report</div>
+          <div id = {'stats'}>{'Helpful? '}<button id ="yes" onClick = {this.clickedYes}>Yes</button></div>
+          <div id = {'report'}>{'(' + this.props.data.helpfulness + ') | '}<button id ="report" onClick = {this.clickedReport}>Report</button></div>
         </div>
-        <p>_______________________________________________________________________________</p>
+        <div id = {'line'}></div>
       </div>
     );
   }
