@@ -60,7 +60,7 @@ class OutfitProduct extends React.Component {
     return (
       <div>
         <div id="product-card" data-testid={'product-card'}>
-          <span id="product-card-icon" className='trackable-Outfit' onClick={this.removeFromOutfit}><FaTimesCircle/></span>
+          <span id="product-card-icon" className='trackable-Outfit' onClick={this.removeFromOutfit}><FaTimesCircle size={32}/></span>
           <div id="product-card-img">
             <img id="image" src={this.state.img}/>
           </div>

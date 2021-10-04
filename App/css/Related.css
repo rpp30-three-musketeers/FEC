@@ -17,6 +17,7 @@
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 80% 20%;
+  position: relative;
 }
 
 #add-to-outfit {
@@ -28,6 +29,7 @@
   text-align: center;
   padding: 0px 0;
   font-size: larger;
+  position: relative;
 }
 
 #product-card-img {
@@ -74,10 +76,15 @@
 
 #product-card-icon {
   position: absolute;
-  color: blue;
+  color: black;
+  right: 10px;
+  background-color: whitesmoke;
+  border-radius: 25px;
 }
 
 #add-outfit-icon {
   position: absolute;
-  color: blue;
+  color: black;
+  right: 50%;
+  top: 50%
 }
