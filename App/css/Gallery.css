@@ -156,8 +156,30 @@
 }
 
 #lens {
-  background-color: red;
-  height: 150px;
-  width: 150px;
+  height: 100%;
+  width: 100%;
   position: absolute;
+  overflow: hidden;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  z-index: 999;
+
+}
+
+#lens:hover {
+  cursor: none;
+}
+
+#expanded-view-photo:hover {
+  cursor: crosshair;
+}
+
+.zoomed-image {
+  transform: scale(2);
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  -o-transform: scale(2);
+  aspect-ratio: auto;
 }
