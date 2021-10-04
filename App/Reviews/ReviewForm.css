@@ -3,3 +3,14 @@
   width: 5em;
   margin-right: 1em;
 }
+#characteristic {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+#seperator {
+  margin-top: 1em;
+  height: 1px;
+  width: 100%;
+  background-color: black;
+  margin-bottom: 1em;
+}

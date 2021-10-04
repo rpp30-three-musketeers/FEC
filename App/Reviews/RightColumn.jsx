@@ -57,7 +57,8 @@ class RightColumn extends React.Component {
         <button id = 'addReview' onClick = {this.handleAddReviewClick}>Add Review</button>
         <button id = 'showMoreReviews' onClick = {this.handleShowMoreReviews}>Show More</button>
         {this.state.showReviewModal ?
-          <ReviewForm exit = {this.handleAddReviewExit} productName = {this.props.productName} productId = {this.context}/>
+          <ReviewForm exit = {this.handleAddReviewExit} productName = {this.props.productName} productId = {this.context}
+          characteristics = {this.props.characteristics}/>
           : null}
       </>
     );

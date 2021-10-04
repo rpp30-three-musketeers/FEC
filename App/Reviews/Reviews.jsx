@@ -112,7 +112,8 @@ class Reviews extends React.Component {
             </div>
             <div id={'rightColumn'}>
               <RightColumn reviews = {this.state.productReviews.results} reviewCount = {this.state.meta.totalReviews}
-                sortedBy = {this.handleSortByChange} productName = {this.state.productName}/>
+                sortedBy = {this.handleSortByChange} productName = {this.state.productName}
+                characteristics = {this.state.meta.characteristics}/>
             </div>
           </div>
         </div> : null

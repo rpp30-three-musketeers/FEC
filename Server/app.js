@@ -128,6 +128,7 @@ app.post('/reviews', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
   console.log(req.body.product_id, ' product id');
+  console.log(req.body);
 
   axios({
     method: 'post',

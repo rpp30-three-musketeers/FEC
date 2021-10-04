@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './ReviewForm.css';
+import ProductIdContext from '../context.jsx';
 
 class ReviewForm extends React.Component {
   constructor(props) {
@@ -13,23 +14,36 @@ class ReviewForm extends React.Component {
     this.handleSubmitReview = this.handleSubmitReview.bind(this);
     this.dispPhoto = this.dispPhoto.bind(this);
     this.pushBlobUrl = this.pushBlobUrl.bind(this);
+    this.blobURLParser = this.blobURLParser.bind(this);
   }
+  static contextType = ProductIdContext;
 
   handleSubmitReview(event) {
+
     event.preventDefault();
-    console.log(this.props.productId, '<<<productid');
+    let productId = this.context();
+    let recommend = event.target.recommend.value === "Yes" ? true : false;
+    let charMap = {};
+    for(let characteristic in this.props.characteristics) {
+      charMap[this.props.characteristics[characteristic].id] = parseInt(event.target[characteristic].value);
+    }
+    console.log(charMap);
+
+
+
     let query = {
       // eslint-disable-next-line camelcase
-      product_id: 47421,
-      rating: 4,
-      summary: 'Testing Summary Section',
-      body: 'testing',
-      recommend: false,
-      name: 'username',
-      email: 'username@gmail.com',
+      product_id: productId,
+      rating: parseInt(event.target.rating.value),
+      summary: event.target.summary.value,
+      body: event.target.body.value,
+      recommend: recommend,
+      name: event.target.nickname.value,
+      email: event.target.email.value,
       photos: this.state.photos,
-      characteristics: {}
+      characteristics: charMap
     };
+    console.log(query);
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -37,7 +51,7 @@ class ReviewForm extends React.Component {
     };
 
     fetch('/reviews', requestOptions)
-      .then((res) => {
+      .then(() => {
         console.log('success');
         this.props.exit();
       })
@@ -48,6 +62,15 @@ class ReviewForm extends React.Component {
     if (this.state.photos.length < 5) {
       this.setState({ photos: [...this.state.photos, blobUrl] });
     }
+  }
+
+  blobURLParser(){
+    let urls = [];
+    for (let i = 0; i < this.state.photos.length; i++) {
+      urls.push(this.state.photos[i].slice(5));
+    }
+    console.log(urls);
+    return urls;
   }
 
   dispPhoto(event) {
@@ -73,29 +96,93 @@ class ReviewForm extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log(this.props, 'reviewForm props');
 
     return (
       <div id = 'reviewModal'>
         <button id = 'exit' onClick = {this.props.exit}>X</button>
         <h2>Write Your Review</h2>
         <p>About the {this.props.productName}</p>
-        <form id = "reviewForm">
+        <form id = "reviewForm" onSubmit = {this.handleSubmitReview}>
           <label>Overall Rating:
-            <input type="radio" value = "Poor"/>
-            <input type="radio" value = "Fair"/>
-            <input type="radio" value = "Average"/>
-            <input type="radio" value = "Good"/>
-            <input type="radio" value = "Great"/>
+            <input type="radio" value = "1" name = "rating"/>
+            <input type="radio" value = "2" name = "rating"/>
+            <input type="radio" value = "3" name = "rating"/>
+            <input type="radio" value = "4" name = "rating"/>
+            <input type="radio" value = "5" name = "rating"/>
           </label> <br/>
           <label> Do You Recommend this Product?: <br/>
-            <input type="radio" value = "Yes"/> Yes<br/>
-            <input type="radio" value = "No"/> No<br/>
+            <input type="radio" value = "Yes" name = "recommend"/> Yes<br/>
+            <input type="radio" value = "No" name = "recommend"/> No<br/>
           </label> <br/>
+
+          {Object.keys(this.props.characteristics).map((key, index)=>{
+            let one, two, three, four, five;
+            if(key === 'Size') {
+              one = 'A size too small';
+              two = '½ a size too small';
+              three = 'Perfect';
+              four = '½ a size too big';
+              five = 'A size too wide';
+            } else if(key === 'Width') {
+              one = 'Too narrow';
+              two = 'Slightly narrow';
+              three = 'Perfect';
+              four = 'Slightly wide';
+              five = 'Too wide';
+            } else if(key === 'Comfort') {
+              one = 'Uncomfortable';
+              two = 'Slightly uncomfortable';
+              three = 'Ok';
+              four = 'Comfortable';
+              five = 'Perfect';
+            } else if(key === 'Quality') {
+              one = 'Poor';
+              two = 'Below average';
+              three = 'What I expected';
+              four = 'Pretty great';
+              five = 'Perfect';
+            } else if(key === 'Length') {
+              one = 'Runs Short';
+              two = 'Runs slightly short';
+              three = 'Perfect';
+              four = 'Runs slightly long';
+              five = 'Runs long';
+            } else if(key === 'Fit') {
+              one = 'Runs tight';
+              two = 'Runs slightly tight';
+              three = 'Perfect';
+              four = 'Runs slightly long';
+              five = 'Runs long';
+            }
+            return (
+              <>
+                <label id = {'characteristic'}> {key} <br/>
+                  <label> {one}
+                    <input type="radio" value = "1" name = {key}/>
+                  </label> <br/>
+                  <label> {two}
+                    <input type="radio" value = "2" name = {key}/>
+                  </label><br/>
+                  <label> {three}
+                    <input type="radio" value = "3" name = {key}/>
+                  </label><br/>
+                  <label> {four}
+                    <input type="radio" value = "4" name = {key}/>
+                  </label><br/>
+                  <label> {five}
+                    <input type="radio" value = "5" name = {key}/>
+                  </label><br/>
+                </label>
+                <div id = {'seperator'}></div>
+              </>
+            );
+          })}
+
           <label htmlFor="Summary">Title:</label><br/>
-          <input type="text" id="Summary" name="Summary" maxLength = "60"/><br/>
+          <input type="text" id="Summary" name="summary" maxLength = "60"/><br/>
           <label htmlFor="Body">Details:</label><br/>
-          <input type="text" id="Body" name="Body" maxLength = "250"/><br/>
+          <input type="text" id="Body" name="body" maxLength = "250"/><br/>
           <label htmlFor="photo">Photo</label>
           <input accept=".jpg, .jpeg, .png" type="file" id="photo" name="photo" onChange = {this.dispPhoto} multiple/><br/>
           { this.state.photos ? this.state.photos.map((photo, index) => {
@@ -103,12 +190,12 @@ class ReviewForm extends React.Component {
             return <img id = {'uploadPhotosReviewForm'} src = {photo} key = {index}/>;
           }) : null} <br/>
           <label htmlFor="Nickname">Nickname:</label><br/>
-          <input type="text" id="Nickname" name="Nickname"/><br/>
+          <input type="text" id="Nickname" name="nickname"/><br/>
           <label htmlFor="Email">Email:</label><br/>
-          <input type="text" id="Email" name="Email"/><br/>
+          <input type="text" id="Email" name="email"/><br/>
           <label>For authentication reasons, you will not be emailed</label><br/>
           <br/>
-          <button type="submit" onClick = {this.handleSubmitReview}>Submit</button><br/>
+          <button type="submit">Submit</button><br/>
         </form>
       </div>
     );
