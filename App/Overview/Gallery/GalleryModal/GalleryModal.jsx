@@ -14,10 +14,12 @@ class GalleryModal extends React.Component {
     this.renderLeftArrow = this.renderLeftArrow.bind(this);
     this.renderRightArrow = this.renderRightArrow.bind(this);
     this.navigateToSelected = this.navigateToSelected.bind(this);
+    this.toggleZoom = this.toggleZoom.bind(this);
+    this.renderZoomBox = this.renderZoomBox.bind(this);
   }
 
   componentDidMount() {
-    this.setState({currentStylePhotos: this.props.currentStylePhotos, selectedPhotoIndex: this.props.selectedPhotoIndex})
+    this.setState({currentStylePhotos: this.props.currentStylePhotos, selectedPhotoIndex: this.props.selectedPhotoIndex, zoomOn: false})
   }
 
   navigateLeft() {
@@ -49,6 +51,16 @@ class GalleryModal extends React.Component {
     this.setState({selectedPhotoIndex: parseInt(e.target.parentNode.attributes.thisindex.value)})
   }
 
+  toggleZoom() {
+    this.setState({zoomOn: !this.state.zoomOn})
+  }
+
+  renderZoomBox() {
+    if (this.state.zoomOn === true) {
+      return <div id={'lens'} onClick={this.toggleZoom}>Helkj</div>
+    }
+  }
+
   render() {
     if (this.state.currentStylePhotos) {
       return (
@@ -57,7 +69,8 @@ class GalleryModal extends React.Component {
           <div className={'expanded-gallery-container'}>
             {this.renderLeftArrow()}
             <div id={'expanded-photo-container'}>
-              <img className={'expanded-photo'} src={this.state.currentStylePhotos[this.state.selectedPhotoIndex].url}></img>
+              {this.renderZoomBox()}
+              <img id={'expanded-view-photo'} className={'expanded-photo'} src={this.state.currentStylePhotos[this.state.selectedPhotoIndex].url} onClick={this.toggleZoom}></img>
               {/* <p id={'expanded-gallery-dots'}>Hello</p> */}
               <div id={'expanded-gallery-dots'}>
                 {this.state.currentStylePhotos.map((photo, index) => {
