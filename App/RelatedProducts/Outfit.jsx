@@ -109,9 +109,9 @@ class Outfit extends React.Component {
         <p className="trackable-relatedProducts" onClick={this.moveLeft}>SCROLL LEFT</p>
         <p className="trackable-relatedProducts" onClick={this.moveRight}>SCROLL RIGHT</p>
         <div id="outfit-window">
-          <div id="product-card">
-            <p>Add To Outfit</p>
-            <span id="add-outfit-icon" onClick={this.addToOutfit} className='trackable-Outfit'><FaPlus size={50}/></span>
+          <div id="add-outfit-card">
+            <p>Add To Outfit</p><br/>
+            <p id="add-outfit-icon" onClick={this.addToOutfit} className='trackable-Outfit'><FaPlus size={50}/></p>
           </div>
           {this.loadOutfit()}
         </div>

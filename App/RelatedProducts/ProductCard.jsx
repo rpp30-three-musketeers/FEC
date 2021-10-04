@@ -6,7 +6,6 @@ import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 import {FaStar} from 'react-icons/fa';
 import {FaRegStar} from 'react-icons/fa';
 
-
 class Product extends React.Component {
   constructor(props) {
     super(props);
@@ -42,7 +41,6 @@ class Product extends React.Component {
 
     location.assign(newUrl);
   }
-
 
   //Retrieve product price and image
   getStyle() {
@@ -98,8 +96,6 @@ class Product extends React.Component {
       )
     }
   }
-
-
 
   render() {
     return (
