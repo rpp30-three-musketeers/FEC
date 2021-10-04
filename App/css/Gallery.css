@@ -169,12 +169,12 @@
   background-position: 50% 100%;
 }
 
-/* #lens:hover {
-  cursor: none;
-} */
+#lens:hover {
+  cursor: zoom-out;
+}
 
 #expanded-view-photo:hover {
-  cursor: crosshair;
+  cursor: zoom-in;
 }
 
 .zoomed-image {

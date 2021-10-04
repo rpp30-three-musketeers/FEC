@@ -38,7 +38,7 @@ class GalleryModal extends React.Component {
   }
 
   renderLeftArrow() {
-    if (this.state.selectedPhotoIndex <= 0) {
+    if (this.state.selectedPhotoIndex <= 0 || this.state.zoomOn === true) {
       return <div></div>
     } else {
       return <div className={'navigation-arrow-container left'}><FontAwesomeIcon icon={faAngleLeft} className={'gallery-modal-arrow'} onClick={this.navigateLeft} /></div>
@@ -50,7 +50,7 @@ class GalleryModal extends React.Component {
   }
 
   renderRightArrow() {
-    if (this.state.selectedPhotoIndex >= this.state.currentStylePhotos.length - 1) {
+    if (this.state.selectedPhotoIndex >= this.state.currentStylePhotos.length - 1 || this.state.zoomOn === true) {
       return <div></div>
     } else {
       return <div className={'navigation-arrow-container right'}><FontAwesomeIcon icon={faAngleRight} className={'gallery-modal-arrow'} onClick={this.navigateRight} /></div>
