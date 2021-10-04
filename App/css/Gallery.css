@@ -165,12 +165,13 @@
   justify-content: center;
   align-content: center;
   z-index: 999;
-
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
 }
 
-#lens:hover {
+/* #lens:hover {
   cursor: none;
-}
+} */
 
 #expanded-view-photo:hover {
   cursor: crosshair;
