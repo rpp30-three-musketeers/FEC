@@ -15,7 +15,9 @@
   /* width: 65%; */
   height: 70vh;
   /* background-color: #ebeaea; */
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, auto);
+  grid-template-rows: repeat(3, auto);
   min-height: 0;
   /* border: 1px solid black; */
   /* display: inline-block; */
