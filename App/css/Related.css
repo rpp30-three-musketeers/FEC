@@ -18,28 +18,28 @@
 #scroll-icon-right {
   position: absolute;
   z-index: 3;
-  right: 2%;
+  right: 1%;
   top: 45%;
   color: black;
-  background-color: whitesmoke;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #scroll-icon-left {
   position: absolute;
   z-index: 3;
-  left: 2%;
+  left: 1%;
   top: 45%;
   color: black;
-  background-color: whitesmoke;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #scroll-icon-left-outfit {
   position: absolute;
   z-index: 3;
-  left: 28%;
+  left: 26%;
   top: 45%;
   color: black;
-  background-color: whitesmoke;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #product-card {

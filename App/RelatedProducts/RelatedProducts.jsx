@@ -3,7 +3,7 @@ import Product from './ProductCard.jsx';
 import Comparison from './Comparison.jsx';
 import ProductIdContext from '../context.jsx';
 import $ from 'jquery';
-import {BiChevronLeftSquare, BiChevronRightSquare} from 'react-icons/bi';
+import {BiChevronLeftSquare, BiChevronRightSquare, BiLeftArrow, BiRightArrow} from 'react-icons/bi';
 
 class RelatedProducts extends React.Component {
   constructor(props) {
@@ -80,7 +80,7 @@ class RelatedProducts extends React.Component {
     if(this.state.carouselStart > 0) {
       return (
         <div>
-          <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon-left" onClick={this.moveLeft} size={40}/>
+          <BiLeftArrow className="trackable-relatedProducts" id="scroll-icon-left" onClick={this.moveLeft} size={40}/>
         </div>
       )
     }
@@ -91,7 +91,7 @@ class RelatedProducts extends React.Component {
     if(this.state.carouselStart < 4) {
       return (
         <div>
-          <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon-right" onClick={this.moveRight} size={40}/>
+          <BiRightArrow className="trackable-relatedProducts" id="scroll-icon-right" onClick={this.moveRight} size={40}/>
         </div>
       )
     }

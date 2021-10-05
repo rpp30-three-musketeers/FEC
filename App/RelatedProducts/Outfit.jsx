@@ -1,8 +1,7 @@
 import React from 'react';
 import OutfitProduct from './OutfitProduct.jsx';
 import ProductIdContext from '../context.jsx';
-import {BiChevronLeftSquare, BiChevronRightSquare} from 'react-icons/bi';
-import {FaPlus} from 'react-icons/fa';
+import {BiChevronLeftSquare, BiChevronRightSquare, BiLeftArrow, BiRightArrow} from 'react-icons/bi';import {FaPlus} from 'react-icons/fa';
 
 class Outfit extends React.Component {
   constructor(props) {
@@ -108,7 +107,7 @@ class Outfit extends React.Component {
     if(this.state.carouselStart > 0) {
       return (
         <div>
-          <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon-left-outfit" onClick={this.moveLeft} size={40}/>
+          <BiLeftArrow className="trackable-relatedProducts" id="scroll-icon-left-outfit" onClick={this.moveLeft} size={40}/>
         </div>
       )
     }
@@ -118,7 +117,7 @@ renderRightButton() {
     if(this.state.carouselStart < this.state.outfit.length - 3) {
       return (
         <div>
-          <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon-right" onClick={this.moveRight} size={40}/>
+          <BiRightArrow className="trackable-relatedProducts" id="scroll-icon-right" onClick={this.moveRight} size={40}/>
         </div>
       )
     }
