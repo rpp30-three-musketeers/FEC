@@ -87,6 +87,9 @@ class RelatedProducts extends React.Component {
   }
 
   renderRightButton() {
+
+    if(this.state.related !== undefined && this.state.carouselStart < this.state.related.length - 4)
+
     if(this.state.carouselStart < 4) {
       return (
         <div>
