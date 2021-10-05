@@ -39,7 +39,7 @@
     "babel-jest": "^27.2.0",
     "babel-plugin-named-asset-import": "^0.3.7",
     "eslint": "^7.32.0",
-    "eslint-config-hackreactor": "git://github.com/hackreactor-labs/eslint-config-hackreactor",
+    "eslint-config-hackreactor": "https://github.com/hackreactor-labs/eslint-config-hackreactor",
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "file-loader": "^6.2.0",
