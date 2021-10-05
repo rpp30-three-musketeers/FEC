@@ -41,10 +41,10 @@ class Review extends React.Component {
         <p className={'boldedFont'}>{this.props.data.summary}</p>
         <p>{this.props.data.body}</p>
         <div id = "photos">
-          {this.props.data.photos.map((pic) => {
+          {this.props.data.photos.map((pic, index) => {
             return (
               <div id = "photo">
-                <Modal photo = {pic}/>
+                <Modal photo = {pic} key = {index.toString()}/>
               </div>
             );
           })}

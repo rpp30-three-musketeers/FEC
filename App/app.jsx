@@ -113,30 +113,12 @@ class App extends React.Component {
     };
 
     this.productIdExtractor = this.productIdExtractor.bind(this);
-    this.testCall = this.testCall.bind(this);
+
   }
 
   productIdExtractor(url) {
     let newProductId = url.split('/')[3];
     this.setState({currentProductId: newProductId});
-  }
-
-  testCall() {
-    let options = {
-      // eslint-disable-next-line camelcase
-      product_id: 47423, //select a specific item by id
-      endpoint: null, //null, styles, related
-      parameters: { //if retrieving all products controls the amount returned
-        page: null, //default is 1
-        count: null //default is 5
-      }
-    // eslint-disable-next-line semi
-    }
-
-    $.get('/products', options, (data) => {
-      console.log('data from server: ', data);
-    // eslint-disable-next-line semi
-    })
   }
 
   render() {
@@ -160,7 +142,6 @@ class App extends React.Component {
             <RelatedProducts/>
             <Outfit />
             <Reviews/>
-            <button type='submit' onClick={this.testCall}>Poke the API</button>
           </div>
         </ProductIdProvider>
       </Track>

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './Reviews.css';
 import LeftColumn from './LeftColumn.jsx';
 import RightColumn from './RightColumn.jsx';
-import ReviewForm from './ReviewForm.jsx';
 import $ from 'jquery';
 import ProductIdContext from '../context.jsx';
 
@@ -15,16 +14,14 @@ class Reviews extends React.Component {
       sortedBy: 'Relevance',
       productReviews: 'needToInitialize',
       averageRating: null,
-      showReviewModal: false,
       productName: 'Camo Onesie',
       meta: {}
 
     };
 
-    this.handleAddReviewClick = this.handleAddReviewClick.bind(this);
-    this.handleAddReviewExit = this.handleAddReviewExit.bind(this);
     this.reviewApiCall = this.reviewApiCall.bind(this);
     this.numberToPercent = this.numberToPercent.bind(this);
+    this.handleSortByChange = this.handleSortByChange.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -52,33 +49,41 @@ class Reviews extends React.Component {
     }
   }
 
-  handleAddReviewClick() {
-    this.setState({showReviewModal: true});
-  }
-  handleAddReviewExit() {
-    this.setState({showReviewModal: false});
+  handleSortByChange(newSortByFilter) {
+    let options = {
+      product_id: this.context,
+      sort: newSortByFilter
+    }
+    this.reviewApiCall(options, null, true);
+
   }
 
-  reviewApiCall(parameters, pName) {
+  reviewApiCall(parameters, pName, bypassMeta) {
 
     $.get('/reviews/', parameters, (data) => {
       return data;
     // eslint-disable-next-line semi
     }).then((info)=> {
       console.log('got reviews');
-      $.get('/reviews/meta', parameters, (metaData) => {
-        return metaData
-      }).then((mData) =>{
-        console.log('got meta data');
-        if(pName) {
-          this.setState({productId: parseInt(info.product), productReviews: info, productName: pName, meta: mData});
-        } else {
-          this.setState({productId: parseInt(info.product), productReviews: info, meta: mData});
-        }
-      }).catch((err) =>{
-        console.log(err);
-        return null;
-      })
+      if(bypassMeta) {
+        this.setState({productReviews:info});
+      } else {
+        console.log('inside else statement')
+        $.get('/reviews/meta', parameters, (metaData) => {
+          return metaData
+        }).then((mData) =>{
+          console.log('got meta data');
+          if(pName) {
+            this.setState({productId: parseInt(info.product), productReviews: info, productName: pName, meta: mData});
+          } else {
+            this.setState({productId: parseInt(info.product), productReviews: info, meta: mData});
+          }
+        }).catch((err) =>{
+          console.log(err);
+          return null;
+        })
+      }
+
     }).catch((err) =>{
       console.log(err);
       return null;
@@ -110,9 +115,7 @@ class Reviews extends React.Component {
             </div>
             <div id={'rightColumn'}>
               <RightColumn reviews = {this.state.productReviews.results} reviewCount = {this.state.meta.totalReviews}
-                sortedBy = {this.state.sortedBy}/>
-              <button id = 'addReview' onClick = {this.handleAddReviewClick}>+ Review</button>
-              {this.state.showReviewModal ? <ReviewForm exit = {this.handleAddReviewExit} productName = {this.state.productName} productId = {this.state.productId}/> : null}
+                sortedBy = {this.handleSortByChange}/>
             </div>
           </div>
         </div> : <div> {console.log('divs mounted')}</div>
