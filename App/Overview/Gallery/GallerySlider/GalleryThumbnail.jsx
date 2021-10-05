@@ -12,9 +12,15 @@ class GalleryThumbnail extends React.Component {
 
   render() {
     let url = this.props.thumbnailURL;
-    return (
-      <div className={'gallery-thumbnail-container'} onClick={this.clickHandler} style={{backgroundImage: `url(${url})`}}></div>
-    )
+    if (this.props.selectedPhotoIndex === this.props.photoIndex) {
+      return (
+        <div className={'gallery-thumbnail-container selected-gallery-thumbnail'} onClick={this.clickHandler} style={{backgroundImage: `url(${url})`}}></div>
+      )
+    } else {
+      return (
+        <div className={'gallery-thumbnail-container'} onClick={this.clickHandler} style={{backgroundImage: `url(${url})`}}></div>
+      )
+    }
   }
 }
 
