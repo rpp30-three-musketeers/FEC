@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductIdContext from '../context.jsx';
-import StylePicker from './Styles/StylePicker.jsx';
+import ProductIdContext from '../../context.jsx';
+import StylePicker from './StylePicker.jsx';
 import $ from 'jquery';
-import '../css/Styles.css';
+import '../../css/Styles.css';
 
 class Styles extends React.Component {
   constructor(props) {
