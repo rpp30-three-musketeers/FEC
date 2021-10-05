@@ -80,20 +80,18 @@ class RelatedProducts extends React.Component {
     if(this.state.carouselStart > 0) {
       return (
         <div>
-          <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveLeft} size={40}/>
+          <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon-left" onClick={this.moveLeft} size={40}/>
         </div>
       )
     }
   }
 
   renderRightButton() {
-
     if(this.state.related !== undefined && this.state.carouselStart < this.state.related.length - 4)
-
     if(this.state.carouselStart < 4) {
       return (
         <div>
-          <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveRight} size={40}/>
+          <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon-right" onClick={this.moveRight} size={40}/>
         </div>
       )
     }
@@ -101,12 +99,10 @@ class RelatedProducts extends React.Component {
 
   render() {
     return (
-      <div>
-
-        {this.renderRightButton()}
-        {this.renderLeftButton()}
-
+      <div className="related-products">
         <p className="related-title">Related Products</p>
+          {this.renderLeftButton()}
+          {this.renderRightButton()}
         <div id="outfit-window" data-testid={'related-products-window'}>
           {this.loadProducts()}
         </div>

@@ -108,16 +108,17 @@ class Outfit extends React.Component {
     if(this.state.carouselStart > 0) {
       return (
         <div>
-          <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveLeft} size={40}/>
+          <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon-left-outfit" onClick={this.moveLeft} size={40}/>
         </div>
       )
     }
 }
+
 renderRightButton() {
-    if(this.state.carouselStart < 4) {
+    if(this.state.carouselStart < this.state.outfit.length - 3) {
       return (
         <div>
-          <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveRight} size={40}/>
+          <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon-right" onClick={this.moveRight} size={40}/>
         </div>
       )
     }
@@ -125,7 +126,7 @@ renderRightButton() {
 
   render() {
     return (
-      <div>
+      <div className="related-products">
         {this.renderRightButton()}
         {this.renderLeftButton()}
         <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
