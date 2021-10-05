@@ -1,3 +1,28 @@
+/* #gallery-container {
+  display: grid;
+  grid-template-columns: (12, auto);
+  grid-template-rows: (3, auto);
+}
+
+#left-arrow-default {
+  display: grid;
+  grid-row: (2, 3);
+  margin-left: 10em;
+  align-content: center;
+  position: fixed;
+  z-index: 999;
+}
+
+#right-arrow-default {
+  display: grid;
+  margin-right: 10em;
+  align-content: center;
+  justify-self: end;
+  align-self: center;
+  position: fixed;
+  z-index: 999
+} */
+
 .mainPhoto {
   max-height: 100%;
   max-width: 100%;
@@ -5,7 +30,7 @@
   min-height: 25%;
   aspect-ratio: auto;
   margin: auto;
-  display: block;
+  display: grid;
 }
 
 .mainPhoto:hover {
