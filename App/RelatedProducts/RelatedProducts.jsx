@@ -18,6 +18,8 @@ class RelatedProducts extends React.Component {
     this.getInfo = this.getInfo.bind(this);
     this.moveLeft = this.moveLeft.bind(this);
     this.moveRight = this.moveRight.bind(this);
+    this.renderLeftButton = this.renderLeftButton.bind(this);
+    this.renderRightButton = this.renderRightButton.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -28,8 +30,15 @@ class RelatedProducts extends React.Component {
     this.loadProducts();
   }
 
+  getInfo() {
+    $.get('/products', {product_id: this.context}, (data) => {
+      this.setState({
+        overviewProductInfo: data,
+      });
+    });
+  }
+
   getRelated() {
-    // eslint-disable-next-line camelcase
     $.get('/products', {product_id: this.context, endpoint: 'related'}, (data) => {
       this.setState({
         related: data
@@ -67,26 +76,37 @@ class RelatedProducts extends React.Component {
     }
   }
 
-    //Retrieve product name and category
-    getInfo() {
-      // eslint-disable-next-line camelcase
-      $.get('/products', {product_id: this.context}, (data) => {
-        this.setState({
-          overviewProductInfo: data,
-        });
-      });
-    }
+  renderLeftButton() {
+      if(this.state.carouselStart > 0) {
+        return (
+          <div>
+            <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveLeft} size={40}/>
+          </div>
+        )
+      }
+  }
+
+  renderRightButton() {
+      if(this.state.carouselStart < 4) {
+        return (
+          <div>
+            <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveRight} size={40}/>
+          </div>
+        )
+      }
+  }
 
   render() {
     return (
       <div>
+
+        {this.renderRightButton()}
+        {this.renderLeftButton()}
+
         <p className="related-title">Related Products</p>
-        <p className="trackable-relatedProducts" onClick={this.moveLeft}>SCROLL LEFT</p>
-        <p className="trackable-relatedProducts" onClick={this.moveRight}>SCROLL RIGHT</p>
         <div id="outfit-window" data-testid={'related-products-window'}>
           {this.loadProducts()}
         </div>
-
       </div>
     );
   }
