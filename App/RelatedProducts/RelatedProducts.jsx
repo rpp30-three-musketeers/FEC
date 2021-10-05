@@ -77,23 +77,23 @@ class RelatedProducts extends React.Component {
   }
 
   renderLeftButton() {
-      if(this.state.carouselStart > 0) {
-        return (
-          <div>
-            <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveLeft} size={40}/>
-          </div>
-        )
-      }
+    if(this.state.carouselStart > 0) {
+      return (
+        <div>
+          <BiChevronLeftSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveLeft} size={40}/>
+        </div>
+      )
+    }
   }
 
   renderRightButton() {
-      if(this.state.carouselStart < 4) {
-        return (
-          <div>
-            <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveRight} size={40}/>
-          </div>
-        )
-      }
+    if(this.state.carouselStart < 4) {
+      return (
+        <div>
+          <BiChevronRightSquare className="trackable-relatedProducts" id="scroll-icon" onClick={this.moveRight} size={40}/>
+        </div>
+      )
+    }
   }
 
   render() {
