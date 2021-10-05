@@ -65,7 +65,7 @@ class Gallery extends React.Component {
       return (
         <div id={'gallery-container'} data-testid={'gallery-container'}>
           {this.displayModal()}
-          <GallerySlider currentStyle={this.props.currentStyle} photoSelector={this.props.photoSelector} topPhotoIndex={this.props.topPhotoIndex} moveThumbnailsDown={this.props.moveThumbnailsDown} moveThumbnailsUp={this.props.moveThumbnailsUp} />
+          <GallerySlider currentStyle={this.props.currentStyle} photoSelector={this.props.photoSelector} topPhotoIndex={this.props.topPhotoIndex} moveThumbnailsDown={this.props.moveThumbnailsDown} moveThumbnailsUp={this.props.moveThumbnailsUp} selectedPhotoIndex={this.props.selectedPhotoIndex} />
           {this.renderLeftArrow()}
           <img className={'mainPhoto'} onClick={this.toggleModal} src={(this.props.currentStyle.photos)[this.props.selectedPhotoIndex].url}></img>
           {this.renderRightArrow()}
