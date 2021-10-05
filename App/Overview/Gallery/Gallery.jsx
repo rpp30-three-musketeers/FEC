@@ -39,10 +39,10 @@ class Gallery extends React.Component {
   }
 
   renderLeftArrow() {
-    if (this.props.selectedPhotoIndex === undefined || this.props.selectedPhotoIndex === 0) {
+    if (this.props.selectedPhotoIndex === undefined || this.props.selectedPhotoIndex === 0 || this.state.modalView === true) {
       return (<div id={'left-arrow-default'} />)
     } else {
-      return (<div id={'left-arrow-default'}><FontAwesomeIcon icon={faAngleLeft} className={'default-gallery-arrow'} onClick={this.navigateDefaultLeft} /></div>)
+      return (<div id={'left-arrow-default'}><FontAwesomeIcon icon={faAngleLeft} className={'gallery-arrow'} onClick={this.navigateDefaultLeft} /></div>)
     }
   }
 
@@ -51,10 +51,10 @@ class Gallery extends React.Component {
   }
 
   renderRightArrow() {
-    if (this.props.selectedPhotoIndex === undefined || this.props.selectedPhotoIndex >= this.props.currentStyle.photos.length - 1) {
+    if (this.props.selectedPhotoIndex === undefined || this.props.selectedPhotoIndex >= this.props.currentStyle.photos.length - 1 || this.state.modalView === true) {
       return (<div id={'right-arrow-default'} />)
     } else {
-      return (<div id={'right-arrow-default'}><FontAwesomeIcon icon={faAngleRight} className={'default-gallery-arrow'} onClick={this.navigateDefaultRight} /></div>)
+      return (<div id={'right-arrow-default'}><FontAwesomeIcon icon={faAngleRight} className={'gallery-arrow'} onClick={this.navigateDefaultRight} /></div>)
     }
   }
 

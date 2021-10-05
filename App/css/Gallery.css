@@ -1,27 +1,32 @@
-/* #gallery-container {
+ #gallery-container {
   display: grid;
-  grid-template-columns: (12, auto);
-  grid-template-rows: (3, auto);
+  grid-template-columns: repeat(12, 8.33%);
+  grid-template-rows: repeat(3, auto);
 }
 
 #left-arrow-default {
   display: grid;
-  grid-row: (2, 3);
-  margin-left: 10em;
-  align-content: center;
+  /* grid-row: 1 / 4;
+  /* margin-left: 10em; */
+  /* grid-column: 3 / 4; */
+  align-self: center;
+  justify-self: start;
   position: fixed;
-  z-index: 999;
+  margin-left: 7em;
+  z-index: 3;
 }
 
 #right-arrow-default {
   display: grid;
-  margin-right: 10em;
-  align-content: center;
-  justify-self: end;
+  /* grid-row: 1 / 4;
+  /* margin-left: 10em; */
+  /* grid-column: 3 / 4; */
   align-self: center;
+  justify-self: end;
   position: fixed;
-  z-index: 999
-} */
+  margin-right: 7em;
+  z-index: 3;
+}
 
 .mainPhoto {
   max-height: 100%;
@@ -31,6 +36,10 @@
   aspect-ratio: auto;
   margin: auto;
   display: grid;
+  grid-column: 1 / 13;
+  grid-row: 1 / 3;
+  align-self: center;
+  justify-self: center;
 }
 
 .mainPhoto:hover {
