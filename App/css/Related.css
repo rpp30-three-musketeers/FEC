@@ -2,22 +2,55 @@
   /* width: 1000px;
   height: 500px; */
   width: 100%;
-  height: 550px;
+  height: 650px;
   /* border: 1px solid blue; */
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   margin-bottom: 2%;
   box-sizing: border-box;
+  position: relative;
+}
+
+.related-products {
+  position: relative;
+}
+
+#scroll-icon-right {
+  position: absolute;
+  z-index: 3;
+  right: 1%;
+  top: 45%;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#scroll-icon-left {
+  position: absolute;
+  z-index: 3;
+  left: 1%;
+  top: 45%;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#scroll-icon-left-outfit {
+  position: absolute;
+  z-index: 3;
+  left: 26%;
+  top: 45%;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 #product-card {
-  width: 98%;
+  width: 25%;
   height: 90%;
   border: 1px solid black;
   box-sizing: border-box;
   display: grid;
   grid-template-rows: 80% 20%;
-  position: relative;
+  position: absolute;
+  z-index: 0;
 }
 
 #add-outfit-card {
