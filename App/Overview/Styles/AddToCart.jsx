@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, InputLabel, MenuItem, FormControl, FormHelperText, Button } from '@mui/material'
+import { Select, InputLabel, MenuItem, FormControl, FormHelperText, Button } from '@mui/material';
 
 class AddToCart extends React.Component {
   constructor(props) {
