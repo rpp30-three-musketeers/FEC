@@ -4,14 +4,20 @@ import { Select, InputLabel, MenuItem, FormControl, FormHelperText } from '@mui/
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selectedSKU: 'default', selectedQty: 1};
+    this.state = {};
     this.checkForAvailableSizes = this.checkForAvailableSizes.bind(this);
     this.renderSizeSelector = this.renderSizeSelector.bind(this);
     this.getSizes = this.getSizes.bind(this);
-    this.changeSize = this.changeSize.bind(this);
+    // this.changeSize = this.changeSize.bind(this);
     this.renderQtySelector = this.renderQtySelector.bind(this);
-    this.changeQuantity = this.changeQuantity.bind(this);
+    // this.changeQuantity = this.changeQuantity.bind(this);
   }
+
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   return {
+  //     selectedSKU: 'default', selectedQty: 1
+  //   }
+  // }
 
   checkForAvailableSizes() {
     if (!this.props.skus || this.props.skus.length === 0) {
@@ -37,13 +43,13 @@ class AddToCart extends React.Component {
     return sizes;
   }
 
-  changeSize(e) {
-    if (e.target.value === 'default') {
-      this.setState({selectedSKU: 'default', selectedQty: 1})
-    } else {
-      this.setState({selectedSKU: e.target.value, selectedQty: 1})
-    }
-  }
+  // changeSize(e) {
+  //   if (e.target.value === 'default') {
+  //     this.setState({selectedSKU: 'default', selectedQty: 1})
+  //   } else {
+  //     this.setState({selectedSKU: e.target.value, selectedQty: 1})
+  //   }
+  // }
 
   renderSizeSelector() {
     // Only render options for SKU's that exist and have an available quantity
@@ -55,9 +61,9 @@ class AddToCart extends React.Component {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             displayEmpty
-            value={this.state.selectedSKU}
+            value={this.props.selectedSKU}
             label="Size"
-            onChange={this.changeSize}
+            onChange={this.props.changeSize}
           >
             <MenuItem value={'default'}>SELECT SIZE</MenuItem>
             {this.getSizes().map((sku, index) => {return (<MenuItem key={index} value={sku.sku}>{sku.size}</MenuItem>)})}
@@ -87,7 +93,7 @@ class AddToCart extends React.Component {
   }
 
   renderQtySelector() {
-    if (this.state.selectedSKU === 'default') {
+    if (this.props.selectedSKU === 'default') {
       return (
         <FormControl sx={{ m: 1, minWidth: 60 }} disabled>
           <InputLabel id="demo-simple-select-disabled-label">Qty</InputLabel>
@@ -105,7 +111,7 @@ class AddToCart extends React.Component {
       )
     } else {
       let qtyOptions = [];
-      for (var i = 1; i <= this.props.skus[this.state.selectedSKU].quantity && i <= 15; i++) {
+      for (var i = 1; i <= this.props.skus[this.props.selectedSKU].quantity && i <= 15; i++) {
         qtyOptions.push(i);
       }
       return (
@@ -115,9 +121,9 @@ class AddToCart extends React.Component {
             labelId="demo-simple-select-label"
             id="demo-simple-select-"
             displayEmpty
-            value={this.state.selectedQty}
+            value={this.props.selectedQty}
             label="Qty"
-            onChange={this.changeQuantity}
+            onChange={this.props.changeQuantity}
           >
             {qtyOptions.map((qty) => {return ((<MenuItem key={qty} value={qty}>{qty}</MenuItem>))})}
             {/* <MenuItem value={1}>1</MenuItem> */}
@@ -127,9 +133,9 @@ class AddToCart extends React.Component {
     }
   }
 
-  changeQuantity(e) {
-    this.setState({selectedQty: e.target.value})
-  }
+  // changeQuantity(e) {
+  //   this.setState({selectedQty: e.target.value})
+  // }
 
   render() {
     return (

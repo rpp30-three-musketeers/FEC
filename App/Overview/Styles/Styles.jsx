@@ -31,7 +31,7 @@ class Styles extends React.Component {
           <h3 className='style-title'>Style ></h3>
           <h3 className='style-title' style={{fontWeight: 'normal'}}>{this.props.styles[this.props.selectedStyleIndex].name}</h3>
           <StylePicker styles={this.props.styles} selectedStyleIndex={this.props.selectedStyleIndex} styleSelector={this.props.styleSelector} />
-          <AddToCart styles={this.props.styles} selectedStyleIndex={this.props.selectedStyleIndex} skus={this.props.styles[this.props.selectedStyleIndex].skus} />
+          <AddToCart styles={this.props.styles} selectedStyleIndex={this.props.selectedStyleIndex} skus={this.props.styles[this.props.selectedStyleIndex].skus} changeSize={this.props.changeSize} changeQuantity={this.props.changeQuantity} selectedSKU={this.props.selectedSKU} selectedQty={this.props.selectedQty} />
         </div>
       )
     }

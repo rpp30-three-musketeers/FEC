@@ -12,11 +12,13 @@ import ProductIdContext from '../context.jsx';
 class Overview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {selectedSKU: 'default', selectedQty: 1};
     this.styleSelector = this.styleSelector.bind(this);
     this.photoSelector = this.photoSelector.bind(this);
     this.moveThumbnailsDown = this.moveThumbnailsDown.bind(this);
     this.moveThumbnailsUp = this.moveThumbnailsUp.bind(this);
+    this.changeSize = this.changeSize.bind(this);
+    this.changeQuantity = this.changeQuantity.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -30,8 +32,20 @@ class Overview extends React.Component {
     });
   }
 
+  changeSize(e) {
+    if (e.target.value === 'default') {
+      this.setState({selectedSKU: 'default', selectedQty: 1})
+    } else {
+      this.setState({selectedSKU: e.target.value, selectedQty: 1})
+    }
+  }
+
+  changeQuantity(e) {
+    this.setState({selectedQty: e.target.value})
+  }
+
   styleSelector(index) {
-    this.setState({selectedStyleIndex: index, selectedPhotoIndex: 0, topPhotoIndex: 0});
+    this.setState({selectedStyleIndex: index, selectedPhotoIndex: 0, topPhotoIndex: 0, selectedSKU: 'default', selectedQty: 1});
   }
 
   photoSelector(index) {
@@ -54,7 +68,7 @@ class Overview extends React.Component {
           <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex} topPhotoIndex={this.state.topPhotoIndex} moveThumbnailsDown={this.moveThumbnailsDown} moveThumbnailsUp={this.moveThumbnailsUp}/>
           <div id={'basics'}>
             <Title />
-            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} />
+            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} changeSize={this.changeSize} changeQuantity={this.changeQuantity} selectedSKU={this.state.selectedSKU} selectedQty={this.state.selectedQty} />
           </div>
           <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
           <Features features={this.state.productFeatures} />
