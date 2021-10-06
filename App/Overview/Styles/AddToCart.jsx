@@ -1,5 +1,6 @@
 import React from 'react';
 import { Select, InputLabel, MenuItem, FormControl, FormHelperText, Button } from '@mui/material';
+import EmptyStar from '../../StarRatings/icons/EmptyStar.jsx';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -164,7 +165,7 @@ class AddToCart extends React.Component {
           {this.renderQtySelector()}
         </FormControl>
         {this.renderAddToBag()}
-        <Button sx={{ m: 1, minWidth: 60 }} variant="contained">STAR</Button>
+        <Button sx={{ m: 1, minWidth: 60 }} variant="contained"><EmptyStar /></Button>
       </div>
     )
   }
