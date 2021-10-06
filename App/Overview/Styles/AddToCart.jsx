@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, InputLabel, MenuItem, FormControl, FormHelperText } from '@mui/material'
+import { Select, InputLabel, MenuItem, FormControl, FormHelperText, Button } from '@mui/material'
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class AddToCart extends React.Component {
     this.getSizes = this.getSizes.bind(this);
     // this.changeSize = this.changeSize.bind(this);
     this.renderQtySelector = this.renderQtySelector.bind(this);
+    this.renderAddToBag = this.renderAddToBag.bind(this);
     // this.changeQuantity = this.changeQuantity.bind(this);
   }
 
@@ -133,6 +134,18 @@ class AddToCart extends React.Component {
     }
   }
 
+  renderAddToBag() {
+    if (this.props.selectedSKU === 'default') {
+      return (
+        <Button sx={{ m: 1, minWidth: 120 }} variant="contained" disabled>ADD TO BAG</Button>
+      )
+    } else {
+      return (
+        <Button sx={{ m: 1, minWidth: 120 }} variant="contained">ADD TO BAG</Button>
+      )
+    }
+  }
+
   // changeQuantity(e) {
   //   this.setState({selectedQty: e.target.value})
   // }
@@ -150,6 +163,8 @@ class AddToCart extends React.Component {
         <FormControl fullWidth>
           {this.renderQtySelector()}
         </FormControl>
+        {this.renderAddToBag()}
+        <Button sx={{ m: 1, minWidth: 60 }} variant="contained">STAR</Button>
       </div>
     )
   }
