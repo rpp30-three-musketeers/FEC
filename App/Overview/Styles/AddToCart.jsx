@@ -4,9 +4,11 @@ import { Select, InputLabel, MenuItem, FormControl, FormHelperText } from '@mui/
 class AddToCart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {selectedSKU: null};
+    this.state = {selectedSKU: 'default'};
     this.checkForAvailableSizes = this.checkForAvailableSizes.bind(this);
     this.renderSizeSelector = this.renderSizeSelector.bind(this);
+    this.getSizes = this.getSizes.bind(this);
+    this.changeSize = this.changeSize.bind(this);
   }
 
   checkForAvailableSizes() {
@@ -23,27 +25,40 @@ class AddToCart extends React.Component {
     }
   }
 
+  getSizes() {
+    let sizes = [];
+    for (var x in this.props.skus) {
+      if (this.props.skus[x].quantity > 0) {
+        sizes.push({sku: x, size: this.props.skus[x].size, quantity: this.props.skus[x].quantity})
+      }
+    }
+    return sizes;
+  }
+
+  changeSize(e) {
+    if (e.target.value === 'default') {
+      this.setState({selectedSKU: 'default'})
+    } else {
+      this.setState({selectedSKU: e.target.value})
+    }
+  }
+
   renderSizeSelector() {
     // Only render options for SKU's that exist and have an available quantity
     if (this.checkForAvailableSizes()) {
-      let defaultOption = 'OUT OF STOCK';
       return (
-        <FormControl sx={{ m: 1, minWidth: 120 }} disabled>
-          <InputLabel id="demo-simple-select-disabled-label">HasStock</InputLabel>
+        <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-label">Size</InputLabel>
           <Select
-            labelId="demo-simple-select-disabled-label"
-            id="demo-simple-select-disabled"
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
             displayEmpty
-            value={'default'}
+            value={this.state.selectedSKU}
             label="Size"
-            // onChange={handleChange}
+            onChange={this.changeSize}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={'default'}>OUT OF STOCK</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={'default'}>SELECT SIZE</MenuItem>
+            {this.getSizes().map((sku, index) => {return (<MenuItem key={index} value={sku.sku}>{sku.size}</MenuItem>)})}
           </Select>
         </FormControl>
       )
@@ -56,15 +71,13 @@ class AddToCart extends React.Component {
             id="demo-simple-select-disabled"
             displayEmpty
             value={'default'}
-            label="Age"
+            label="Size"
             // onChange={handleChange}
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
             <MenuItem value={'default'}>OUT OF STOCK</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </FormControl>
       )
