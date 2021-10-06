@@ -138,7 +138,8 @@ class AddToCart extends React.Component {
   renderAddToBag() {
     if (this.props.selectedSKU === 'default') {
       return (
-        <Button sx={{ m: 1, minWidth: 120 }} variant="contained" disabled>ADD TO BAG</Button>
+        // <Button sx={{ m: 1, minWidth: 120 }} variant="contained" disabled>ADD TO BAG</Button>
+        <div></div>
       )
     } else {
       return (
