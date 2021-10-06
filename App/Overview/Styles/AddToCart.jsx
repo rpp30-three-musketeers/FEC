@@ -1,6 +1,7 @@
 import React from 'react';
 import { Select, InputLabel, MenuItem, FormControl, FormHelperText, Button } from '@mui/material';
 import EmptyStar from '../../StarRatings/icons/EmptyStar.jsx';
+import Outfit from '../../RelatedProducts/Outfit.jsx';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class AddToCart extends React.Component {
     // Only render options for SKU's that exist and have an available quantity
     if (this.checkForAvailableSizes()) {
       return (
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <FormControl sx={{ m: 1, minWidth: 160 }}>
           <InputLabel id="demo-simple-select-label">Size</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -74,7 +75,7 @@ class AddToCart extends React.Component {
       )
     } else {
       return (
-        <FormControl sx={{ m: 1, minWidth: 120 }} disabled>
+        <FormControl sx={{ m: 1, minWidth: 160 }} disabled>
           <InputLabel id="demo-simple-select-disabled-label">Size</InputLabel>
           <Select
             labelId="demo-simple-select-disabled-label"
@@ -138,12 +139,11 @@ class AddToCart extends React.Component {
   renderAddToBag() {
     if (this.props.selectedSKU === 'default') {
       return (
-        // <Button sx={{ m: 1, minWidth: 120 }} variant="contained" disabled>ADD TO BAG</Button>
         <div></div>
       )
     } else {
       return (
-        <Button sx={{ m: 1, minWidth: 120 }} variant="contained">ADD TO BAG</Button>
+        <Button sx={{ m: 1, minWidth: 160 }} variant="contained" onClick={this.props.addToBagClick}>ADD TO BAG</Button>
       )
     }
   }
@@ -166,7 +166,7 @@ class AddToCart extends React.Component {
           {this.renderQtySelector()}
         </FormControl>
         {this.renderAddToBag()}
-        <Button sx={{ m: 1, minWidth: 60 }} variant="contained"><EmptyStar /></Button>
+        <Button sx={{ m: 1, minWidth: 60, height: '4em', fontSize: '1em'}} variant="contained" onClick={Outfit.addToOutfit}><EmptyStar /></Button>
       </div>
     )
   }

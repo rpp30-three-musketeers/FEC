@@ -19,6 +19,7 @@ class Overview extends React.Component {
     this.moveThumbnailsUp = this.moveThumbnailsUp.bind(this);
     this.changeSize = this.changeSize.bind(this);
     this.changeQuantity = this.changeQuantity.bind(this);
+    this.addToBagClick = this.addToBagClick.bind(this);
   }
 
   static contextType = ProductIdContext;
@@ -42,6 +43,10 @@ class Overview extends React.Component {
 
   changeQuantity(e) {
     this.setState({selectedQty: e.target.value})
+  }
+
+  addToBagClick() {
+    this.setState({selectedSKU: 'default', selectedQty: 1});
   }
 
   styleSelector(index) {
@@ -68,7 +73,7 @@ class Overview extends React.Component {
           <Gallery currentStyle={this.state.styles[this.state.selectedStyleIndex]} photoSelector={this.photoSelector} selectedPhotoIndex={this.state.selectedPhotoIndex} topPhotoIndex={this.state.topPhotoIndex} moveThumbnailsDown={this.moveThumbnailsDown} moveThumbnailsUp={this.moveThumbnailsUp}/>
           <div id={'basics'}>
             <Title />
-            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} changeSize={this.changeSize} changeQuantity={this.changeQuantity} selectedSKU={this.state.selectedSKU} selectedQty={this.state.selectedQty} />
+            <Styles styles={this.state.styles} selectedStyleIndex={this.state.selectedStyleIndex} styleSelector={this.styleSelector} changeSize={this.changeSize} changeQuantity={this.changeQuantity} selectedSKU={this.state.selectedSKU} selectedQty={this.state.selectedQty} addToBagClick={this.addToBagClick} />
           </div>
           <Description slogan={this.state.productSlogan} description={this.state.productDescription} />
           <Features features={this.state.productFeatures} />
