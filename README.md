@@ -19,6 +19,9 @@ The Related Products component dynamically renders a list of products that are s
 
 The Outfit component allows users to save the current product to an Outfit (similar to a shopping list).  Each user's outfit list is saved in their local system storage so that it is unique to them, and can persist across browser sessions.  Clicking on the 'X' icon in the corner of a product card will remove the product from the user's outfit list.
 
+![related-products](screenshots/relatedProducts.png)
+![outfit](screenshots/outfit.png)
+
 ### Ratings & Reviews Component
 The Ratings & Reviews Component is broken into 3 main sections - a summary, a reviews list, and a new review form.
 
@@ -27,6 +30,8 @@ The Ratings & Review summary displays the current product's average star rating,
 The Reviews list displays all of the reviews for the current product (feedback, user photos, individual star rating etc.).  Reviews will be loaded 2 at a time after each click on the "Show More" button.
 
 The New Review form will prompt the user to enter feedback, assign a star rating, and answer various questions related to the current product.  Users will also also have the ability to upload photos as part of their review submission.
+
+![ratings-reviews](screenshots/ratingsReviews.png)
 
 ## Installation
 
