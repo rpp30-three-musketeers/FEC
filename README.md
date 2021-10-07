@@ -2,9 +2,7 @@
 
 Project Atelier is a front-end user interface for a fictional e-commerce client - developed as part of the HackReactor senior curriculum.
 
-## *** TABLE OF CONTENTS HERE ***
-
-## Description
+## Components
 Project Atelier contains 3 main interface components - an Overview, Related Products/Outfit, and Ratings/Reviews.  Product information is pulled from HackReactor's API.
 
 ### Overview Component
@@ -13,6 +11,8 @@ The Overview component contains basic information about the current product - th
 Upon expanding the main photo, a full-screen modal will open which allows the user to zoom in (2.5x) and pan around the image.
 
 Available sizes and qty's are rendered based on availability.  If any product or style has no available sizes, the Size and Qty boxes will be inactivated and an "OUT OF STOCK" message will be displayed.
+
+![overview-component](screenshots/overview.png)
 
 ### Related Products & Outfit Component
 The Related Products component dynamically renders a list of products that are similar to the currently-viewed product (as determined by the HackReactor API).  If the list contains more related products than will fit on the screen, arrows will appear allowing the user to scroll right & left through the options.  Clicking on a related product's image will cause the browser to navigate to that product's page.
