@@ -128,6 +128,7 @@ app.post('/reviews', (req, res)=>{
   // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
   console.log(req.body.product_id, ' product id');
+  console.log(req.body);
 
   axios({
     method: 'post',
@@ -156,6 +157,37 @@ app.post('/reviews', (req, res)=>{
       console.log(err);
       return res.sendStatus(500).end();
     });
+});
+
+app.post('/reviews/helpful', (req, res)=>{
+  axios({
+    method: 'put',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/' + req.body.review_id + '/helpful',
+    headers: {
+      Authorization: credentials.authorization,
+    },
+
+  }).then(()=> {
+    return res.sendStatus(204);
+  }).catch((err)=>{
+    console.log(err);
+    return res.sendStatus(500);
+  });
+});
+app.post('/reviews/report', (req, res)=>{
+  axios({
+    method: 'put',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/' + req.body.review_id + '/report',
+    headers: {
+      Authorization: credentials.authorization,
+    },
+
+  }).then(()=> {
+    return res.sendStatus(204);
+  }).catch((err)=>{
+    console.log(err);
+    return res.sendStatus(500);
+  });
 });
 
 app.get('/get-average-rating', (req, res) => {
