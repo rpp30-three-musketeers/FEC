@@ -16,12 +16,6 @@ class AddToCart extends React.Component {
     // this.changeQuantity = this.changeQuantity.bind(this);
   }
 
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   return {
-  //     selectedSKU: 'default', selectedQty: 1
-  //   }
-  // }
-
   checkForAvailableSizes() {
     if (!this.props.skus || this.props.skus.length === 0) {
       return false;
@@ -45,14 +39,6 @@ class AddToCart extends React.Component {
     }
     return sizes;
   }
-
-  // changeSize(e) {
-  //   if (e.target.value === 'default') {
-  //     this.setState({selectedSKU: 'default', selectedQty: 1})
-  //   } else {
-  //     this.setState({selectedSKU: e.target.value, selectedQty: 1})
-  //   }
-  // }
 
   renderSizeSelector() {
     // Only render options for SKU's that exist and have an available quantity
@@ -129,7 +115,6 @@ class AddToCart extends React.Component {
             onChange={this.props.changeQuantity}
           >
             {qtyOptions.map((qty) => {return ((<MenuItem key={qty} value={qty}>{qty}</MenuItem>))})}
-            {/* <MenuItem value={1}>1</MenuItem> */}
           </Select>
         </FormControl>
       )
@@ -148,17 +133,9 @@ class AddToCart extends React.Component {
     }
   }
 
-  // changeQuantity(e) {
-  //   this.setState({selectedQty: e.target.value})
-  // }
-
   render() {
     return (
       <div id={'add-to-cart'}>
-        {/* <button>Hello</button>
-        <button>Hello</button>
-        <button>Hello</button>
-        <button>Hello</button> */}
         <FormControl fullWidth>
           {this.renderSizeSelector()}
         </FormControl>
@@ -166,7 +143,7 @@ class AddToCart extends React.Component {
           {this.renderQtySelector()}
         </FormControl>
         {this.renderAddToBag()}
-        <Button sx={{ m: 1, minWidth: 60, height: '4em', fontSize: '1em'}} variant="contained" onClick={Outfit.addToOutfit}><EmptyStar /></Button>
+        <Button sx={{ m: 1, minWidth: 60, height: '4em', fontSize: '1em'}} variant="contained" onClick={() => {Outfit.prototype.addToOutfit()}}><EmptyStar /></Button>
       </div>
     )
   }
