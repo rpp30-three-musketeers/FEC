@@ -62,3 +62,10 @@ img.style-swatch {
   vertical-align: middle;
 }
 
+#add-to-cart {
+  margin-top: 2em;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  grid-gap: 1em;
+}

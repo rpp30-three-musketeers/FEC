@@ -8,6 +8,7 @@
 .product-title {
   font-size: 3.5rem;
   margin-top: 0.1em;
+  margin-bottom: 0.15em;
 }
 .readAllReviewsLink:hover {
   cursor: pointer;
