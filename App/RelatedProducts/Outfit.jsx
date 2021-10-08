@@ -129,7 +129,7 @@ renderRightButton() {
       <div className="related-products">
         {this.renderRightButton()}
         {this.renderLeftButton()}
-        <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
+        <h1 className="related-title" data-testid={'outfit-window'}>Your Outfit</h1>
         <div id="outfit-window">
           <div id="add-outfit-card">
             <p>Add To Your Outfit</p><br/>

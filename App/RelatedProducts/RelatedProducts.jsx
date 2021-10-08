@@ -100,7 +100,7 @@ class RelatedProducts extends React.Component {
   render() {
     return (
       <div className="related-products">
-        <p className="related-title">Related Products</p>
+        <h1 className="related-title">Related Products</h1>
           {this.renderLeftButton()}
           {this.renderRightButton()}
         <div id="outfit-window" data-testid={'related-products-window'}>
