@@ -11,7 +11,11 @@ class Header extends React.Component {
   render() {
     return (
     <div id={'site-header'}>
+      <div>
       <GiSwordHilt size={50}/>
+      <GiSwordHilt size={50}/>
+      <GiSwordHilt size={50}/>
+      </div>
       Atelièr
       <BiSearchAlt size={50}/>
     </div>);
