@@ -56,6 +56,7 @@ class Outfit extends React.Component {
     }
   }
 
+
   //Removes productID from outfit
   removeFromOutfit(target) {
     let currentOutfit = this.state.outfit;
@@ -128,10 +129,10 @@ renderRightButton() {
       <div className="related-products">
         {this.renderRightButton()}
         {this.renderLeftButton()}
-        <p className="related-title" data-testid={'outfit-window'}>Your Outfit</p>
+        <h1 className="related-title" data-testid={'outfit-window'}>Your Outfit</h1>
         <div id="outfit-window">
           <div id="add-outfit-card">
-            <p>Add To Outfit</p><br/>
+            <p>Add To Your Outfit</p><br/>
             <p id="add-outfit-icon" onClick={this.addToOutfit} className='trackable-Outfit'><FaPlus size={50}/></p>
           </div>
           {this.loadOutfit()}

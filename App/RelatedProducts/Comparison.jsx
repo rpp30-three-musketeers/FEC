@@ -21,12 +21,10 @@ class Comparison extends React.Component {
     let relatedFeatures = this.props.relatedProduct.features;
     let combinedFeatures = [];
 
-    //adds overview product data from props to container variable
     mainFeatures.forEach((item) => {
       let node = {};
       node.feature = item.feature;
 
-      //if feature does not have discreet value assigns boolean
       if(item.value === null) {
         node.mainValue = '✔';
       } else {
@@ -40,7 +38,6 @@ class Comparison extends React.Component {
     relatedFeatures.forEach((item) => {
       let targetFeature = item.feature;
       var featureIsShared = false;
-      //compare each feature in related to container array. If present assign related value
       for (var i = 0; i < combinedFeatures.length; i++) {
         if (combinedFeatures[i].feature === targetFeature) {
           featureIsShared = true;
@@ -53,7 +50,6 @@ class Comparison extends React.Component {
         }
 
       }
-      //if related feature not present, add with overvalue set to false
       if(!featureIsShared){
         let node = {};
         node.feature = item.feature;
@@ -67,7 +63,6 @@ class Comparison extends React.Component {
       }
     });
 
-    // console.log('combinedFeatures', combinedFeatures);
     this.setState({
       featuresList: combinedFeatures
     })
@@ -93,8 +88,7 @@ class Comparison extends React.Component {
     return(
       <div id="compare-products" onClick={this.props.close} className='trackable-ComparisonModal'>
         <div id="modal">
-        <span id="product-card-icon" className='trackable-ComparisonModal' onClick={this.props.close}><FaTimesCircle/></span>
-          Compare
+        <span id="comparison-icon" className='trackable-ComparisonModal' onClick={this.props.close}><FaTimesCircle/></span>
           <table className={"modal-table"}>
             <tbody>
             <tr>

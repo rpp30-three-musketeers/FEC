@@ -1,10 +1,11 @@
 #outfit-window {
   /* width: 1000px;
   height: 500px; */
-  width: 100%;
+  width: 80%;
   height: 650px;
   /* border: 1px solid blue; */
   display: grid;
+  margin: auto;
   grid-template-columns: 25% 25% 25% 25%;
   margin-bottom: 2%;
   box-sizing: border-box;
@@ -18,7 +19,7 @@
 #scroll-icon-right {
   position: absolute;
   z-index: 3;
-  right: 1%;
+  right: 11em;
   top: 45%;
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
@@ -27,7 +28,7 @@
 #scroll-icon-left {
   position: absolute;
   z-index: 3;
-  left: 1%;
+  left: 11%;
   top: 45%;
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
@@ -36,7 +37,7 @@
 #scroll-icon-left-outfit {
   position: absolute;
   z-index: 3;
-  left: 26%;
+  left: 31%;
   top: 45%;
   color: black;
   background-color: rgba(255, 255, 255, 0.5);
@@ -133,4 +134,13 @@
   background-size: 50%; /* background half the size of the div */
   background-position: 50%; /* to center it */
   border-radius: 15px;
+}
+
+#comparison-icon {
+  position: absolute;
+  color: black;
+  /* right: 3px;
+  top: 3px; */
+  background-color: whitesmoke;
+  border-radius: 25px;
 }
