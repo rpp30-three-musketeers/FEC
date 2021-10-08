@@ -134,3 +134,12 @@
   background-position: 50%; /* to center it */
   border-radius: 15px;
 }
+
+#comparison-icon {
+  position: absolute;
+  color: black;
+  /* right: 3px;
+  top: 3px; */
+  background-color: whitesmoke;
+  border-radius: 25px;
+}
