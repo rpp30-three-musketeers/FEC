@@ -120,9 +120,7 @@ class App extends React.Component {
       currentProductId: 47421,
       currentProductName: 'Camo Onesie'
     };
-
     this.productIdExtractor = this.productIdExtractor.bind(this);
-
   }
 
   productIdExtractor(url) {
