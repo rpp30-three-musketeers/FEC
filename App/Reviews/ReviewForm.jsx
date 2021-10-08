@@ -99,104 +99,112 @@ class ReviewForm extends React.Component {
     console.log(this.props, 'reviewForm props');
 
     return (
-      <div id = 'reviewModal'>
-        <button id = 'exit' onClick = {this.props.exit}>X</button>
-        <h2>Write Your Review</h2>
-        <p>About the {this.props.productName}</p>
-        <form id = "reviewForm" onSubmit = {this.handleSubmitReview}>
-          <label>Overall Rating:
-            <input type="radio" value = "1" name = "rating"/>
-            <input type="radio" value = "2" name = "rating"/>
-            <input type="radio" value = "3" name = "rating"/>
-            <input type="radio" value = "4" name = "rating"/>
-            <input type="radio" value = "5" name = "rating"/>
-          </label> <br/>
-          <label> Do You Recommend this Product?: <br/>
-            <input type="radio" value = "Yes" name = "recommend"/> Yes<br/>
-            <input type="radio" value = "No" name = "recommend"/> No<br/>
-          </label> <br/>
+      <div id = {'reviewContainer'}>
+        <div id = 'reviewModal'>
+          <div id = {'reviewContent'}>
+            <button id = 'exit' onClick = {this.props.exit}>X</button>
+            <h1>Write Your Review</h1>
+            <h3>About the {this.props.productName}</h3>
+            <form id = "reviewForm" onSubmit = {this.handleSubmitReview}>
+              <label>Overall Rating:
+                <input type="radio" value = "1" name = "rating"/>
+                <input type="radio" value = "2" name = "rating"/>
+                <input type="radio" value = "3" name = "rating"/>
+                <input type="radio" value = "4" name = "rating"/>
+                <input type="radio" value = "5" name = "rating"/>
+              </label> <br/>
+              <label className = {'flexLabel'}> Do You Recommend this Product?:
+                <input type="radio" value = "Yes" name = "recommend"/> Yes
+                <input type="radio" value = "No" name = "recommend"/> No
+              </label> <br/>
 
-          {Object.keys(this.props.characteristics).map((key, index)=>{
-            let one, two, three, four, five;
-            if(key === 'Size') {
-              one = 'A size too small';
-              two = '½ a size too small';
-              three = 'Perfect';
-              four = '½ a size too big';
-              five = 'A size too wide';
-            } else if(key === 'Width') {
-              one = 'Too narrow';
-              two = 'Slightly narrow';
-              three = 'Perfect';
-              four = 'Slightly wide';
-              five = 'Too wide';
-            } else if(key === 'Comfort') {
-              one = 'Uncomfortable';
-              two = 'Slightly uncomfortable';
-              three = 'Ok';
-              four = 'Comfortable';
-              five = 'Perfect';
-            } else if(key === 'Quality') {
-              one = 'Poor';
-              two = 'Below average';
-              three = 'What I expected';
-              four = 'Pretty great';
-              five = 'Perfect';
-            } else if(key === 'Length') {
-              one = 'Runs Short';
-              two = 'Runs slightly short';
-              three = 'Perfect';
-              four = 'Runs slightly long';
-              five = 'Runs long';
-            } else if(key === 'Fit') {
-              one = 'Runs tight';
-              two = 'Runs slightly tight';
-              three = 'Perfect';
-              four = 'Runs slightly long';
-              five = 'Runs long';
-            }
-            return (
-              <>
-                <label id = {'characteristic'}> {key} <br/>
-                  <label> {one}
-                    <input type="radio" value = "1" name = {key}/>
-                  </label> <br/>
-                  <label> {two}
-                    <input type="radio" value = "2" name = {key}/>
-                  </label><br/>
-                  <label> {three}
-                    <input type="radio" value = "3" name = {key}/>
-                  </label><br/>
-                  <label> {four}
-                    <input type="radio" value = "4" name = {key}/>
-                  </label><br/>
-                  <label> {five}
-                    <input type="radio" value = "5" name = {key}/>
-                  </label><br/>
-                </label>
-                <div id = {'seperator'}></div>
-              </>
-            );
-          })}
+              {Object.keys(this.props.characteristics).map((key, index)=>{
+                let one, two, three, four, five;
+                if(key === 'Size') {
+                  one = 'A size too small';
+                  two = '½ a size too small';
+                  three = 'Perfect';
+                  four = '½ a size too big';
+                  five = 'A size too wide';
+                } else if(key === 'Width') {
+                  one = 'Too narrow';
+                  two = 'Slightly narrow';
+                  three = 'Perfect';
+                  four = 'Slightly wide';
+                  five = 'Too wide';
+                } else if(key === 'Comfort') {
+                  one = 'Uncomfortable';
+                  two = 'Slightly uncomfortable';
+                  three = 'Ok';
+                  four = 'Comfortable';
+                  five = 'Perfect';
+                } else if(key === 'Quality') {
+                  one = 'Poor';
+                  two = 'Below average';
+                  three = 'What I expected';
+                  four = 'Pretty great';
+                  five = 'Perfect';
+                } else if(key === 'Length') {
+                  one = 'Runs Short';
+                  two = 'Runs slightly short';
+                  three = 'Perfect';
+                  four = 'Runs slightly long';
+                  five = 'Runs long';
+                } else if(key === 'Fit') {
+                  one = 'Runs tight';
+                  two = 'Runs slightly tight';
+                  three = 'Perfect';
+                  four = 'Runs slightly long';
+                  five = 'Runs long';
+                }
+                return (
+                  <>
+                    <label id = {'characteristic'}> {key} <br/>
+                      <label>
+                        <input type="radio" value = "1" name = {key} id = {'bubble'}/>
+                        {one}
+                      </label> <br/>
+                      <label>
+                        <input type="radio" value = "2" name = {key} id = {'bubble'}/>
+                        {two}
+                      </label><br/>
+                      <label>
+                        <input type="radio" value = "3" name = {key} id = {'bubble'}/>
+                        {three}
+                      </label><br/>
+                      <label>
+                        <input type="radio" value = "4" name = {key} id = {'bubble'}/>
+                        {four}
+                      </label><br/>
+                      <label>
+                        <input type="radio" value = "5" name = {key} id = {'bubble'}/>
+                        {five}
+                      </label><br/>
+                    </label>
+                    <div id = {'seperator'}></div>
+                  </>
+                );
+              })}
 
-          <label htmlFor="Summary">Title:</label><br/>
-          <input type="text" id="Summary" name="summary" maxLength = "60"/><br/>
-          <label htmlFor="Body">Details:</label><br/>
-          <input type="text" id="Body" name="body" maxLength = "250"/><br/>
-          <label htmlFor="photo">Photo</label>
-          <input accept=".jpg, .jpeg, .png" type="file" id="photo" name="photo" onChange = {this.dispPhoto} multiple/><br/>
-          { this.state.photos ? this.state.photos.map((photo, index) => {
-            console.log(photo);
-            return <img id = {'uploadPhotosReviewForm'} src = {photo} key = {index}/>;
-          }) : null} <br/>
-          <label htmlFor="Nickname">Nickname:</label><br/>
-          <input type="text" id="Nickname" name="nickname"/><br/>
-          <label htmlFor="Email">Email:</label><br/>
-          <input type="text" id="Email" name="email"/><br/>
-          <label>For authentication reasons, you will not be emailed</label><br/>
-          <br/>
-          <button type="submit">Submit</button><br/>
-        </form>
+              <label htmlFor="Summary">Title:</label> <br/>
+              <input type="text" id="Summary" name="summary" maxLength = "60"/><br/>
+              <label htmlFor="Body">Details:</label> <br/>
+              <textarea id="Body" name="body" maxLength = "250"/><br/>
+              <label htmlFor="photo">Photo</label>
+              <input accept=".jpg, .jpeg, .png" type="file" id="fileSelector" name="photo" onChange = {this.dispPhoto} multiple/><br/>
+              { this.state.photos ? this.state.photos.map((photo, index) => {
+                console.log(photo);
+                return <img id = {'uploadPhotosReviewForm'} src = {photo} key = {index}/>;
+              }) : null} <br/>
+              <label htmlFor="Nickname">Nickname:</label>
+              <input type="text" id="Nickname" name="nickname"/><br/>
+              <label htmlFor="Email">Email:</label>
+              <input type="text" id="Email" name="email"/><br/>
+              <label>For authentication reasons, you will not be emailed</label><br/>
+              <button type="submit" id = {'submitButton'}>Submit</button><br/>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

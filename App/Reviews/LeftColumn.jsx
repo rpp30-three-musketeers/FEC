@@ -19,7 +19,7 @@ const LeftColumn = (props) => {
       <div>
         {Object.keys(props.ratings).map((key, index) => {
         // console.log(review, 'print review');
-          let starIndex = (key - 6)*-1;
+          let starIndex = (key - 6) * -1;
           let percentTotal = props.numToPct(props.ratings[starIndex] / props.reviewCount);
           return (
             <RatedBar star = {starIndex} pctTotal = {percentTotal} count = {props.ratings[starIndex]} key = {starIndex}/>
@@ -32,6 +32,7 @@ const LeftColumn = (props) => {
           return (
             <MarkerBar char = {key} key = {props.chars[key].id} value = {props.chars[key].value}/>
           );
+
         })}
       </div>
     </div>

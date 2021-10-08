@@ -10,12 +10,15 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 47421,
+      productId: this.context,
       sortedBy: 'Relevance',
       productReviews: 'needToInitialize',
       averageRating: null,
-      productName: 'Camo Onesie',
-      meta: {}
+      productName: '',
+      meta: {},
+      showPicModal: false,
+      showReviewModal: false
+
 
     };
 
@@ -101,7 +104,8 @@ class Reviews extends React.Component {
     let pct = this.numberToPercent(this.state.meta.pctRecommend);
 
     return (
-      renderReviews ?
+      <div>
+      {renderReviews ?
         <div id={'reviews'}>
           <p>Ratings and Reviews</p>
           <div id={'content'}>
@@ -116,7 +120,9 @@ class Reviews extends React.Component {
                 characteristics = {this.state.meta.characteristics}/>
             </div>
           </div>
-        </div> : null
+        </div> : null}
+
+        </div>
     );
   }
 }
