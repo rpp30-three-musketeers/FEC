@@ -49,7 +49,7 @@ class RightColumn extends React.Component {
           </select></div>
           {this.props.reviews.slice(0, last).map((review, index)=>{
             return (
-              <Review data = {review} key = {index}/>
+              <Review data = {review} key = {review.review_id}/>
             );
           })}
 
@@ -57,7 +57,8 @@ class RightColumn extends React.Component {
         <button id = 'addReview' onClick = {this.handleAddReviewClick}>Add Review</button>
         <button id = 'showMoreReviews' onClick = {this.handleShowMoreReviews}>Show More</button>
         {this.state.showReviewModal ?
-          <ReviewForm exit = {this.handleAddReviewExit} productName = {this.state.productName} productId = {this.context}/>
+          <ReviewForm exit = {this.handleAddReviewExit} productName = {this.props.productName} productId = {this.context}
+          characteristics = {this.props.characteristics}/>
           : null}
       </>
     );

@@ -1,6 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
-// const HTMLWebpackPlugin = require("html-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: __dirname + "/App/app.jsx",
@@ -32,8 +32,10 @@ module.exports = {
       }
     ],
   },
-  // externals: {
-  //   'react': 'React'
-  // },
+  optimization: {
+    minimizer: [new UglifyJsPlugin({
+      parallel: true,
+    })],
+  },
 
 }
