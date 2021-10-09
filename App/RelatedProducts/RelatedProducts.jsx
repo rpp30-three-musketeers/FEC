@@ -48,11 +48,15 @@ class RelatedProducts extends React.Component {
 
   loadProducts() {
     if (this.state.related !== undefined) {
+      let relatedProducts = this.state.related;
+      let fileteredRelatedProducts = relatedProducts.filter((x, i, a) => a.indexOf(x) == i)
+
       let start = this.state.carouselStart;
       let end = start + 4;
-      return (this.state.related.slice(start, end).map(item => {
+      return (fileteredRelatedProducts.slice(start, end).map(item => {
         return <Product id={item} key={item} mainProduct={this.state.overviewProductInfo}/>;
       }));
+
     }
   }
 
