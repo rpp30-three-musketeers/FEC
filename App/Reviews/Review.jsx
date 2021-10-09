@@ -55,7 +55,7 @@ class Review extends React.Component {
     let newDate = monthName + ', ' + day + ', ' + year;
     let helpful = this.state.helpfulness ? this.state.helpfulness : this.props.data.helpfulness;
     return (
-      <div>
+      <div className='trackable-review'>
         <div className = {'review-header'}>
           <div id = {'stars'}>
             <StarRatingDisplay rating = {this.props.data.rating}/>

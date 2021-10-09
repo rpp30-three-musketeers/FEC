@@ -15,7 +15,7 @@ const LeftColumn = (props) => {
     starsIndex.push(reversed.pop());
   }
   return (
-    <div>
+    <div className='trackable-leftcolumnreview'>
       <div id = {'bigRating'}>
         <div id ={'averageRating'} title = {'rating'}>{props.avgRating}</div>
         <div id = {'averageStars'}>

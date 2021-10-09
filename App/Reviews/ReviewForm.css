@@ -13,7 +13,7 @@
 #reviewModal {
   background-color:white;
   width: 50%;
-  height:auto;
+  height: fit-content;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -21,8 +21,8 @@
 }
 
 #reviewContent {
-  margin: 2em;
-  font-size: 1.5em;
+  margin: 1em;
+  font-size: 1em;
 }
 
 #uploadPhotosReviewForm {
@@ -56,6 +56,7 @@
   height: 1em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  margin-left: 0.5em;
 }
 #Body {
   margin-left: 0;
