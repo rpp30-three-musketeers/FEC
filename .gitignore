@@ -5,3 +5,4 @@ babel.js
 credentials.js
 Public/bundle.js
 coverage
+bundle.js.map

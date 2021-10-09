@@ -3,6 +3,8 @@ const webpack = require("webpack");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
+  devtool:'source-map',
   entry: __dirname + "/App/app.jsx",
   output: {
     filename: "bundle.js",
@@ -33,9 +35,7 @@ module.exports = {
     ],
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin({
-      parallel: true,
-    })],
+    minimizer: [new UglifyJsPlugin()],
   },
 
 }
