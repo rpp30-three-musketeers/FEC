@@ -40,8 +40,10 @@ class RelatedProducts extends React.Component {
 
   getRelated() {
     $.get('/products', {product_id: this.context, endpoint: 'related'}, (data) => {
+      let relatedProducts = data;
+      let filteredRelatedProducts = relatedProducts.filter((x, i, a) => a.indexOf(x) == i);
       this.setState({
-        related: data
+        related: filteredRelatedProducts
       });
     });
   }
@@ -53,6 +55,7 @@ class RelatedProducts extends React.Component {
       return (this.state.related.slice(start, end).map(item => {
         return <Product id={item} key={item} mainProduct={this.state.overviewProductInfo}/>;
       }));
+
     }
   }
 
