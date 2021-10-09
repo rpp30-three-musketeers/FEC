@@ -2,19 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './ReviewForm.css';
 import ProductIdContext from '../context.jsx';
+import FullStar from '../StarRatings/icons/FullStar.jsx';
+import EmptyStar from '../StarRatings/icons/EmptyStar.jsx';
+import $ from 'jquery';
 
 class ReviewForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       recommend: '',
-      photos: []
+      photos: [],
+      stars: [0,0,0,0,0]
 
     };
     this.handleSubmitReview = this.handleSubmitReview.bind(this);
     this.dispPhoto = this.dispPhoto.bind(this);
     this.pushBlobUrl = this.pushBlobUrl.bind(this);
     this.blobURLParser = this.blobURLParser.bind(this);
+    this.handleClickStar = this.handleClickStar.bind(this);
   }
   static contextType = ProductIdContext;
 
@@ -28,13 +33,17 @@ class ReviewForm extends React.Component {
       charMap[this.props.characteristics[characteristic].id] = parseInt(event.target[characteristic].value);
     }
     console.log(charMap);
-
-
+    let rating = 0;
+    for(let i = 0; i <this.state.stars.length; i++){
+      if(this.state.stars[i] === 1) {
+        rating++;
+      }
+    }
 
     let query = {
       // eslint-disable-next-line camelcase
       product_id: productId,
-      rating: parseInt(event.target.rating.value),
+      rating: rating,
       summary: event.target.summary.value,
       body: event.target.body.value,
       recommend: recommend,
@@ -95,6 +104,23 @@ class ReviewForm extends React.Component {
     }
   }
 
+  handleClickStar(index) {
+    if(index === 0) {
+      this.setState({stars: [1,0,0,0,0]})
+    } else if (index === 1) {
+      this.setState({stars: [1,1,0,0,0]})
+    }
+    else if (index === 2) {
+      this.setState({stars: [1,1,1,0,0]})
+    }
+    else if (index === 3) {
+      this.setState({stars: [1,1,1,1,0]})
+    }
+    else if (index === 4) {
+      this.setState({stars: [1,1,1,1,1]})
+    }
+  }
+
   render() {
     console.log(this.props, 'reviewForm props');
 
@@ -107,11 +133,21 @@ class ReviewForm extends React.Component {
             <h3>About the {this.props.productName}</h3>
             <form id = "reviewForm" onSubmit = {this.handleSubmitReview}>
               <label>Overall Rating:
-                <input type="radio" value = "1" name = "rating"/>
-                <input type="radio" value = "2" name = "rating"/>
-                <input type="radio" value = "3" name = "rating"/>
-                <input type="radio" value = "4" name = "rating"/>
-                <input type="radio" value = "5" name = "rating"/>
+                  <span onClick = {() => {
+                    this.handleClickStar(0);
+                  }} >{this.state.stars[0] ? <FullStar/> : <EmptyStar/>}</span>
+                  <span onClick = {() => {
+                    this.handleClickStar(1);
+                  }}>{this.state.stars[1] ? <FullStar/> : <EmptyStar/>}</span>
+                  <span onClick = {() => {
+                    this.handleClickStar(2);
+                  }}>{this.state.stars[2] ? <FullStar/> : <EmptyStar/>}</span>
+                  <span onClick = {() => {
+                    this.handleClickStar(3);
+                  }}>{this.state.stars[3] ? <FullStar/> : <EmptyStar/>}</span>
+                  <span onClick = {() => {
+                    this.handleClickStar(4);
+                  }}>{this.state.stars[4] ? <FullStar/> : <EmptyStar/>}</span>
               </label> <br/>
               <label className = {'flexLabel'}> Do You Recommend this Product?:
                 <input type="radio" value = "Yes" name = "recommend"/> Yes

@@ -6,7 +6,14 @@ import RatedBar from './RatedBar.jsx';
 import MarkerBar from './MarkerBar.jsx';
 
 const LeftColumn = (props) => {
-
+  let reversed = [];
+  Object.keys(props.ratings).map((key, index) => {
+    reversed.push(key);
+  });
+  let starsIndex = [];
+  for (let i = 0; i <= reversed.length; i++) {
+    starsIndex.push(reversed.pop());
+  }
   return (
     <div>
       <div id = {'bigRating'}>
@@ -17,12 +24,10 @@ const LeftColumn = (props) => {
       </div>
       <p id = {'pct'} title = {'pct'}>{props.percentRecommend + ' of reviews recommend this product'}</p>
       <div>
-        {Object.keys(props.ratings).map((key, index) => {
-        // console.log(review, 'print review');
-          let starIndex = (key - 6) * -1;
-          let percentTotal = props.numToPct(props.ratings[starIndex] / props.reviewCount);
+        {starsIndex.map((key, index) =>{
+          let percentTotal = props.numToPct(props.ratings[key] / props.reviewCount);
           return (
-            <RatedBar star = {starIndex} pctTotal = {percentTotal} count = {props.ratings[starIndex]} key = {starIndex}/>
+            <RatedBar star = {key} pctTotal = {percentTotal} count = {props.ratings[key]} key = {key}/>
           );
         })}
       </div>

@@ -11,7 +11,7 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       productId: this.context,
-      sortedBy: 'Relevance',
+      sortedBy: 'relevant',
       productReviews: 'needToInitialize',
       averageRating: null,
       productName: '',
@@ -30,17 +30,19 @@ class Reviews extends React.Component {
   static contextType = ProductIdContext;
 
   componentDidMount() {
-    //console.log('component did mount function');
 
     let options = {
       // eslint-disable-next-line camelcase
       product_id: this.context
     };
-    this.reviewApiCall(options);
+    $.get('/products', options, (data) => {
+      this.reviewApiCall(options, data.name);
+    });
 
   }
 
   componentDidUpdate(prevProps, prevState) {
+
     if (prevState.productId !== this.state.productId) {
       let options = {
         // eslint-disable-next-line camelcase

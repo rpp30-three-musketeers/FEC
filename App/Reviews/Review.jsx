@@ -5,14 +5,7 @@ import Modal from './Modal.jsx';
 import months from './months.js';
 import StarRatingDisplay from '../StarRatings/StarRatingDisplay.jsx';
 import $ from 'jquery';
-/*
-needs:
-currentUser
-date
-reviewTitle
-reviewBody
-helpfulCount
-*/
+
 
 class Review extends React.Component {
   constructor(props) {
