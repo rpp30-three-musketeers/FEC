@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 const helpers = require('./helpers.js');
 
+
 app.use(express.static('Public'));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -78,9 +79,9 @@ app.get('/reviews/', (req, res)=>{
   }
   if (req.query.sort) {
     let sortBy = '&&sort=' + req.query.sort;
-    url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=' + pIdForAxios + '&&count=100' + sortBy;
+    url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=' + pIdForAxios + '&&count=10' + sortBy;
   } else {
-    url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=' + pIdForAxios + '&&count=100';
+    url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?product_id=' + pIdForAxios + '&&count=10';
   }
 
   axios({
@@ -92,6 +93,7 @@ app.get('/reviews/', (req, res)=>{
   })
     .then((reviews) => {
       // console.log('Successful response from gitHub API call', reviews.data);
+      // console.log(reviews, 'reviews received');
       return res.status(201).json(reviews.data);
     })
     .catch((err) => {

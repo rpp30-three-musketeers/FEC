@@ -10,12 +10,15 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: 47421,
-      sortedBy: 'Relevance',
+      productId: this.context,
+      sortedBy: 'relevant',
       productReviews: 'needToInitialize',
       averageRating: null,
-      productName: 'Camo Onesie',
-      meta: {}
+      productName: '',
+      meta: {},
+      showPicModal: false,
+      showReviewModal: false
+
 
     };
 
@@ -27,17 +30,19 @@ class Reviews extends React.Component {
   static contextType = ProductIdContext;
 
   componentDidMount() {
-    //console.log('component did mount function');
 
     let options = {
       // eslint-disable-next-line camelcase
       product_id: this.context
     };
-    this.reviewApiCall(options);
+    $.get('/products', options, (data) => {
+      this.reviewApiCall(options, data.name);
+    });
 
   }
 
   componentDidUpdate(prevProps, prevState) {
+
     if (prevState.productId !== this.state.productId) {
       let options = {
         // eslint-disable-next-line camelcase
@@ -101,7 +106,8 @@ class Reviews extends React.Component {
     let pct = this.numberToPercent(this.state.meta.pctRecommend);
 
     return (
-      renderReviews ?
+      <div>
+      {renderReviews ?
         <div id={'reviews'}>
           <p>Ratings and Reviews</p>
           <div id={'content'}>
@@ -116,7 +122,9 @@ class Reviews extends React.Component {
                 characteristics = {this.state.meta.characteristics}/>
             </div>
           </div>
-        </div> : null
+        </div> : null}
+
+        </div>
     );
   }
 }

@@ -4,7 +4,7 @@ import './RatedBar.css';
 
 const RatedBar = function(props) {
   return (
-    <div id = 'ratedBar'>
+    <div id = 'ratedBar' className='trackable-ratedbarreview'>
       <div id= 'star'>{props.star + ' stars'}</div>
       <div id = {'fullBar'}>
         <div id = {'pctBar'} style = {

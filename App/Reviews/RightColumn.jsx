@@ -40,7 +40,7 @@ class RightColumn extends React.Component {
     let last = this.state.reviewQuantityToShow;
     return (
       <>
-        <div>
+        <div className='trackable-rightColumnreview'>
           <div>{this.props.reviewCount + ' reviews, sorted by '}
           <select name="sortBy" id="sortBy" onChange = {this.handleSortChange}>
             <option value="relevant">Relevant</option>
@@ -54,8 +54,8 @@ class RightColumn extends React.Component {
           })}
 
         </div>
-        <button id = 'addReview' onClick = {this.handleAddReviewClick}>Add Review</button>
-        <button id = 'showMoreReviews' onClick = {this.handleShowMoreReviews}>Show More</button>
+        <button id = 'addReview' onClick = {this.handleAddReviewClick} className='trackable-addreview'>Add Review</button>
+        <button id = 'showMoreReviews' onClick = {this.handleShowMoreReviews} className='trackable-showmorereviews'>Show More</button>
         {this.state.showReviewModal ?
           <ReviewForm exit = {this.handleAddReviewExit} productName = {this.props.productName} productId = {this.context}
           characteristics = {this.props.characteristics}/>
