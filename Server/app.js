@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+const compression = require('compression');
 const express = require('express');
 const axios = require('axios');
 const credentials = require('../credentials.js');
@@ -6,7 +7,7 @@ const app = express();
 const port = 3000;
 const helpers = require('./helpers.js');
 
-
+app.use(compression());
 app.use(express.static('Public'));
 app.use(express.json());
 app.use(express.urlencoded());
