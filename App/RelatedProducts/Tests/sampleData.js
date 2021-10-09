@@ -1,4 +1,4 @@
-let productsData = [
+let mockData = [
   {
     'id': 1,
     'name': 'Camo Onesie',
@@ -25,7 +25,7 @@ let productsData = [
   }
 ];
 
-let productsID = {
+let mockID = {
   'id': 11,
   'name': 'Air Minis 250',
   'slogan': 'Full court support',
@@ -44,7 +44,7 @@ let productsID = {
   ],
 };
 
-let productsStyles = {
+let mockStyles = {
   'product_id': '1',
   'results': [
     {
@@ -108,11 +108,26 @@ let productsStyles = {
   ]
 };
 
-let relatedProducts = [
+let mockRelated = [
   2,
   3,
   8,
   7
 ];
 
-module.exports = {relatedProducts, productsData, productsID, productsStyles};
+data = {
+  id: 47423,
+  name: 'Morning Joggers',
+  slogan: 'Make yourself a morning person',
+  description: "Whether you're a morning person or not.  Whether y…ym bound or not.  Everyone looks good in joggers.",
+  campus: "hr-rpp"
+  category: "Pants"
+  created_at: "2021-08-26T20:30:48.129Z"
+  default_price: "40.00"
+  description: "Whether you're a morning person or not.  Whether you're gym bound or not.  Everyone looks good in joggers."
+  features: (2) [{feature:___, value:___}, {…}]
+  updated_at: "2021-08-26T20:30:48.129Z"
+}
+
+
+module.exports = {mockData, mockID, mockStyles, mockRelated};
