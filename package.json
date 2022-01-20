@@ -2,7 +2,7 @@
   "name": "fec",
   "version": "1.0.0",
   "description": "",
-  "main": "./App/app.jsx",
+  "main": "Server/app.js",
   "jest": {
     "moduleNameMapper": {
       "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
