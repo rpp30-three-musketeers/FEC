@@ -42,13 +42,7 @@ The New Review form will prompt the user to enter feedback, assign a star rating
 ```bash
 npm install
 ```
-- Create a file named `credentials.js` in the repo's root directory.  This file should contain your Github API Token in the format below:
-
-```javascript
-module.exports = {
-  authorization:'YOUR-TOKEN-HERE'
-};
-```
+- Create a file named `.env` in the repo's root directory.  This file should contain your Github API Token and Preferred Default Product ID in a format that matches the file named `.env.example`
 
 ## Development Environment
 - To run the development environment, execute the following scripts as needed in separate terminal windows:

@@ -1,18 +1,21 @@
 /* eslint-disable camelcase */
 const express = require('express');
 const axios = require('axios');
-const credentials = require('../credentials.js');
 const app = express();
 const port = 3000;
 const helpers = require('./helpers.js');
+require('dotenv').config();
 
+
+app.get('/', (req, res) => {
+  res.redirect(`/${process.env.DEFAULT_PRODUCT_ID}`);
+});
 
 app.use(express.static('Public'));
 app.use(express.json());
 app.use(express.urlencoded());
 
 app.get('/products', (req, res) => {
-  // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products`;
 
   if (req.query.product_id) {
@@ -42,7 +45,7 @@ app.get('/products', (req, res) => {
     url: url,
     data: null,
     headers: {
-      Authorization: credentials.authorization
+      Authorization: process.env.AUTHORIZATION
     }
   })
     .then((products) => {
@@ -54,22 +57,11 @@ app.get('/products', (req, res) => {
     });
 });
 
-app.get('/', (req, res) => {
-  res.send('Server is running...');
-});
-
-app.get('/', (req, res) => {
-  // res.send('Connected to server; ');
-  res.sendFile('index.html', {root: './Public'});
-});
-
 app.get(/^\/\b\d{5}$/, (req, res) => {
-  // res.send('Connected to server; ');
   res.sendFile('index.html', {root: './Public'});
 });
 
 app.get('/reviews/', (req, res)=>{
-  // eslint-disable-next-line quotes
   let pIdForAxios = '';
   let url;
   if (req.query.product_id.length > 5) {
@@ -88,12 +80,10 @@ app.get('/reviews/', (req, res)=>{
     method: 'get',
     url: url,
     headers: {
-      Authorization: credentials.authorization,
+      Authorization: process.env.AUTHORIZATION,
     },
   })
     .then((reviews) => {
-      // console.log('Successful response from gitHub API call', reviews.data);
-      // console.log(reviews, 'reviews received');
       return res.status(201).json(reviews.data);
     })
     .catch((err) => {
@@ -108,7 +98,7 @@ app.get('/reviews/meta', (req, res) =>{
     method: 'get',
     url: urlMeta,
     headers: {
-      Authorization: credentials.authorization,
+      Authorization: process.env.AUTHORIZATION,
     }
   })
     .then((meta) => {
@@ -127,7 +117,6 @@ app.get('/reviews/meta', (req, res) =>{
 });
 
 app.post('/reviews', (req, res)=>{
-  // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews`;
   console.log(req.body.product_id, ' product id');
   console.log(req.body);
@@ -136,7 +125,7 @@ app.post('/reviews', (req, res)=>{
     method: 'post',
     url: url,
     headers: {
-      Authorization: credentials.authorization,
+      Authorization: process.env.AUTHORIZATION,
     },
     data: {
       product_id: req.body.product_id,
@@ -151,7 +140,6 @@ app.post('/reviews', (req, res)=>{
     }
   })
     .then((status) => {
-      //console.log(status);
       console.log('success');
       return res.send('/');
     })
@@ -166,7 +154,7 @@ app.post('/reviews/helpful', (req, res)=>{
     method: 'put',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/' + req.body.review_id + '/helpful',
     headers: {
-      Authorization: credentials.authorization,
+      Authorization: process.env.AUTHORIZATION,
     },
 
   }).then(()=> {
@@ -181,7 +169,7 @@ app.post('/reviews/report', (req, res)=>{
     method: 'put',
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/' + req.body.review_id + '/report',
     headers: {
-      Authorization: credentials.authorization,
+      Authorization: process.env.AUTHORIZATION,
     },
 
   }).then(()=> {
@@ -197,7 +185,7 @@ app.get('/get-average-rating', (req, res) => {
     method: 'get',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?sort=newest&product_id=${req.query.productId}`,
     headers: {
-      Authorization: credentials.authorization,
+      Authorization: process.env.AUTHORIZATION,
     }
   })
     .then((summary) => {
@@ -208,7 +196,6 @@ app.get('/get-average-rating', (req, res) => {
         totalStars += (parseInt(x) * parseInt(summary.data.ratings[x]));
       }
       var averageStars = totalStars / counter;
-      //console.log(averageStars);
       return res.status(200).json(averageStars);
     })
     .catch((err) => {
@@ -217,7 +204,6 @@ app.get('/get-average-rating', (req, res) => {
 });
 
 app.post('/interactions', (req, res) => {
-  // eslint-disable-next-line quotes
   let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions`;
 
   let interaction = req.body;
@@ -227,7 +213,7 @@ app.post('/interactions', (req, res) => {
     url: url,
     data: interaction,
     headers: {
-      Authorization: credentials.authorization
+      Authorization: process.env.AUTHORIZATION
     }
   })
     .then(() => {
@@ -240,5 +226,5 @@ app.post('/interactions', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}/47470`);
+  console.log(`App listening on port ${port}`);
 });
