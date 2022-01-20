@@ -75,7 +75,6 @@ class Track extends React.Component {
       // DOM Component, such as:
       // <button />
       if (typeof child.type === "string") {
-        // console.log(child.props.children);
         return React.cloneElement(child, { ref });
 
       }
