@@ -16,7 +16,7 @@
     "front": "webpack -w --mode development",
     "front-prod": "webpack",
     "build": "webpack",
-    "start": "nodemon .Server/app.js",
+    "start": "nodemon ./Server/app.js",
     "back": "nodemon ./Server/app.js ",
     "lint": "eslint ./"
   },
