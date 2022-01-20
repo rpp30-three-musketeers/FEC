@@ -16,8 +16,7 @@
     "front": "webpack -w --mode development",
     "front-prod": "webpack",
     "build": "webpack",
-    "start": "node ./Server/app.js",
-    "heroku-postbuild": "node ./Server/app.js",
+    "start": "node Server/app.js",
     "back": "nodemon ./Server/app.js ",
     "lint": "eslint ./"
   },
